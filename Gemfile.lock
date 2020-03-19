@@ -9,7 +9,7 @@ GEM
     multipart-post (2.1.1)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
-    rake (11.3.0)
+    rake (12.3.3)
     sentry-raven (3.0.0)
       faraday (>= 1.0)
 
@@ -20,7 +20,7 @@ DEPENDENCIES
   dotenv (~> 2.7, >= 2.7.5)
   minitest (~> 5.8, >= 5.8.4)
   nokogiri (~> 1.10, >= 1.10.9)
-  rake (~> 11.2, >= 11.2.2)
+  rake (~> 12.3)
   sentry-raven
 
 BUNDLED WITH
