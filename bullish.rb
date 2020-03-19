@@ -113,12 +113,12 @@ class Bullish
     data = data.to_json if data
 
     http.send_request(method, ENV['API_VERSION'] + path, data, headers).tap do |res|
-      unless ['200', '201'].include? res.code
+      unless %w[200 201].include? res.code
         message = res.code + ' - ' + path + ' - ' + res.body.to_s
 
         Raven.capture_message(message)
 
-        raise Exception.new(message) 
+        raise Exception, message
       end
     end
   end
@@ -146,7 +146,7 @@ class Bullish
     }
 
     http = sendgrid_request(path, data, 'POST')
-    
+
     # returns new singlesend id
     JSON.parse(http.read_body)['id']
   end

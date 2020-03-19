@@ -1,0 +1,41 @@
+# banana - An Yellow based theme
+# chalk
+# love
+# default
+# neon
+# purple
+# bungee
+# crest
+# expo
+# classic - Dark font on white background
+# bigsur
+# libre
+# dark
+theme:
+  name: default
+  background_color: '#1B262C'
+  text_color: '#e6e6e6'
+  accent_color: '#e6e6e6'
+  heading_color: '#FFF'
+
+
+# options
+# %Y - year with century (2020)
+# %y - year last two digits (20)
+# %m - month of the year, zero-padded (01..12)
+# %B - the full month name  (January)
+#   %^B - uppercased (JANUARY)
+# %b - the abbreviated month name (Jan)
+#   %^b - uppercased (JAN)
+# %d - day of the month, zero-padded (01..31)
+# %-d - no-padded (1..31)
+# %A - The full weekday name (Sunday)
+#   %^A - uppercased (SUNDAY)
+# %a - The abbreviated name (Sun)
+#   %^a - uppercased (SUN)
+date_format: "%B %d, %Y"
+
+# UA-XXXXX-X with your web property ID
+google_analytics:
+
+css_url: /leter.css
