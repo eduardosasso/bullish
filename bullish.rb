@@ -5,6 +5,7 @@ require 'nokogiri'
 require 'dotenv'
 require 'json'
 require 'raven'
+require 'cgi'
 
 class Bullish
   attr_reader :fields
@@ -39,7 +40,7 @@ class Bullish
   end
 
   def prepare_template
-    Nokogiri::HTML(html_template).tap do |doc|
+    html = Nokogiri::HTML(html_template).tap do |doc|
       @fields.each do |index, value|
         next unless value
 
@@ -55,7 +56,9 @@ class Bullish
           end
         end
       end
-    end.to_html
+    end.to_s
+
+    CGI.unescape(html)
   end
 
   def craft_subject
