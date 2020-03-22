@@ -36,6 +36,6 @@ theme:
 date_format: "%B %d, %Y"
 
 # UA-XXXXX-X with your web property ID
-google_analytics:
+google_analytics: 'UA-148146327-2'
 
 css_url: /leter.css
