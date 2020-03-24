@@ -127,7 +127,12 @@ class Bullish
   end
 
   def sendgrid_update_template(subject, body)
-    path = "/templates/#{ENV['TEMPLATE_ID']}/versions/#{ENV['TEMPLATE_VERSION_ID']}"
+    path = [
+      '/templates',
+      ENV['TEMPLATE_ID'],
+      'versions',
+      ENV['TEMPLATE_VERSION_ID']
+    ].join('/')
 
     data = {
       "subject": subject,
