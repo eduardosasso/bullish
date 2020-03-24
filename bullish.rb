@@ -10,16 +10,6 @@ require 'cgi'
 class Bullish
   attr_reader :fields
 
-  COLOR = {
-    red: '#d63447',
-    green: '#21bf73'
-  }.freeze
-
-  FUTURES = {
-    'Future-US-NQ00' => 'f_nasdaq',
-    'Future-US-ES00' => 'f_sp500',
-    'Future-US-YM00' => 'f_dowjones'
-  }.freeze
 
   def initialize
     Dotenv.load
@@ -32,11 +22,6 @@ class Bullish
       f_nasdaq: nil,
       f_dowjones: nil
     }
-  end
-
-  def html_template
-    # save from sendgrid on change
-    File.read('template.html')
   end
 
   def prepare_template
@@ -78,28 +63,6 @@ class Bullish
     sendgrid_trigger_single_send(send_to_all)
   end
 
-  def color(value)
-    negative = '-'
-
-    value.to_s.start_with?(negative) ? COLOR[:red] : COLOR[:green]
-  end
-
-  def fetch_futures
-    uri = URI ENV['MARKET_API']
-
-    response = Net::HTTP.get(uri)
-
-    JSON.parse(response)['InstrumentResponses'].each do |r|
-      next unless FUTURES.keys.include?(r['RequestId'])
-
-      key = FUTURES[r['RequestId']].to_sym
-      value = r['Matches'].first['CompositeTrading']['ChangePercent']
-
-      @fields[key] = value.to_f.round(2).to_s + '%'
-    end
-  end
-
-  def fetch_market; end
 
   def sendgrid_request(path, data = nil, method = 'GET')
     uri = URI(ENV['SENDGRID_API'])
