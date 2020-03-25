@@ -1,136 +1,51 @@
 # frozen_string_literal: true
 
-require 'net/http'
-require 'nokogiri'
-require 'dotenv'
-require 'json'
-require 'raven'
-require 'cgi'
+require './email'
+require './template'
+require './futures'
+require './ticker'
 
+# buy high sell low
 class Bullish
-  attr_reader :fields
-
-
-  def initialize
+  def initialize(test = ENV['TEST'])
     Dotenv.load
 
-    @fields = {
-      subject: nil,
-      # TODO: add ET time before open markets
-      f_date: Time.now.strftime('%B %d, %Y'),
-      f_sp500: nil,
-      f_nasdaq: nil,
-      f_dowjones: nil
-    }
+    @test = test
   end
 
-  def prepare_template
-    html = Nokogiri::HTML(html_template).tap do |doc|
-      @fields.each do |index, value|
-        next unless value
-
-        field = ":contains('#{index}'):not(:has(:contains('#{index}')))"
-        doc.at(field).tap do |tag|
-          next unless tag
-
-          tag.content = value
-
-          tag.parent.attributes['style'].tap do |css|
-            css.content = css.content.gsub(COLOR[:red], color(value))
-            css.content = css.content.gsub(COLOR[:green], color(value))
-          end
-        end
-      end
-    end.to_s
-
-    CGI.unescape(html)
+  def post
+    Email.new(subject, content).post
   end
 
-  def craft_subject
-    @fields[:subject] = 'test subject'
+  def subject; end
+
+  def content
+    Template.new(data).compile
   end
 
-  def email_subscribers(test = ENV['TEST'])
-    fetch_futures
-    fetch_market
-
-    subject = craft_subject
-    body = prepare_template
-
-    sendgrid_update_template(subject, body)
-
-    send_to_all = test ? false : true
-    sendgrid_trigger_single_send(send_to_all)
+  def data
+    {}.merge(futures).merge(indexes)
   end
 
+  # rewrite to conform to template data reqs
+  # nasdaq to nasdaq_1D, sp500_3M...
+  def indexes
+    keys = Ticker::INDEX.keys
 
-  def sendgrid_request(path, data = nil, method = 'GET')
-    uri = URI(ENV['SENDGRID_API'])
-
-    headers = {
-      'Authorization' => 'Bearer ' + ENV['SENDGRID_API_KEY'],
-      'Content-Type' => 'application/json',
-      'Accept' => 'application/json'
-    }
-
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-
-    data = data.to_json if data
-
-    http.send_request(method, ENV['API_VERSION'] + path, data, headers).tap do |res|
-      unless %w[200 201].include? res.code
-        message = res.code + ' - ' + path + ' - ' + res.body.to_s
-
-        Raven.capture_message(message)
-
-        raise Exception, message
+    keys.each_with_object({}) do |index, hash|
+      Ticker.send(index).performance.each do |key, value|
+        hash["#{index}_#{key}"] = value
       end
     end
   end
 
-  def sendgrid_update_template(subject, body)
-    path = [
-      '/templates',
-      ENV['TEMPLATE_ID'],
-      'versions',
-      ENV['TEMPLATE_VERSION_ID']
-    ].join('/')
-
-    data = {
-      "subject": subject,
-      "html_content": body
-    }
-
-    sendgrid_request(path, data, 'PATCH')
-  end
-
-  def sendgrid_new_single_send
-    path = '/marketing/singlesends'
-
-    data = {
-      'name': 'Bullish for ' + @fields[:f_date],
-      'template_id': ENV['TEMPLATE_ID'],
-      'sender_id': ENV['SENDER_ID'].to_i,
-      'filter': { 'send_to_all': true },
-      'suppression_group_id': ENV['UNSUBSCRIBE_GROUP_ID'].to_i
-    }
-
-    http = sendgrid_request(path, data, 'POST')
-
-    # returns new singlesend id
-    JSON.parse(http.read_body)['id']
-  end
-
-  def sendgrid_trigger_single_send(send_to_all = true)
-    id = sendgrid_new_single_send
-
-    path = "/marketing/singlesends/#{id}/schedule"
-
-    data = { 'send_at': 'now' }
-
-    data['filter'] = { 'list_ids': [ENV['TEST_USER_ID']] } unless send_to_all
-
-    sendgrid_request(path, data, 'PUT')
+  # rewrite to conform to template data reqs
+  # nasdaq to nasdaq_f, sp500 to sp500_f
+  def futures
+    {}.tap do |h|
+      Futures.pre_market.each do |key, value|
+        h["#{key}_f"] = value
+      end
+    end
   end
 end

@@ -4,7 +4,7 @@ require 'dotenv'
 require 'net/http'
 require 'json'
 
-#fetch pre-market futures % change
+# fetch pre-market futures % change
 class Futures
   INDEX = {
     sp500: 'Future-US-ES00',

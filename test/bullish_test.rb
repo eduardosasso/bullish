@@ -8,29 +8,21 @@ class BullishTest < Minitest::Test
     ENV['TEST'] = 'true'
   end
 
-  def test_email_subscribers
-    Bullish.new.email_subscribers
-    # Bullish.new.sendgrid_new_single_send
+  def test_futures
+    # TODO: stub futures bypass api
+    assert_equal(%w[nasdaq_f sp500_f dowjones_f].sort, Bullish.new.futures.keys.sort)
   end
 
-  def test_replace
-    # html = Bullish.new.replace_values
-    # File.write('./template_test.html', html)
-  end
+  def test_indexes
+    vars = []
 
-  def test_sendgrid_api
-    # bull = Bullish.new
+    Ticker::INDEX.keys.each do |index|
+      vars << Ticker::PERIOD.keys.map do |period|
+        "#{index}_#{period}"
+      end
+    end
 
-    # assert_equal('200', bull.sendgrid_request('/designs').code)
-  end
-
-  def test_fetch_futures
-    bull = Bullish.new
-
-    bull.fetch_futures
-
-    assert bull.fields[:f_nasdaq]
-    assert bull.fields[:f_sp500]
-    assert bull.fields[:f_dowjones]
+    # TODO: stub performance to not hit api
+    assert_equal(vars.flatten.sort, Bullish.new.indexes.keys.sort)
   end
 end

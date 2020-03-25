@@ -4,7 +4,6 @@ require 'minitest/autorun'
 require './ticker'
 
 class TickerTest < Minitest::Test
-
   def setup
     @request_fixture = File.read('./test/sp500.json')
   end
@@ -22,7 +21,7 @@ class TickerTest < Minitest::Test
     ticker = Ticker.dowjones
     ticker.request = @request_fixture
 
-    assert_raises(RuntimeError) {ticker.performance_by_period(25.years.ago)}
+    assert_raises(RuntimeError) { ticker.performance_by_period(25.years.ago) }
   end
 
   def test_percent_change
