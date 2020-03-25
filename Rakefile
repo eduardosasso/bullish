@@ -7,9 +7,9 @@ task default: %w[test]
 require 'rake/testtask'
 
 Rake::TestTask.new do |t|
-  t.pattern = '*_test.rb'
+  t.pattern = 'test/*_test.rb'
 end
 
 task :send_email do
-  Bullish.new.email_subscribers
+  Bullish.new.send_email
 end

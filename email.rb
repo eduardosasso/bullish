@@ -2,7 +2,6 @@
 
 require 'net/http'
 require 'dotenv'
-require 'raven'
 
 # prepare and send emails using sendgrid
 class Email
@@ -83,19 +82,13 @@ class Email
     }
   end
 
-  def error(message)
-    Raven.capture_message(message)
-
-    raise message
-  end
-
   def request(path, data = nil, method = 'GET')
     data = data.to_json if data
     path = ENV['API_VERSION'] + path
 
     http.send_request(method, path, data, headers).tap do |res|
       unless %w[200 201].include?(res.code)
-        error("#{res.code} - #{path} - #{res.body}")
+        raise "#{res.code} - #{path} - #{res.body}"
       end
     end
   end

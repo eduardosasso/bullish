@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
+require 'minitest/mock'
 require './ticker'
 
 class TickerTest < Minitest::Test
@@ -13,15 +14,19 @@ class TickerTest < Minitest::Test
 
     ticker.request = @request_fixture
 
-    assert_equal(Ticker::PERIOD.keys, ticker.performance.keys)
-    assert_equal(Ticker::PERIOD.keys.count, ticker.performance.values.compact.count)
+    Ticker.stub(:current_date, '2020-03-24') do
+      assert_equal(Ticker::PERIOD.keys, ticker.performance.keys)
+      assert_equal(Ticker::PERIOD.keys.count, ticker.performance.values.compact.count)
+    end
   end
 
   def test_performance_error
     ticker = Ticker.dowjones
     ticker.request = @request_fixture
 
-    assert_raises(RuntimeError) { ticker.performance_by_period(25.years.ago) }
+    Ticker.stub(:current_date, '2020-03-24') do
+      assert_raises(RuntimeError) { ticker.performance_by_period(25.years.ago) }
+    end
   end
 
   def test_percent_change

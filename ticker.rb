@@ -55,7 +55,7 @@ class Ticker
   end
 
   def performance_by_period(date)
-    most_recent = api_data.dig(CURRENT_DATE).dig(CLOSE)
+    most_recent = api_data.dig(self.class.current_date).dig(CLOSE)
 
     # if date is weekend or holiday
     # loop to find the next date
@@ -120,5 +120,9 @@ class Ticker
 
         data.fetch(KEY)
       end
+  end
+
+  def self.current_date
+    CURRENT_DATE
   end
 end
