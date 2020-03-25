@@ -53,8 +53,19 @@ class Bullish
     Template.new(data).compile
   end
 
+  # date time in ET where markets operate
+  def date_time_et
+    DateTime.now.utc.in_time_zone('Eastern Time (US & Canada)')
+  end
+
   def data
-    @data ||= {}.merge(futures).merge(indexes)
+    @data ||= {}
+              .merge(futures)
+              .merge(indexes)
+              .merge(
+                'date_f': date_time_et.strftime('%B %d, %Y'),
+                'time_f': date_time_et.strftime('%I:%M%p ET')
+              )
   end
 
   # rewrite to conform to template data reqs

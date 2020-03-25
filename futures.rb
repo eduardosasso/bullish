@@ -35,7 +35,7 @@ class Futures
 
         value = r.dig('Matches').first.dig('CompositeTrading', 'ChangePercent')
 
-        h[key] = value.to_f.round(2).to_s
+        h[key] = value.to_f.round(2).to_s + '%'
       end
     end
   end
