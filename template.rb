@@ -51,8 +51,6 @@ class Template
   end
 
   def color(value)
-    negative = '-'
-
-    value.to_s.start_with?(negative) ? COLOR[:red] : COLOR[:green]
+    value.to_s.start_with?(Bullish::MINUS) ? COLOR[:red] : COLOR[:green]
   end
 end

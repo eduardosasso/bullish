@@ -31,6 +31,16 @@ class BullishTest < Minitest::Test
     end
   end
 
+  def test_subject 
+    futures = MiniTest::Mock.new
+    futures.expect(:pre_market, {"nasdaq_f"=>"-0.83%", "sp500_f"=>"1.65%", "dowjones_f"=>"2.58%"})
+
+    Futures.stub(:new, futures) do
+      subject = Bullish.new.subject
+      assert_match(/Pre-Market for Nasdaq|S&P 500|Dow Jones is/, subject)
+    end
+  end
+
   def test_futures
     futures_data = File.read('./test/futures.json')
 

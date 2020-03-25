@@ -2,6 +2,7 @@
 
 require 'net/http'
 require 'dotenv'
+require 'date'
 
 # prepare and send emails using sendgrid
 class Email
@@ -51,7 +52,7 @@ class Email
     path = '/marketing/singlesends'
 
     data = {
-      'name': 'Bullish for ' + @fields[:f_date],
+      'name': 'Bullish for ' + Date.today.strftime("%A"),
       'template_id': ENV['TEMPLATE_ID'],
       'sender_id': ENV['SENDER_ID'].to_i,
       'filter': { 'send_to_all': true },

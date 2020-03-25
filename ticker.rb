@@ -16,7 +16,7 @@ class Ticker
 
   # TODO: data off sometimes, maybe add fingerprint to url
   # also remove adjusted?
-  FUNCTION = 'TIME_SERIES_DAILY_ADJUSTED'
+  FUNCTION = 'TIME_SERIES_DAILY'
   KEY = 'Time Series (Daily)'
   CLOSE = '4. close'
 
@@ -69,7 +69,7 @@ class Ticker
       raise "cant find data for period #{date}" if x > 20
     end
 
-    percent_change(most_recent, market_date.dig(CLOSE))
+    percent_change(most_recent, market_date.dig(CLOSE)).to_s + '%'
   end
 
   def performance

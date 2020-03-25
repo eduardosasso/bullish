@@ -11,5 +11,5 @@ Rake::TestTask.new do |t|
 end
 
 task :send_email do
-  Bullish.new.send_email
+  Bullish.post
 end

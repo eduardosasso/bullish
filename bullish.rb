@@ -8,6 +8,14 @@ require 'raven'
 
 # buy high sell low
 class Bullish
+  MINUS = '-'
+
+  ALIAS = {
+    'sp500': 'S&P 500',
+    'nasdaq': 'Nasdaq',
+    'dowjones': 'Dow Jones'
+  }.freeze
+
   def initialize(test = ENV['TEST'])
     Dotenv.load
 
@@ -31,7 +39,15 @@ class Bullish
     raise e
   end
 
-  def subject; end
+  def subject
+    sample = futures.to_a.sample(1).to_h
+    key = sample.keys.first.gsub('_f', '')
+    value = sample.values.first
+
+    up_down = value.start_with?(MINUS) ? '' : '+'
+
+    "Pre-Market for #{ALIAS[key.to_sym]} is #{up_down}#{value}"
+  end
 
   def content
     Template.new(data).compile
@@ -48,7 +64,7 @@ class Bullish
 
     keys.each_with_object({}) do |index, hash|
       Ticker.send(index).performance.each do |key, value|
-        hash["#{index}_#{key}"] = value.to_s + '%'
+        hash["#{index}_#{key}"] = value
       end
     end
   end
@@ -58,7 +74,7 @@ class Bullish
   def futures
     {}.tap do |h|
       Futures.pre_market.each do |key, value|
-        h["#{key}_f"] = value.to_s + '%'
+        h["#{key}_f"] = value
       end
     end
   end
