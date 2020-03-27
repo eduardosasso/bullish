@@ -15,26 +15,25 @@ class Ticker
   }.freeze
 
   # TODO: data off sometimes, maybe add fingerprint to url
-  # also remove adjusted?
   FUNCTION = 'TIME_SERIES_DAILY'
   KEY = 'Time Series (Daily)'
   CLOSE = '4. close'
 
   DATE_FORMAT = '%Y-%m-%d'
-  CURRENT_DATE = Time.now.strftime(DATE_FORMAT)
-  YTD = Date.new(Date.today.year, 1, 1)
 
-  PERIOD = {
-    '1D': 1.day.ago,
-    '1W': 1.week.ago,
-    '1M': 1.month.ago,
-    '3M': 3.months.ago,
-    '6M': 6.months.ago,
-    'YTD': YTD,
-    '1Y': 1.year.ago,
-    '5Y': 5.years.ago,
-    '10Y': 10.years.ago
-  }.freeze
+  def self.period
+    {
+      '1D': 1.day.ago,
+      '1W': 1.week.ago,
+      '1M': 1.month.ago,
+      '3M': 3.months.ago,
+      '6M': 6.months.ago,
+      'YTD': Date.new(Date.today.year, 1, 1),
+      '1Y': 1.year.ago,
+      '5Y': 5.years.ago,
+      '10Y': 10.years.ago
+    }
+  end
 
   def initialize(symbol)
     Dotenv.load
@@ -74,7 +73,7 @@ class Ticker
 
   def performance
     {}.tap do |stats|
-      PERIOD.each do |key, value|
+      self.class.period.each do |key, value|
         stats[key] = performance_by_period(value)
       end
     end
@@ -123,6 +122,6 @@ class Ticker
   end
 
   def self.current_date
-    CURRENT_DATE
+    Time.now.strftime(DATE_FORMAT)
   end
 end
