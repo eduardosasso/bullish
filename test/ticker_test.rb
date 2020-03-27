@@ -3,15 +3,10 @@
 require 'minitest/autorun'
 require 'minitest/mock'
 require './ticker'
-require 'active_support/testing/time_helpers'
-# require 'timecop'
 
 class TickerTest < Minitest::Test
-  include ActiveSupport::Testing::TimeHelpers
-
   def setup
     @request_fixture = File.read('./test/sp500.json')
-    travel_to Date.parse('2020-03-24')
   end
 
   def test_performance
@@ -27,7 +22,7 @@ class TickerTest < Minitest::Test
     ticker = Ticker.dowjones
     ticker.request = @request_fixture
 
-    assert_raises(RuntimeError) { ticker.performance_by_period(25.years.ago) }
+    assert_raises(RuntimeError) { ticker.performance_by_period(25.years) }
   end
 
   def test_percent_change

@@ -10,7 +10,7 @@ class Ticker
 
   INDEX = {
     sp500: '^GSPC',
-    nasdaq: 'NDAQ',
+    nasdaq: 'ONEQ',
     dowjones: '^DJI'
   }.freeze
 
@@ -23,15 +23,14 @@ class Ticker
 
   def self.period
     {
-      '1D': 1.day.ago,
-      '1W': 1.week.ago,
-      '1M': 1.month.ago,
-      '3M': 3.months.ago,
-      '6M': 6.months.ago,
-      'YTD': Date.new(Date.today.year, 1, 1),
-      '1Y': 1.year.ago,
-      '5Y': 5.years.ago,
-      '10Y': 10.years.ago
+      '1D': 1.day,
+      '1W': 1.week,
+      '1M': 1.month,
+      '3M': 3.months,
+      '6M': 6.months,
+      '1Y': 1.year,
+      '5Y': 5.years,
+      '10Y': 10.years
     }
   end
 
@@ -53,19 +52,23 @@ class Ticker
     new(INDEX[:dowjones])
   end
 
-  def performance_by_period(date)
-    most_recent = api_data.dig(self.class.current_date).dig(CLOSE)
+  def performance_by_period(interval = 1.day)
+    current_date = api_data.first.first
+
+    most_recent = api_data.dig(current_date).dig(CLOSE)
+
+    end_date = Date.parse(current_date) - interval
 
     # if date is weekend or holiday
     # loop to find the next date
     until market_date ||= nil
-      market_date = api_data.dig(date.strftime(DATE_FORMAT))
+      market_date = api_data.dig(end_date.strftime(DATE_FORMAT))
 
       x = x.to_i + 1
 
-      date += x.days
+      end_date += x.days
 
-      raise "cant find data for period #{date}" if x > 20
+      raise "cant find data for period #{end_date}" if x > 20
     end
 
     percent_change(most_recent, market_date.dig(CLOSE)).to_s + '%'
@@ -119,9 +122,5 @@ class Ticker
 
         data.fetch(KEY)
       end
-  end
-
-  def self.current_date
-    Time.now.strftime(DATE_FORMAT)
   end
 end
