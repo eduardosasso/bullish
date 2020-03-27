@@ -118,7 +118,7 @@ class Ticker
         data = JSON.parse(request)
 
         # use fetch to raise if key not found
-        raise data if data.dig('Error Message')
+        raise data if data.dig('Error Message') || data.dig('Note')
 
         data.fetch(KEY)
       end

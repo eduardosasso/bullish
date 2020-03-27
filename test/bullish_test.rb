@@ -7,6 +7,7 @@ require 'minitest/mock'
 class BullishTest < Minitest::Test
   def setup
     ENV['TEST'] = 'true'
+    ENV['MARKET_API'] = 'https://google.com'
   end
 
   def test_post_retry
