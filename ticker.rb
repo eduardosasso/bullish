@@ -14,7 +14,6 @@ class Ticker
     dowjones: '^DJI'
   }.freeze
 
-  # TODO: data off sometimes, maybe add fingerprint to url
   FUNCTION = 'TIME_SERIES_DAILY'
   KEY = 'Time Series (Daily)'
   CLOSE = '4. close'
