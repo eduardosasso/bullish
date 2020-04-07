@@ -54,14 +54,14 @@ class BullishTest < Minitest::Test
     vars = []
 
     Ticker::INDEX.keys.each do |index|
-      vars << Ticker.period.keys.map do |period|
+      vars << Ticker::RANGE.keys.map do |period|
         "#{index}_#{period}"
       end
     end
 
     performance = {
       "1D": 0.44,
-      "1W": 2.5,
+      "5D": 2.5,
       "1M": -21.42,
       "3M": -24.13,
       "6M": -17.65,

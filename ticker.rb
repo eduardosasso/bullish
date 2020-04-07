@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require 'dotenv'
-require 'net/http'
+require 'faraday'
 require 'active_support/all'
 
 # get historical performance by ticker symbol
@@ -10,116 +9,90 @@ class Ticker
 
   INDEX = {
     sp500: '^GSPC',
-    nasdaq: 'ONEQ',
+    nasdaq: '^IXIC',
     dowjones: '^DJI'
   }.freeze
 
-  FUNCTION = 'TIME_SERIES_DAILY'
-  KEY = 'Time Series (Daily)'
-  CLOSE = '4. close'
+  ENDPOINT = 'https://query1.finance.yahoo.com/v8/finance/chart/'
+  KEY = %w[chart result].freeze
 
-  DATE_FORMAT = '%Y-%m-%d'
-
-  def self.period
+  RANGE =
     {
-      '1D': 1.day,
-      '1W': 1.week,
-      '1M': 1.month,
-      '3M': 3.months,
-      '6M': 6.months,
-      '1Y': 1.year,
-      '5Y': 5.years,
-      '10Y': 10.years
-    }
-  end
+      '1D': '1d',
+      '5D': '5d',
+      '1M': '1mo',
+      '3M': '3mo',
+      '6M': '6mo',
+      '1Y': '1y',
+      '5Y': '5y',
+      '10Y': '10y'
+    }.with_indifferent_access
 
-  def initialize(symbol)
-    Dotenv.load
-
+  def initialize(symbol, range = RANGE['1D'])
     @symbol = symbol
+    @range = range
   end
 
-  def self.sp500
-    new(INDEX[:sp500])
+  def self.sp500(range = RANGE['1D'])
+    new(INDEX[:sp500], range)
   end
 
-  def self.nasdaq
-    new(INDEX[:nasdaq])
+  def self.nasdaq(range = RANGE['1D'])
+    new(INDEX[:nasdaq], range)
   end
 
-  def self.dowjones
-    new(INDEX[:dowjones])
+  def self.dowjones(range = RANGE['1D'])
+    new(INDEX[:dowjones], range)
   end
 
-  def performance_by_period(interval = 1.day)
-    current_date = api_data.first.first
-
-    most_recent = api_data.dig(current_date).dig(CLOSE)
-
-    end_date = Date.parse(current_date) - interval
-
-    # if date is weekend or holiday
-    # loop to find the next date
-    until market_date ||= nil
-      market_date = api_data.dig(end_date.strftime(DATE_FORMAT))
-
-      x = x.to_i + 1
-
-      end_date += x.days
-
-      raise "cant find data for period #{end_date}" if x > 20
+  def full_performance
+    {}.tap do |stats|
+      RANGE.each do |key, value|
+        stats[key] = Ticker.new(@symbol, value).performance
+      end
     end
-
-    percent_change(most_recent, market_date.dig(CLOSE)).to_s + '%'
   end
 
   def performance
-    {}.tap do |stats|
-      self.class.period.each do |key, value|
-        stats[key] = performance_by_period(value)
-      end
-    end
+    quotes.unshift(prev_close) if quotes.count == 1
+
+    percent_change(quotes.last, quotes.first)
   end
 
   def percent_change(new, original)
     (((new.to_f - original.to_f) / original.to_f) * 100).round(2)
   end
 
-  def uri
+  def url
     params = [
-      'function=' + FUNCTION,
-      'symbol=' + @symbol,
-      'apikey=' + ENV['ALPHA_API_KEY'],
-      'outputsize=full'
+      'interval=1d',
+      'range=' + @range
     ].join('&')
 
-    URI(ENV['ALPHA_API'] + '/query?' + params)
+    symbol = ERB::Util.url_encode(@symbol)
+
+    ENDPOINT + symbol + '?' + params
   end
 
   def request
-    @request ||=
-      begin
-        http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true
-
-        http.get(uri.request_uri).tap do |r|
-          unless r.code == '200'
-            message = [uri.to_s, r.body].join(' - ')
-            raise message
-          end
-        end.body
-      end
+    Faraday.get(url)
   end
 
-  def api_data
-    @api_data ||=
-      begin
-        data = JSON.parse(request)
+  def prev_close
+    data.dig('meta', 'chartPreviousClose')
+  end
 
-        # use fetch to raise if key not found
-        raise data if data.dig('Error Message') || data.dig('Note')
+  def quotes
+    data.dig('indicators', 'quote').first.dig('close')
+  end
 
-        data.fetch(KEY)
-      end
+  def data
+    @data ||= begin
+      data = JSON.parse(request.body)
+
+      raise data if data.dig('chart', 'error')
+
+      data.dig(*KEY).first
+    end
   end
 end

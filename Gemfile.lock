@@ -9,7 +9,7 @@ GEM
       zeitwerk (~> 2.2)
     concurrent-ruby (1.1.6)
     dotenv (2.7.5)
-    faraday (1.0.0)
+    faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
@@ -32,6 +32,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   dotenv (~> 2.7, >= 2.7.5)
+  faraday
   minitest (~> 5.8, >= 5.8.4)
   nokogiri (~> 1.10, >= 1.10.9)
   rake (~> 12.3)

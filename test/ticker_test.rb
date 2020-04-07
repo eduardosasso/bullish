@@ -3,6 +3,7 @@
 require 'minitest/autorun'
 require 'minitest/mock'
 require './ticker'
+require 'faraday'
 
 class TickerTest < Minitest::Test
   def setup
@@ -10,19 +11,30 @@ class TickerTest < Minitest::Test
   end
 
   def test_performance
-    ticker = Ticker.sp500
+    ticker = Ticker.sp500('5d')
 
     ticker.request = @request_fixture
 
-    assert_equal(Ticker.period.keys, ticker.performance.keys)
-    assert_equal(Ticker.period.keys.count, ticker.performance.values.compact.count)
+    assert(ticker.performance)
   end
 
-  def test_performance_error
-    ticker = Ticker.dowjones
-    ticker.request = @request_fixture
+  def test_full_performance
+    perf = MiniTest::Mock.new
 
-    assert_raises(RuntimeError) { ticker.performance_by_period(25.years) }
+    perf.expect(:performance, '1D')
+    perf.expect(:performance, '5D')
+    perf.expect(:performance, '1M')
+    perf.expect(:performance, '3M')
+    perf.expect(:performance, '6M')
+    perf.expect(:performance, '1Y')
+    perf.expect(:performance, '5Y')
+    perf.expect(:performance, '10Y')
+
+    nasdaq = Ticker.nasdaq
+
+    Ticker.stub(:new, perf) do
+      assert_equal(Ticker::RANGE.keys.count, nasdaq.full_performance.values.compact.count)
+    end
   end
 
   def test_percent_change
