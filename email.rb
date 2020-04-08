@@ -61,8 +61,8 @@ class Email
     }
 
     if test
-      data[:'name'] += ' **TEST**'
-      data[:'filter'] = { 'list_ids': [ENV['TEST_USER_LIST']] }
+      data[:name] += ' **TEST**'
+      data[:filter] = { 'list_ids': [ENV['TEST_USER_LIST']] }
     end
 
     http = request(path, data, 'POST')

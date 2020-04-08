@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require 'minitest/autorun'
 require './holiday'
@@ -5,10 +6,10 @@ require 'minitest/mock'
 
 class HolidayTest < Minitest::Test
   def test_holiday
-    holiday = Holiday::DATES.shuffle.first
+    holiday = Holiday::DATES.sample
 
     date = Date.parse(holiday)
-    
+
     assert(Holiday.today?(date))
   end
 
@@ -16,7 +17,7 @@ class HolidayTest < Minitest::Test
     refute(Holiday.today?)
   end
 
-  # break to make sure I update the 
+  # break to make sure I update the
   # holiday list every year
   def test_holidays_year
     years = Holiday::DATES.map do |d|

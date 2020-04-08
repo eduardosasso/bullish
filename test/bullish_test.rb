@@ -33,7 +33,7 @@ class BullishTest < Minitest::Test
   end
 
   def test_dont_post_on_holiday
-    holiday = Holiday::DATES.shuffle.first
+    holiday = Holiday::DATES.sample
     date = Date.parse(holiday)
 
     holiday_mock = MiniTest::Mock.new
