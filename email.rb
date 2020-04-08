@@ -4,6 +4,7 @@ require 'net/http'
 require 'dotenv'
 require 'date'
 
+# https://sendgrid.com/docs/api-reference/
 # prepare and send emails using sendgrid
 class Email
   attr_reader :subject, :body
@@ -15,19 +16,19 @@ class Email
     @body = body
   end
 
-  def post(send_to_all = true)
+  def post
     update(subject, body)
+
+    id = create_id
 
     path = [
       '/marketing',
       'singlesends',
-      identification,
+      id,
       'schedule'
     ].join('/')
 
     data = { 'send_at': 'now' }
-
-    data['filter'] = { 'list_ids': [ENV['TEST_USER_ID']] } unless send_to_all
 
     request(path, data, 'PUT')
   end
@@ -48,16 +49,21 @@ class Email
     request(path, data, 'PATCH')
   end
 
-  def identification
+  def create_id(test = !!ENV['TEST_USER_LIST'])
     path = '/marketing/singlesends'
 
     data = {
       'name': 'Bullish for ' + Date.today.strftime('%A'),
       'template_id': ENV['TEMPLATE_ID'],
       'sender_id': ENV['SENDER_ID'].to_i,
-      'filter': { 'send_to_all': true },
+      'filter': { 'send_to_all': !test },
       'suppression_group_id': ENV['UNSUBSCRIBE_GROUP_ID'].to_i
     }
+
+    if test
+      data[:'name'] += ' **TEST**'
+      data[:'filter'] = { 'list_ids': [ENV['TEST_USER_LIST']] }
+    end
 
     http = request(path, data, 'POST')
 

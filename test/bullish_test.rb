@@ -32,13 +32,25 @@ class BullishTest < Minitest::Test
     end
   end
 
+  def test_dont_post_on_holiday
+    holiday = Holiday::DATES.shuffle.first
+    date = Date.parse(holiday)
+
+    holiday_mock = MiniTest::Mock.new
+    holiday_mock.expect(:current_date, date)
+
+    Holiday.stub(:current_date, date) do
+      assert_nil(Bullish.post)
+    end
+  end
+
   def test_subject
     futures = MiniTest::Mock.new
     futures.expect(:pre_market, 'nasdaq_f' => '-0.83%', 'sp500_f' => '1.65%', 'dowjones_f' => '2.58%')
 
     Futures.stub(:new, futures) do
       subject = Bullish.new.subject
-      assert_match(/Pre-Market for Nasdaq|S&P 500|Dow Jones is/, subject)
+      assert_match(/Nasdaq|S&P 500|Dow Jones is/, subject)
     end
   end
 
@@ -71,9 +83,9 @@ class BullishTest < Minitest::Test
     }
 
     ticker = MiniTest::Mock.new
-    ticker.expect(:performance, performance)
-    ticker.expect(:performance, performance)
-    ticker.expect(:performance, performance)
+    ticker.expect(:full_performance, performance)
+    ticker.expect(:full_performance, performance)
+    ticker.expect(:full_performance, performance)
 
     Ticker.stub(:new, ticker) do
       assert_equal(vars.flatten.sort, Bullish.new.indexes.keys.sort)

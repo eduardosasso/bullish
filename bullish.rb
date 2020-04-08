@@ -5,6 +5,7 @@ require './template'
 require './futures'
 require './ticker'
 require 'raven'
+require './holiday'
 
 # buy high sell low
 class Bullish
@@ -29,7 +30,7 @@ class Bullish
 
     bullish = Bullish.new
 
-    Email.new(bullish.subject, bullish.content).post
+    Email.new(bullish.subject, bullish.content).post unless Holiday.today?
   rescue StandardError => e
     retries += 1
     retry if retries < 3
@@ -39,14 +40,25 @@ class Bullish
     raise e
   end
 
+  # save as html file for testing
+  def self.save
+    bullish = Bullish.new
+
+    filename = 'tmp/' + bullish.subject + '.html'
+
+    File.open(filename, 'w+') do |f|
+      f.write(bullish.content)
+    end
+  end
+
   def subject
     sample = futures.to_a.sample(1).to_h
     key = sample.keys.first.gsub('_f', '')
     value = sample.values.first
 
-    up_down = value.start_with?(MINUS) ? '' : '+'
+    up_down = value.start_with?(MINUS) ? 'down' : 'up'
 
-    "Pre-Market for #{ALIAS[key.to_sym]} is #{up_down}#{value}"
+    "#{ALIAS[key.to_sym]} is #{up_down} #{value} in premarket"
   end
 
   def content
@@ -74,8 +86,8 @@ class Bullish
     keys = Ticker::INDEX.keys
 
     keys.each_with_object({}) do |index, hash|
-      Ticker.send(index).performance.each do |key, value|
-        hash["#{index}_#{key}"] = value
+      Ticker.send(index).full_performance.each do |key, value|
+        hash["#{index}_#{key}"] = value.to_s + '%'
       end
     end
   end
