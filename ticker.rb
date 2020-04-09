@@ -75,7 +75,9 @@ class Ticker
   end
 
   def request
-    Faraday.get(url)
+    Faraday.get(url).tap do |r|
+      log(r)
+    end
   end
 
   def prev_close
@@ -84,6 +86,18 @@ class Ticker
 
   def quotes
     data.dig('indicators', 'quote').first.dig('close')
+  end
+
+  def log(request)
+    key = INDEX.key(@symbol)
+    filename = "tmp/#{key}_#{@range}.json"
+
+    result = JSON.parse(request.body)
+    result[:url] = url
+
+    File.open(filename, 'w+') do |f|
+      f.write(JSON.pretty_generate(result))
+    end
   end
 
   def data
