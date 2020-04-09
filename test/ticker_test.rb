@@ -3,7 +3,6 @@
 require 'minitest/autorun'
 require 'minitest/mock'
 require './ticker'
-require 'faraday'
 
 class TickerTest < Minitest::Test
   def setup
@@ -11,11 +10,14 @@ class TickerTest < Minitest::Test
   end
 
   def test_performance
-    ticker = Ticker.sp500('5d')
+    log = MiniTest::Mock.new
+    log.expect(:log, 'nil')
 
-    ticker.request = @request_fixture
+    Ticker.sp500('5d').stub(:log, log) do |ticker|
+      ticker.request = @request_fixture
 
-    assert(ticker.performance)
+      assert(ticker.performance)
+    end
   end
 
   def test_full_performance
