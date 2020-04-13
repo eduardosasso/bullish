@@ -54,7 +54,7 @@ class Ticker
   end
 
   def performance
-    quotes.unshift(prev_close) if quotes.count == 1
+    quotes.unshift(prev_close) if @range == RANGE['1D'] 
 
     percent_change(quotes.last, quotes.first)
   end
