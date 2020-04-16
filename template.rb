@@ -40,8 +40,10 @@ class Template
           tag.content = value
 
           tag.parent.attributes['style'].tap do |css|
-            css.content = css.content.gsub(COLOR[:red], color(value))
-            css.content = css.content.gsub(COLOR[:green], color(value))
+            if css
+              css.content = css.content.gsub(COLOR[:red], color(value))
+              css.content = css.content.gsub(COLOR[:green], color(value))
+            end
           end
         end
       end
