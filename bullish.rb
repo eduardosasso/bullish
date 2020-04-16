@@ -76,8 +76,17 @@ class Bullish
               .merge(indexes)
               .merge(
                 'date_f': date_time_et.strftime('%B %d, %Y'),
-                'time_f': date_time_et.strftime('%I:%M%p ET')
+                'time_f': date_time_et.strftime('%I:%M%p ET'),
+                'preheader_s': preheader
               )
+  end
+
+  def preheader
+    [
+      'Do not put all your eggs in one basket',
+      'Our favorite holding period is forever',
+      '1: Never lose money. 2: Never forget 1'
+    ].sample
   end
 
   # rewrite to conform to template data reqs
