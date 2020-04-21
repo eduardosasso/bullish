@@ -12,3 +12,6 @@ Subscribe at **https://bullish.email**
 
 ## Screenshot
 ![Email screenshot](/docs/screenshot.png)
+
+## License
+Bullish▲ is released under the [MIT](/LICENSE) license.
