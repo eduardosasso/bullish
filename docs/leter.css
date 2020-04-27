@@ -399,7 +399,7 @@ ul.slider {
    padding-right: 24px;
   }
 
-  .embedForm p {
+  .embedForm p, .embedForm h4 {
     padding-left: 0px !important;
   }
  
