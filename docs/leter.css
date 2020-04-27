@@ -398,6 +398,10 @@ ul.slider {
    padding-left: 24px;
    padding-right: 24px;
   }
+
+  .embedForm {
+    padding-left: 0px !important;
+  }
  
   h2 {
     font-size: 1.2em;
