@@ -5,8 +5,8 @@ require 'dotenv'
 require 'faraday'
 require 'json'
 
-# https://sendgrid.com/docs/api-reference/
-# prepare and send emails using sendgrid
+# https://developers.mailerlite.com/reference
+# prepare and send emails using mailerlite
 class Email
   attr_reader :subject, :body
 
