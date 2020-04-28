@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2020-04-27
+### Changed
+- Replaced SendGrid with MailerLite
+
 ## 2020-04-17
 ### Added
 - Support email on the website
