@@ -1,36 +1,32 @@
 # frozen_string_literal: true
 
 require './email'
-require './template'
-require './futures'
-require './ticker'
+require './premarket/premarket_edition'
+require './edition'
 require 'raven'
-require './holiday'
 
 # buy high sell low
 class Bullish
-  MINUS = '-'
+  attr_reader :edition
 
-  ALIAS = {
-    'sp500': 'S&P 500',
-    'nasdaq': 'Nasdaq',
-    'dowjones': 'Dow Jones'
-  }.freeze
+  def initialize(edition = Edition.new)
+    @edition = edition
+  end
 
-  def initialize(test = ENV['TEST'])
-    Dotenv.load
+  def self.premarket_edition
+    new(PremarketEdition.new)
+  end
 
-    @test = test
+  def self.closing_edition
+    # new(ClosingEdition.new)
   end
 
   # send email to subscribers
   # retry 3 times when fail
-  def self.post
+  def post
     retries ||= 0
 
-    bullish = Bullish.new
-
-    Email.new(bullish.subject, bullish.content).post unless Holiday.today?
+    Email.new(edition.subject, edition.content).post if edition.send?
   rescue StandardError => e
     retries += 1
     retry if retries < 3
@@ -41,73 +37,11 @@ class Bullish
   end
 
   # save as html file for testing
-  def self.save
-    bullish = Bullish.new
-
-    filename = 'tmp/' + bullish.subject + '.html'
+  def save
+    filename = 'tmp/' + edition.subject + '.html'
 
     File.open(filename, 'w+') do |f|
-      f.write(bullish.content)
-    end
-  end
-
-  def subject
-    sample = futures.to_a.sample(1).to_h
-    key = sample.keys.first.gsub('_f', '')
-    value = sample.values.first
-
-    up_down = value.start_with?(MINUS) ? 'down' : 'up'
-
-    "#{ALIAS[key.to_sym]} is #{up_down} #{value} in premarket"
-  end
-
-  def content
-    Template.new(data).compile
-  end
-
-  # date time in ET where markets operate
-  def date_time_et
-    DateTime.now.utc.in_time_zone('Eastern Time (US & Canada)')
-  end
-
-  def data
-    @data ||= {}
-              .merge(futures)
-              .merge(indexes)
-              .merge(
-                'date_f': date_time_et.strftime('%B %d, %Y'),
-                'time_f': date_time_et.strftime('%I:%M%p ET'),
-                'preheader_s': preheader
-              )
-  end
-
-  def preheader
-    [
-      'Do not put all your eggs in one basket',
-      'Our favorite holding period is forever',
-      '1: Never lose money. 2: Never forget 1'
-    ].sample
-  end
-
-  # rewrite to conform to template data reqs
-  # nasdaq to nasdaq_1D, sp500_3M...
-  def indexes
-    keys = Ticker::INDEX.keys
-
-    keys.each_with_object({}) do |index, hash|
-      Ticker.send(index).full_performance.each do |key, value|
-        hash["#{index}_#{key}"] = value.to_s + '%'
-      end
-    end
-  end
-
-  # rewrite to conform to template data reqs
-  # nasdaq to nasdaq_f, sp500 to sp500_f
-  def futures
-    {}.tap do |h|
-      Futures.pre_market.each do |key, value|
-        h["#{key}_f"] = value
-      end
+      f.write(edition.content)
     end
   end
 end

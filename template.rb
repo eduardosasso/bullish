@@ -5,7 +5,9 @@ require 'cgi'
 
 # replaces keys in template with values
 class Template
-  attr_reader :data
+  attr_reader :file
+
+  MINUS = '-'
 
   COLOR = {
     red: '#d63447',
@@ -16,18 +18,15 @@ class Template
   # hash with {symbol_{period}: value}
   # {sp500_f: -10%}
   # {nasdaq_1M: 20%}
-  def initialize(data = {})
-    @data = data
+  def initialize(file)
+    @file = file
   end
 
   def html
-    # save from sendgrid on change
-    file = File.read('template.html')
-
     Nokogiri::HTML(file)
   end
 
-  def compile
+  def compile(data)
     result = html.tap do |doc|
       data.each do |index, value|
         next unless value
@@ -53,6 +52,6 @@ class Template
   end
 
   def color(value)
-    value.to_s.start_with?(Bullish::MINUS) ? COLOR[:red] : COLOR[:green]
+    value.to_s.start_with?(MINUS) ? COLOR[:red] : COLOR[:green]
   end
 end

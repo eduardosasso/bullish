@@ -11,5 +11,5 @@ Rake::TestTask.new do |t|
 end
 
 task :send_email do
-  Bullish.post
+  Bullish.premarket_edition.post
 end

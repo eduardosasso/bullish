@@ -47,7 +47,7 @@ class Email
 
     put_request("/campaigns/#{campaign_id}/content", content)
   end
-  
+
   def send_campaign(campaign_id)
     post_request("campaigns/#{campaign_id}/actions/send")
   end

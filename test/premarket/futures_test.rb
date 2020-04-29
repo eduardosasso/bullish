@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
-require './futures'
+require './premarket/futures'
 
 class FuturesTest < Minitest::Test
   def test_pre_market

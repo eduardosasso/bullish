@@ -15,7 +15,7 @@ class TopTest < Minitest::Test
       top.stub(:performance, nil) do
         movers = top.send(type)
 
-        assert(movers.count > 0)
+        assert(movers.count.positive?)
         assert(movers.first.ticker)
         assert(movers.first.name)
         assert(movers.first.price)
