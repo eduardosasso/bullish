@@ -5,7 +5,7 @@ require './top'
 
 class TopTest < Minitest::Test
   def setup
-    @request_fixture = File.read('./test/top_movers.json')
+    @request_fixture = File.read('./test/fixtures/top_movers.json')
   end
 
   def top_movers(type)

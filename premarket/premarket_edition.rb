@@ -28,14 +28,18 @@ class PremarketEdition < Edition
               .merge(futures)
               .merge(indexes)
               .merge(
-                'date_f': date_time_et.strftime('%B %d, %Y'),
-                'time_f': date_time_et.strftime('%I:%M%p ET'),
+                'date_f': formatted_date,
+                'time_f': formatted_time,
                 'preheader_s': preheader
               )
   end
 
   def template
     File.read('premarket/template.html')
+  end
+
+  def subscribers_group_id
+    ENV['PREMIUM_GROUP']
   end
 
   # rewrite to conform to template data reqs

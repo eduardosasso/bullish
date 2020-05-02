@@ -15,7 +15,7 @@ class PremarketEditionTest < Minitest::Test
   end
 
   def test_futures
-    futures_data = File.read('./test/futures.json')
+    futures_data = File.read('./test/fixtures/futures.json')
 
     Net::HTTP.stub(:get, futures_data) do
       assert_equal(%w[nasdaq_f sp500_f dowjones_f].sort, PremarketEdition.new.futures.keys.sort)

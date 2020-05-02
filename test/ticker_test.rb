@@ -6,7 +6,7 @@ require './ticker'
 
 class TickerTest < Minitest::Test
   def setup
-    @request_fixture = File.read('./test/sp500.json')
+    @request_fixture = File.read('./test/fixtures/sp500.json')
   end
 
   def test_performance

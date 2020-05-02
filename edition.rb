@@ -27,7 +27,7 @@ class Edition
   end
 
   def data
-    raise 'override with using a hash to fill the template'
+    raise 'override using a hash to fill the template'
   end
 
   # override for editions like weekend
@@ -43,6 +43,18 @@ class Edition
   # date time in ET where markets operate
   def date_time_et
     DateTime.now.utc.in_time_zone('Eastern Time (US & Canada)')
+  end
+
+  def formatted_date
+    date_time_et.strftime('%B %d, %Y')
+  end
+
+  def formatted_time
+    date_time_et.strftime('%I:%M%p ET')
+  end
+
+  def subscribers_group_id
+    raise 'override with subscribers group from mailerlite'
   end
 
   # rewrite to conform to template data reqs

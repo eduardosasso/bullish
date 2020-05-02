@@ -2,6 +2,7 @@
 
 require './email'
 require './premarket/premarket_edition'
+require './closing/closing_edition'
 require './edition'
 require 'raven'
 
@@ -18,7 +19,7 @@ class Bullish
   end
 
   def self.closing_edition
-    # new(ClosingEdition.new)
+    new(ClosingEdition.new)
   end
 
   # send email to subscribers
@@ -26,7 +27,7 @@ class Bullish
   def post
     retries ||= 0
 
-    Email.new(edition.subject, edition.content).post if edition.send?
+    Email.new(edition).post if edition.send?
   rescue StandardError => e
     retries += 1
     retry if retries < 3

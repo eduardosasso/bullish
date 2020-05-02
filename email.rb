@@ -8,13 +8,14 @@ require 'json'
 # https://developers.mailerlite.com/reference
 # prepare and send emails using mailerlite
 class Email
-  attr_reader :subject, :body
+  attr_reader :subject, :body, :group
 
-  def initialize(subject, body)
+  def initialize(edition = Edition)
     Dotenv.load
 
-    @subject = subject
-    @body = body
+    @subject = edition.subject
+    @body = edition.content
+    @group = edition.subscribers_group_id
   end
 
   def post
@@ -24,14 +25,14 @@ class Email
     send_campaign(id)
   end
 
-  def create_campaign(test = !!ENV['TEST_GROUP'])
+  def create_campaign
     body = {
       subject: subject,
       type: 'regular',
-      groups: ENV['MAIN_GROUP']
+      groups: group
     }
 
-    if test
+    if test?
       body[:subject] += ' **TEST**'
       body[:groups] = ENV['TEST_GROUP']
     end
@@ -72,6 +73,10 @@ class Email
         'X-MailerLite-ApiKey': ENV['MAILERLITE_API_KEY']
       }
     )
+  end
+
+  def test?
+    !!ENV['TEST_GROUP']
   end
 
   def get_request(path, data = {})
