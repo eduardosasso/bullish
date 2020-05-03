@@ -77,7 +77,7 @@ class Ticker
   def request
     Faraday.get(url).tap do |r|
       log(r)
-    end
+    end.body
   end
 
   def prev_close
@@ -102,7 +102,7 @@ class Ticker
 
   def data
     @data ||= begin
-      data = JSON.parse(request.body)
+      data = JSON.parse(request)
 
       raise data if data.dig('chart', 'error')
 
