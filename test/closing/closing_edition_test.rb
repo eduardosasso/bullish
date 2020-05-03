@@ -19,7 +19,7 @@ class ClosingEditionTest < Minitest::Test
   def test_data
     stubbed_top do
       closing_edition = ClosingEdition.new
-      closing_edition.stub(:indexes, {}) do 
+      closing_edition.stub(:indexes, {}) do
         data = closing_edition.data
         assert(data[:date_c])
         assert(data[:preheader_s])
@@ -28,11 +28,11 @@ class ClosingEditionTest < Minitest::Test
   end
 
   def test_subject
-    indexes = {:sp500_c=>"-2.81%", :nasdaq_c=>"-3.2%", :dowjones_c=>"-2.55%"}
+    indexes = { sp500_c: '-2.81%', nasdaq_c: '-3.2%', dowjones_c: '-2.55%' }
 
     stubbed_top do
       closing_edition = ClosingEdition.new
-      closing_edition.stub(:indexes, indexes) do 
+      closing_edition.stub(:indexes, indexes) do
         assert(closing_edition.subject)
       end
     end

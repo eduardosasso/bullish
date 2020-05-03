@@ -4,6 +4,10 @@ require 'minitest/autorun'
 require './premarket/premarket_edition'
 
 class PremarketEditionTest < Minitest::Test
+  def setup
+    ENV['tMARKET_API'] = 'https://google.com'
+  end
+
   def test_subject
     futures = MiniTest::Mock.new
     futures.expect(:pre_market, 'nasdaq_f' => '-0.83%', 'sp500_f' => '1.65%', 'dowjones_f' => '2.58%')

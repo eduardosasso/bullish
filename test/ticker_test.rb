@@ -14,9 +14,8 @@ class TickerTest < Minitest::Test
     log.expect(:log, 'nil')
 
     Ticker.sp500('5d').stub(:log, log) do |ticker|
-      ticker.stub(:request, @request_fixture) do 
-
-      assert(ticker.performance)
+      ticker.stub(:request, @request_fixture) do
+        assert(ticker.performance)
       end
     end
   end
