@@ -5,7 +5,7 @@ require './premarket/premarket_edition'
 
 class PremarketEditionTest < Minitest::Test
   def setup
-    ENV['tMARKET_API'] = 'https://google.com'
+    ENV['MARKET_API'] = 'https://google.com'
   end
 
   def test_subject
