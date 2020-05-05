@@ -39,7 +39,7 @@ class PremarketEdition < Edition
   end
 
   def subscribers_group_id
-    ENV['PREMIUM_GROUP']
+    ENV['FREE_GROUP']
   end
 
   # rewrite to conform to template data reqs
