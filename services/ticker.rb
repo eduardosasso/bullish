@@ -7,6 +7,16 @@ require 'active_support/all'
 class Ticker
   attr_writer :request
 
+  Detail = Struct.new(
+    :ticker,
+    :name,
+    :price,
+    :percent,
+    :volume,
+    :performance,
+    keyword_init: true
+  )
+
   INDEX = {
     sp500: '^GSPC',
     nasdaq: '^IXIC',
@@ -51,6 +61,11 @@ class Ticker
         stats[key] = Ticker.new(@symbol, value).performance
       end
     end
+  end
+
+  def price
+    # https://query2.finance.yahoo.com/v10/finance/quoteSummary/AAPL?&modules=defaultKeyStatistics,financialData,calendarEvents
+    #https://query2.finance.yahoo.com/v10/finance/quoteSummary/BTC-USD?&modules=price%2CsummaryDetail
   end
 
   def performance

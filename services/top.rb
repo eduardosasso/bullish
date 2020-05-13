@@ -12,14 +12,6 @@ class Top
     L: 'decliners'
   }.freeze
 
-  Mover = Struct.new(
-    :ticker,
-    :name,
-    :price,
-    :percent,
-    :performance,
-    keyword_init: true
-  )
 
   def initialize
     Dotenv.load
@@ -35,7 +27,7 @@ class Top
 
   def mover(type = TYPE[:G])
     request.dig('data', type, 'instruments').map do |s|
-      Mover.new(
+      Ticker::Detail.new(
         ticker: s['ticker'],
         name: s['name'],
         price: s['lastPrice'],

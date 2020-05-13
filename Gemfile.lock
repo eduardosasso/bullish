@@ -16,6 +16,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.0)
     multipart-post (2.1.1)
+    mustache (1.1.1)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     rake (12.3.3)
@@ -34,6 +35,7 @@ DEPENDENCIES
   dotenv (~> 2.7, >= 2.7.5)
   faraday
   minitest (~> 5.8, >= 5.8.4)
+  mustache
   nokogiri (~> 1.10, >= 1.10.9)
   rake (~> 12.3)
   sentry-raven

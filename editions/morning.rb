@@ -34,8 +34,14 @@ class PremarketEdition < Edition
               )
   end
 
-  def template
-    File.read('premarket/template.html')
+  def layout
+    [
+      Element.title,
+      Element.item,
+      Element.divider,
+      Element.title,
+      Element.stats
+    ]
   end
 
   def subscribers_group_id

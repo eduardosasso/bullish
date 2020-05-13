@@ -39,8 +39,8 @@ class ClosingEditionTest < Minitest::Test
   end
 
   def stubbed_top
-    gainers = YAML.safe_load(YAML.load_file('./test/fixtures/gainers'), permitted_classes: [Top::Mover, Symbol])
-    losers = YAML.safe_load(YAML.load_file('./test/fixtures/losers'), permitted_classes: [Top::Mover, Symbol])
+    gainers = YAML.safe_load(YAML.load_file('./test/fixtures/gainers'), permitted_classes: [Ticker::Detail, Symbol])
+    losers = YAML.safe_load(YAML.load_file('./test/fixtures/losers'), permitted_classes: [Ticker::Detail, Symbol])
 
     top = MiniTest::Mock.new
     top.expect(:gainers, gainers)

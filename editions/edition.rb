@@ -23,7 +23,11 @@ class Edition
   end
 
   def content
-    Template.new(template).compile(data)
+    Template.new(layout).compile(data)
+  end
+
+  def layout
+    raise 'override and return an Array of Element'
   end
 
   def data
@@ -34,10 +38,6 @@ class Edition
   def send?
     # TODO: rename to better name
     !Holiday.today?
-  end
-
-  def template
-    raise 'override with File.read html file template'
   end
 
   # date time in ET where markets operate
