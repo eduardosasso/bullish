@@ -1,0 +1,15 @@
+Documentation:
+    Enabled: false
+
+Style/ClassAndModuleChildren:
+  AutoCorrect: true
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - test/**/*.rb
+
+Metrics/MethodLength:
+  Exclude:
+    - test/**/*.rb
+

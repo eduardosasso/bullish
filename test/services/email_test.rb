@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
-require './email'
+require './services/email'
 
-class EmailTest < Minitest::Test
+module Services
+  class EmailTest < Minitest::Test
+  end
 end

@@ -1,25 +1,25 @@
 # frozen_string_literal: true
 
-require './email'
-require './premarket/premarket_edition'
-require './closing/closing_edition'
-require './edition'
+require './services/email'
+require './editions/morning'
+require './editions/afternoon'
+require './editions/edition'
 require 'raven'
 
 # buy high sell low
 class Bullish
   attr_reader :edition
 
-  def initialize(edition = Edition.new)
+  def initialize(edition = Editions::Edition.new)
     @edition = edition
   end
 
-  def self.premarket_edition
-    new(PremarketEdition.new)
+  def self.morning_edition
+    new(Editions::Morning)
   end
 
-  def self.closing_edition
-    new(ClosingEdition.new)
+  def self.afternoon_edition
+    new(Editions::Afternoon)
   end
 
   # send email to subscribers
@@ -27,11 +27,12 @@ class Bullish
   def post
     retries ||= 0
 
-    Email.new(edition).post if edition.send?
+    Services::Email.new(edition).post if edition.send?
   rescue StandardError => e
     retries += 1
     retry if retries < 3
 
+    # TODO: move to a Error service class
     Raven.capture_message(e.message)
 
     raise e

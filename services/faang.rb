@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './services/ticker'
 
 class FAANG
@@ -7,7 +9,7 @@ class FAANG
     'Amazon': 'AMZN',
     'Netflix': 'NFLX',
     'Google': 'GOOG'
-  }
+  }.freeze
 
   def self.data
     LIST.map do |key, value|

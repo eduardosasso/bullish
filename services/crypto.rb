@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './services/ticker'
 
 class Crypto
@@ -5,7 +7,7 @@ class Crypto
     'Bitcoin': 'BTC-USD',
     'Ethereum': 'ETH-USD',
     'XRP-Ripple': 'XRP-USD'
-  }
+  }.freeze
 
   def self.data
     COINS.map do |key, value|
