@@ -15,11 +15,11 @@ class Bullish
   end
 
   def self.morning_edition
-    new(Editions::Morning)
+    new(Editions::Morning.new)
   end
 
   def self.afternoon_edition
-    new(Editions::Afternoon)
+    new(Editions::Afternoon.new)
   end
 
   # send email to subscribers

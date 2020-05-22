@@ -20,7 +20,7 @@ module Templates
     Item = Struct.new(
       :title,
       :subtitle,
-      :undertitle,
+      :symbol,
       :value,
       :color, # set automatically
       keyword_init: true
@@ -29,7 +29,7 @@ module Templates
     Stats = Struct.new(
       :title,
       :subtitle,
-      :undertitle,
+      :symbol,
       :_1D,
       :_5D,
       :_1M,

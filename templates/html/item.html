@@ -1,8 +1,10 @@
 <mj-section padding-top="0px" padding-bottom="20px">
   <mj-column>
-    <mj-text font-size="22px" color="#FFF" font-family="helvetica" font-weight="bold" align="center" line-height="2px">S&P 500</mj-text>
-    <!--<mj-text font-size="14px" color="#FFF" font-family="helvetica" align="center">2922.94 pts</mj-text>-->
-    <mj-text font-size="30px" color="#21bf73" font-family="helvetica" font-weight="bold" align="center" padding-top="10px">0.39%</mj-text>
+    <mj-text font-size="22px" color="#FFF" font-family="helvetica" font-weight="bold" align="center" line-height="2px">{{title}}</mj-text>
+    {{#subtitle}}
+      <mj-text font-size="14px" color="#FFF" font-family="helvetica" align="center">{{subtitle}}</mj-text>
+    {{/subtitle}}
+    <mj-text font-size="30px" color="{{color}}" font-family="helvetica" font-weight="bold" align="center" padding-top="10px">{{value}}</mj-text>
   </mj-column>
 </mj-section>
 
