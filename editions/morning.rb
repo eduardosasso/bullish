@@ -36,14 +36,24 @@ module Editions
                 )
     end
 
-    def layout
+    def elements
       [
-        Templates::Element.title,
+        title,
         Templates::Element.item,
         Templates::Element.divider,
         Templates::Element.title,
         Templates::Element.stats
       ]
+    end
+
+    def title
+      data = Templates::Element.Title.new(
+        title: formatted_date,
+        subtitle: 'Stock Futures Premarket Data',
+        undertitle: formatted_time
+      )
+
+      Templates::Element.title(data)
     end
 
     def subscribers_group_id

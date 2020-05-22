@@ -11,6 +11,12 @@ module Templates
       green: '#21bf73'
     }.freeze
 
+    Html = Struct.new(
+      :preheader,
+      :body,
+      keyword_init: true
+    )
+
     Item = Struct.new(
       :title,
       :subtitle,
@@ -51,8 +57,8 @@ module Templates
       keyword_init: true
     )
 
-    def self.html
-      load(:html)
+    def self.html(html_struct = nil)
+      render(:html, html_struct)
     end
 
     def self.header
@@ -94,8 +100,9 @@ module Templates
 
     def self.render(name, data)
       content = load(name)
+      data = data.send(:to_h) || {}
 
-      Mustache.render(content, data.try(:to_h))
+      data.any? ? Mustache.render(content, data) : content
     end
 
     def self.load(name)

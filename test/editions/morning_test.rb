@@ -26,9 +26,5 @@ module Editions
         assert_equal(%w[nasdaq_f sp500_f dowjones_f].sort, Editions::Morning.new.futures.keys.sort)
       end
     end
-
-    def test_layout
-      assert(Editions::Morning.new.layout)
-    end
   end
 end

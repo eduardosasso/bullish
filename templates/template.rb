@@ -2,22 +2,36 @@
 
 require 'mustache'
 require './templates/element'
+require './services/mjml'
 require 'date'
 
 module Templates
   class Template
-    def initialize(elements = [Element.title])
+    def initialize(elements = [Element.title], preheader = nil)
+      @preheader = preheader
+
       @body = [
         Element.header,
+        Element.divider,
         elements,
+        Element.divider,
         Element.footer
       ].flatten.join(' ')
     end
 
-    def compile(data = {})
-      @body = Mustache.render(@body, data) unless data.empty?
+    def compile
+      data = Element::Html.new(
+        preheader: @preheader,
+        body: @body
+      )
 
-      Mustache.render(Element.html, { body: @body })
+      Element.html(data)
+    end
+
+    def to_html
+      mjml = compile
+
+      Mjml.new(mjml).to_html
     end
 
     def self.save(content, name = preview_name)
@@ -26,8 +40,6 @@ module Templates
       File.open(filename, 'w+') do |f|
         f.write(content)
       end
-
-      'Preview saved in ' + filename
     end
 
     def self.preview_name

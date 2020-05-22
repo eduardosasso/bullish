@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require './services/ticker'
-require './templates/template.rb'
+require './templates/template'
 require './services/holiday'
 
 # types of email
@@ -24,15 +24,11 @@ module Editions
     end
 
     def content
-      Templates::Template.new(layout).compile(data)
+      Templates::Template.new(elements, preheader).to_html
     end
 
-    def layout
+    def elements
       raise 'override and return an Array of Element'
-    end
-
-    def data
-      raise 'override using a hash to fill the template'
     end
 
     # override for editions like weekend

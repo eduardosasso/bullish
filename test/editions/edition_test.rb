@@ -2,18 +2,21 @@
 
 require 'minitest/autorun'
 require './editions/edition'
+require './templates/element'
 
 module Editions
   class EditionTest < Minitest::Test
     def test_content
-      data = { ibm_5d: '300%' }
-      # template = 'IBM: ibm_5d'
-
       edition = Editions::Edition.new
+      data = Templates::Element::Title.new(title: 'Bitcoin')
+      element = Templates::Element.title(data)
 
-      edition.stub(:layout, ['{{ibm_5d}}']) do
-        edition.stub(:data, data) do
-          assert_match(/300%/, edition.content)
+      edition.stub(:elements, [element]) do
+        edition.stub(:preheader, 'preheader sentence') do
+          content = edition.content
+          assert_match(/<!doctype html>/, content)
+          assert_match(/Bitcoin/, content)
+          assert_match(/preheader sentence/, content)
         end
       end
     end
