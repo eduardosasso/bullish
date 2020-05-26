@@ -3,6 +3,7 @@
 require 'mustache'
 require './templates/element'
 require './services/mjml'
+require './services/minifier'
 require 'date'
 
 module Templates
@@ -12,6 +13,7 @@ module Templates
 
       @body = [
         Element.header,
+        Element.spacer('15px'),
         Element.divider,
         elements,
         Element.divider,
@@ -31,7 +33,9 @@ module Templates
     def to_html
       mjml = compile
 
-      Mjml.new(mjml).to_html
+      html = Mjml.new(mjml).to_html
+
+      Services::Minifier.html(html)
     end
 
     def self.save(content, name = preview_name)

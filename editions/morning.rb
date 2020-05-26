@@ -17,6 +17,7 @@ module Editions
       "#{ALIAS[key.to_sym]} is #{up_down} #{value} in premarket"
     end
 
+    # TODO: add emoji
     def preheader
       [
         'Do not put all your eggs in one basket',
@@ -25,26 +26,19 @@ module Editions
       ].sample
     end
 
-    # def data
-    #   @data ||= {}
-    #             .merge(futures)
-    #             .merge(indexes)
-    #             .merge(
-    #               'date_f': formatted_date,
-    #               'time_f': formatted_time,
-    #               'preheader_s': preheader
-    #             )
-    # end
-
     def elements
       [
         title,
+        Templates::Element.spacer('20px'),
         sp500_futures,
         nasdaq_futures,
         dowjones_futures,
         Templates::Element.divider,
         performance_title,
-        Templates::Element.stats
+        sp500_performance,
+        nasdaq_performance,
+        dowjones_performance,
+        Templates::Element.spacer('20px')
       ]
     end
 
@@ -60,13 +54,45 @@ module Editions
       item(:dowjones)
     end
 
+    def sp500_performance
+      stats(:sp500)
+    end
+
+    def nasdaq_performance
+      stats(:nasdaq)
+    end
+
+    def dowjones_performance
+      stats(:dowjones)
+    end
+
     def item(key)
       data = Templates::Element::Item.new(
         title: ALIAS[key],
+        symbol: Services::Ticker::INDEX[key],
         value: futures[key]
       )
 
       Templates::Element.item(data)
+    end
+
+    def stats(key)
+      stock = performance(key)
+
+      data = Templates::Element::Stats.new(
+        title: ALIAS[key],
+        symbol: Services::Ticker::INDEX[key],
+        _1D: stock['1D'],
+        _5D: stock['5D'],
+        _1M: stock['1M'],
+        _3M: stock['3M'],
+        _6M: stock['6M'],
+        _1Y: stock['1Y'],
+        _5Y: stock['5Y'],
+        _10Y: stock['10Y']
+      )
+
+      Templates::Element.stats(data)
     end
 
     def title
@@ -89,6 +115,10 @@ module Editions
 
     def subscribers_group_id
       ENV['FREE_GROUP']
+    end
+
+    def performance(key)
+      Services::Ticker.send(key).full_performance
     end
 
     def futures

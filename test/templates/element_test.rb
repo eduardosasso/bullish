@@ -29,6 +29,12 @@ module Templates
       end
     end
 
+    def test_spacer
+      spacer = '<mj-spacer height="20px" />'
+
+      assert_match(/#{spacer}/, Templates::Element.spacer('20px'))
+    end
+
     def test_item
       data = Templates::Element::Item.new(
         title: 'IBM',

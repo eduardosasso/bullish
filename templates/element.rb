@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'ostruct'
 require 'mustache'
 
 module Templates
@@ -71,6 +72,12 @@ module Templates
 
     def self.divider
       load(:divider)
+    end
+
+    def self.spacer(height = '10px')
+      height_struct = OpenStruct.new(height: height)
+
+      render(:spacer, height_struct)
     end
 
     def self.title(title_struct = nil)

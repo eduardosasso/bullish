@@ -72,7 +72,7 @@ module Services
     def performance
       quotes.unshift(prev_close) if @range == RANGE['1D']
 
-      percent_change(quotes.last, quotes.first)
+      percent_change(quotes.last, quotes.first).to_s + '%'
     end
 
     def percent_change(new, original)

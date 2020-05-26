@@ -30,8 +30,8 @@ module Services
         Ticker::Detail.new(
           ticker: s['ticker'],
           name: s['name'],
-          price: s['lastPrice'],
-          percent: s['percentChange'],
+          price: '$' + s['lastPrice'],
+          percent: s['percentChange'] + '%',
           performance: performance(s['ticker'])
         )
       end

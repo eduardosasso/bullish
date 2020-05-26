@@ -11,9 +11,9 @@ Rake::TestTask.new do |t|
 end
 
 task :send_email do
-  Bullish.premarket_edition.post
+  Bullish.morning_edition.post
 end
 
 task :send_email_close do
-  Bullish.closing_edition.post
+  Bullish.afternoon_edition.post
 end

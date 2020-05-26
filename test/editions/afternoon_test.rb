@@ -7,34 +7,52 @@ require './services/top'
 
 module Editions
   class AfternoonTest < Minitest::Test
-    def test_gainers
-      stubbed_top do
-        Editions::Afternoon.new.gainers.tap do |c|
-          assert(c['gainers1_s'])
-          assert(c['gainers3_10Y'])
-          assert(c['gainers2_6M'])
-        end
-      end
-    end
-
-    def test_data
-      stubbed_top do
-        closing_edition = Editions::Afternoon.new
-        closing_edition.stub(:indexes, {}) do
-          data = closing_edition.data
-          assert(data[:date_c])
-          assert(data[:preheader_s])
-        end
-      end
-    end
-
     def test_subject
-      indexes = { sp500_c: '-2.81%', nasdaq_c: '-3.2%', dowjones_c: '-2.55%' }
+      indexes = { sp500: '-2.81%', nasdaq: '-3.2%', dowjones: '-2.55%' }
 
       stubbed_top do
-        closing_edition = Editions::Afternoon.new
-        closing_edition.stub(:indexes, indexes) do
-          assert(closing_edition.subject)
+        afternoon = Editions::Afternoon.new
+        afternoon.stub(:indexes, indexes) do
+          assert(afternoon.subject)
+        end
+      end
+    end
+
+    def test_preheader
+      stubbed_top do
+        assert(Editions::Afternoon.new.preheader)
+      end
+    end
+
+    def test_index_close
+      indexes = { sp500: '0.24%', nasdaq: '-0.55%', dowjones: '-0.04%' }
+
+      afternoon = Editions::Afternoon.new
+
+      afternoon.stub(:indexes, indexes) do
+        assert_match(/#{indexes[:sp500]}/, afternoon.sp500_close)
+        assert_match(/#{indexes[:nasdaq]}/, afternoon.nasdaq_close)
+        assert_match(/#{indexes[:dowjones]}/, afternoon.dowjones_close)
+      end
+    end
+
+    def test_stats
+      afternoon = Editions::Afternoon.new
+
+      stubbed_top do
+        assert(afternoon.gainers_performance)
+        assert(afternoon.losers_performance)
+      end
+    end
+
+    def test_elements
+      indexes = { sp500: '0.24%', nasdaq: '-0.55%', dowjones: '-0.04%' }
+
+      afternoon = Editions::Afternoon.new
+
+      stubbed_top do
+        afternoon.stub(:indexes, indexes) do
+          assert(afternoon.elements)
         end
       end
     end

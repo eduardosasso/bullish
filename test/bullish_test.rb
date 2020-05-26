@@ -4,6 +4,7 @@ require 'minitest/autorun'
 require './bullish'
 require 'minitest/mock'
 require './services/holiday'
+require './editions/edition'
 
 class BullishTest < Minitest::Test
   def test_post_retry
@@ -30,6 +31,16 @@ class BullishTest < Minitest::Test
         assert_equal('third try', Bullish.new.post)
       end
     end
+  end
+
+  def test_morning_edition
+    edition = Bullish.morning_edition.edition
+    assert_instance_of(Editions::Morning, edition)
+  end
+
+  def test_afternoon_edition
+    edition = Bullish.afternoon_edition.edition
+    assert_instance_of(Editions::Afternoon, edition)
   end
 
   def test_dont_post_on_holiday

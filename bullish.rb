@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 require './services/email'
+require './services/log'
 require './editions/morning'
 require './editions/afternoon'
 require './editions/edition'
-require 'raven'
 
 # buy high sell low
 class Bullish
@@ -32,18 +32,11 @@ class Bullish
     retries += 1
     retry if retries < 3
 
-    # TODO: move to a Error service class
-    Raven.capture_message(e.message)
-
+    Services::Log.error(e.message)
     raise e
   end
 
-  # save as html file for testing
   def save
-    filename = 'tmp/' + edition.subject + '.html'
-
-    File.open(filename, 'w+') do |f|
-      f.write(edition.content)
-    end
+    @edition.save
   end
 end

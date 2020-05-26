@@ -54,15 +54,12 @@ module Editions
       raise 'override with subscribers group from mailerlite'
     end
 
-    # rewrite to conform to template data reqs
-    # nasdaq to nasdaq_1D, sp500_3M...
-    def indexes
-      keys = Services::Ticker::INDEX.keys
+    # save as html file for testing
+    def save
+      filename = 'tmp/' + subject + '.html'
 
-      keys.each_with_object({}) do |index, hash|
-        Services::Ticker.send(index).full_performance.each do |key, value|
-          hash["#{index}_#{key}"] = value.to_s + '%'
-        end
+      File.open(filename, 'w+') do |f|
+        f.write(content)
       end
     end
   end
