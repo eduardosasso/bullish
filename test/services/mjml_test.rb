@@ -17,7 +17,7 @@ class MjmlTest < Minitest::Test
       </mjml>
     MJML
 
-    html = Mjml.new(mjml).to_html
+    html = Services::Mjml.new(mjml).to_html
 
     assert_match(/<!doctype html>/, html)
     assert_match(/Hello World/, html)
