@@ -15,7 +15,7 @@ jobs:
       with:
         node-version: '12'
     - run: | 
-        npm install mjml
+        npm install -g mjml
     - name: Set up Ruby 2.7
       uses: actions/setup-ruby@v1
       with:
