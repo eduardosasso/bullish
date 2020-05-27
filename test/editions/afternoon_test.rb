@@ -8,7 +8,11 @@ require './services/top'
 module Editions
   class AfternoonTest < Minitest::Test
     def test_subject
-      indexes = { sp500: '-2.81%', nasdaq: '-3.2%', dowjones: '-2.55%' }
+      sp500 = OpenStruct.new(price: 12, performance: '-2.81%')
+      nasdaq = OpenStruct.new(price: 32, performance: '-3.2%')
+      dowjones = OpenStruct.new(price: 98, performance: '-2.55%')
+
+      indexes = { sp500: sp500, nasdaq: nasdaq, dowjones: dowjones }
 
       stubbed_top do
         afternoon = Editions::Afternoon.new
@@ -25,14 +29,18 @@ module Editions
     end
 
     def test_index_close
-      indexes = { sp500: '0.24%', nasdaq: '-0.55%', dowjones: '-0.04%' }
+      sp500 = OpenStruct.new(price: 12, performance: '0.24%')
+      nasdaq = OpenStruct.new(price: 32, performance: '-0.55%')
+      dowjones = OpenStruct.new(price: 98, performance: '-0.04%')
+
+      indexes = { sp500: sp500, nasdaq: nasdaq, dowjones: dowjones }
 
       afternoon = Editions::Afternoon.new
 
       afternoon.stub(:indexes, indexes) do
-        assert_match(/#{indexes[:sp500]}/, afternoon.sp500_close)
-        assert_match(/#{indexes[:nasdaq]}/, afternoon.nasdaq_close)
-        assert_match(/#{indexes[:dowjones]}/, afternoon.dowjones_close)
+        assert_match(/#{indexes[:sp500].performance}/, afternoon.sp500_close)
+        assert_match(/#{indexes[:nasdaq].performance}/, afternoon.nasdaq_close)
+        assert_match(/#{indexes[:dowjones].performance}/, afternoon.dowjones_close)
       end
     end
 
@@ -46,7 +54,11 @@ module Editions
     end
 
     def test_elements
-      indexes = { sp500: '0.24%', nasdaq: '-0.55%', dowjones: '-0.04%' }
+      sp500 = OpenStruct.new(price: 12, performance: '0.24%')
+      nasdaq = OpenStruct.new(price: 32, performance: '-0.55%')
+      dowjones = OpenStruct.new(price: 98, performance: '-0.04%')
+
+      indexes = { sp500: sp500, nasdaq: nasdaq, dowjones: dowjones }
 
       afternoon = Editions::Afternoon.new
 

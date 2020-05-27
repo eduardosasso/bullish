@@ -4,6 +4,7 @@ require 'faraday'
 require 'active_support/all'
 
 # get historical performance by ticker symbol
+# https://query1.finance.yahoo.com/v8/finance/chart/^IXIC?interval=1d&range=1d
 module Services
   class Ticker
     attr_writer :request
@@ -67,6 +68,8 @@ module Services
     def price
       # https://query2.finance.yahoo.com/v10/finance/quoteSummary/AAPL?&modules=defaultKeyStatistics,financialData,calendarEvents
       # https://query2.finance.yahoo.com/v10/finance/quoteSummary/BTC-USD?&modules=price%2CsummaryDetail
+
+      data.dig('meta', 'regularMarketPrice')
     end
 
     def performance
@@ -117,13 +120,14 @@ module Services
     end
 
     def data
-      @data ||= begin
-                  data = JSON.parse(request)
+      @data ||=
+        begin
+          data = JSON.parse(request)
 
-                  raise data if data.dig('chart', 'error')
+          raise data if data.dig('chart', 'error')
 
-                  data.dig(*KEY).first
-                end
+          data.dig(*KEY).first
+        end
     end
   end
 end

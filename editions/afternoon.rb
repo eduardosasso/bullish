@@ -8,7 +8,7 @@ module Editions
     def subject
       sample = indexes.to_a.sample(1).to_h
       key = sample.keys.first
-      value = sample.values.first
+      value = sample.values.first.performance
 
       index = ALIAS[key.to_sym]
 
@@ -27,7 +27,7 @@ module Editions
         "#{index} added #{value}",
         "#{index} climbed #{value}",
         "#{index} finished up #{value}"
-      ].sample
+      ].sample + ' today'
     end
 
     def subject_down(index, value)
@@ -38,7 +38,7 @@ module Editions
         "#{index} fell #{value}",
         "#{index} thumbled #{value}",
         "#{index} lost #{value}"
-      ].sample
+      ].sample + ' today'
     end
 
     def preheader
@@ -97,7 +97,8 @@ module Editions
       data = Templates::Element::Item.new(
         title: ALIAS[key],
         symbol: Services::Ticker::INDEX[key],
-        value: indexes[key]
+        value: indexes[key].performance,
+        subtitle: indexes[key].price.to_s + ' pts'
       )
 
       Templates::Element.item(data)
@@ -121,9 +122,9 @@ module Editions
 
     def indexes
       @indexes ||= {
-        sp500: Services::Ticker.sp500.performance,
-        nasdaq: Services::Ticker.nasdaq.performance,
-        dowjones: Services::Ticker.dowjones.performance
+        sp500: Services::Ticker.sp500,
+        nasdaq: Services::Ticker.nasdaq,
+        dowjones: Services::Ticker.dowjones
       }
     end
 

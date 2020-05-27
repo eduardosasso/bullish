@@ -35,11 +35,25 @@ module Editions
     def test_index_performance
       performance = { '1D' => '0.24%', '5D' => '0.05%', '1M' => '5.63%', '3M' => '-8.38%', '6M' => '-5.69%', '1Y' => '4.72%', '5Y' => '40.45%', '10Y' => '175.27%' }
 
+      futures = MiniTest::Mock.new
+      futures.expect(:pre_market, 'nasdaq' => '-0.83%', 'sp500' => '1.65%', 'dowjones' => '2.58%')
+
+      ticker = MiniTest::Mock.new
+      ticker.expect(:full_performance,  performance)
+      ticker.expect(:full_performance,  performance)
+      ticker.expect(:full_performance,  performance)
+      ticker.expect(:price, 10)
+      ticker.expect(:price, 10)
+      ticker.expect(:price, 10)
+
       morning = Editions::Morning.new
-      morning.stub(:performance, performance) do
-        assert(morning.sp500_performance)
-        assert(morning.nasdaq_performance)
-        assert(morning.dowjones_performance)
+
+      Services::Futures.stub(:new, futures) do
+        Services::Ticker.stub(:new, ticker) do
+          assert(morning.sp500_performance)
+          assert(morning.nasdaq_performance)
+          assert(morning.dowjones_performance)
+        end
       end
     end
 
@@ -49,10 +63,17 @@ module Editions
       futures = MiniTest::Mock.new
       futures.expect(:pre_market, 'nasdaq' => '-0.83%', 'sp500' => '1.65%', 'dowjones' => '2.58%')
 
+      ticker = MiniTest::Mock.new
+      ticker.expect(:full_performance,  performance)
+      ticker.expect(:full_performance,  performance)
+      ticker.expect(:full_performance,  performance)
+      ticker.expect(:price, 10)
+      ticker.expect(:price, 10)
+      ticker.expect(:price, 10)
+
       Services::Futures.stub(:new, futures) do
-        morning = Editions::Morning.new
-        morning.stub(:performance, performance) do
-          assert(morning.elements)
+        Services::Ticker.stub(:new, ticker) do
+          assert(Editions::Morning.new.elements)
         end
       end
     end

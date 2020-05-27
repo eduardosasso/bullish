@@ -77,19 +77,21 @@ module Editions
     end
 
     def stats(key)
-      stock = performance(key)
+      stock = ticker(key)
+      performance = stock.full_performance
 
       data = Templates::Element::Stats.new(
         title: ALIAS[key],
+        subtitle: stock.price.to_s + ' pts',
         symbol: Services::Ticker::INDEX[key],
-        _1D: stock['1D'],
-        _5D: stock['5D'],
-        _1M: stock['1M'],
-        _3M: stock['3M'],
-        _6M: stock['6M'],
-        _1Y: stock['1Y'],
-        _5Y: stock['5Y'],
-        _10Y: stock['10Y']
+        _1D: performance['1D'],
+        _5D: performance['5D'],
+        _1M: performance['1M'],
+        _3M: performance['3M'],
+        _6M: performance['6M'],
+        _1Y: performance['1Y'],
+        _5Y: performance['5Y'],
+        _10Y: performance['10Y']
       )
 
       Templates::Element.stats(data)
@@ -117,8 +119,8 @@ module Editions
       ENV['FREE_GROUP']
     end
 
-    def performance(key)
-      Services::Ticker.send(key).full_performance
+    def ticker(key)
+      Services::Ticker.send(key)
     end
 
     def futures
