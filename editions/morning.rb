@@ -14,10 +14,11 @@ module Editions
 
       up_down = value.start_with?(Templates::Element::MINUS) ? 'down' : 'up'
 
-      "#{ALIAS[key.to_sym]} is #{up_down} #{value} in premarket"
+      "#{Services::Ticker::ALIAS[key.to_sym]} is #{up_down} #{value} in premarket"
     end
 
     # TODO: add emoji
+    # TODO add some random stock number here
     def preheader
       [
         'Do not put all your eggs in one basket',
@@ -66,9 +67,25 @@ module Editions
       stats(:dowjones)
     end
 
+    def bitcoin_performance
+      stats(:bitcoin)
+    end
+
+    def gold_performance
+      stats(:gold)
+    end
+
+    def russell2000_performance
+      stats(:russell2000)
+    end
+
+    def treasury_performance
+      stats(:treasury)
+    end
+
     def item(key)
       data = Templates::Element::Item.new(
-        title: ALIAS[key],
+        title: Services::Ticker::ALIAS[key],
         symbol: Services::Ticker::INDEX[key],
         value: futures[key]
       )
@@ -81,7 +98,7 @@ module Editions
       performance = stock.full_performance
 
       data = Templates::Element::Stats.new(
-        title: ALIAS[key],
+        title: Services::Ticker::ALIAS[key],
         subtitle: stock.price.to_s + ' pts',
         symbol: Services::Ticker::INDEX[key],
         _1D: performance['1D'],
@@ -124,7 +141,7 @@ module Editions
     end
 
     def futures
-      @futures ||= Services::Futures.new.pre_market
+      @futures ||= Services::Futures.new.usa
     end
   end
 end

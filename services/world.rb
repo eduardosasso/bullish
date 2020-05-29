@@ -15,6 +15,16 @@ module Services
     #   'India BSE SENSEX',
     #   'Australia S&P/ASX 200'
     # ]
+    #
+
+    LIST = [
+      'London FTSE 100': 'ETH-USD',
+      'German DAX': 'XRP-USD',
+      'Hong Kong Hang Seng',
+      'Shanghai',
+      'Australia S&P/ASX 200'
+    ]
+
 
     # china, japan, uk, germany, europe, russia, brazil, india
 

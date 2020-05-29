@@ -19,10 +19,33 @@ module Services
       keyword_init: true
     )
 
+    ALIAS = {
+      'sp500': 'S&P 500',
+      'nasdaq': 'Nasdaq',
+      'dowjones': 'Dow Jones',
+      'nikkei': 'Nikkei',
+      'dax': 'Dax',
+      'ftse': 'FTSE',
+      'bitcoin': 'Bitcoin',
+      'gold': 'Gold',
+      'treasury': 'Treasury'
+    }.freeze
+
+    SUB_ALIAS = {
+      'nikkei': 'Japan',
+      'dax': 'Germany',
+      'ftse': 'Britain',
+      'treasury': '10-Yr Bond'
+    }.freeze
+
     INDEX = {
       sp500: '^GSPC',
       nasdaq: '^IXIC',
-      dowjones: '^DJI'
+      dowjones: '^DJI',
+      bitcoin: 'BTC-USD',
+      gold: 'GC=F',
+      treasury: '^TNX',
+      russell2000: '^RUT'
     }.freeze
 
     ENDPOINT = 'https://query1.finance.yahoo.com/v8/finance/chart/'
@@ -55,6 +78,22 @@ module Services
 
     def self.dowjones(range = RANGE['1D'])
       new(INDEX[:dowjones], range)
+    end
+
+    def self.bitcoin(range = RANGE['1D'])
+      new(INDEX[:bitcoin], range)
+    end
+
+    def self.gold(range = RANGE['1D'])
+      new(INDEX[:gold], range)
+    end
+
+    def self.treasury(range = RANGE['1D'])
+      new(INDEX[:treasury], range)
+    end
+
+    def self.russell2000(range = RANGE['1D'])
+      new(INDEX[:russell2000], range)
     end
 
     def full_performance

@@ -9,12 +9,6 @@ module Editions
   class Edition
     MINUS = '-'
 
-    ALIAS = {
-      'sp500': 'S&P 500',
-      'nasdaq': 'Nasdaq',
-      'dowjones': 'Dow Jones'
-    }.freeze
-
     def subject
       raise 'should override subject'
     end

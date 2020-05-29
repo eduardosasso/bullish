@@ -10,7 +10,7 @@ module Editions
       key = sample.keys.first
       value = sample.values.first.performance
 
-      index = ALIAS[key.to_sym]
+      index = Services::Ticker::ALIAS[key.to_sym]
 
       if value.start_with?(Templates::Element::MINUS)
         subject_down(index, value)
@@ -95,7 +95,7 @@ module Editions
 
     def item(key)
       data = Templates::Element::Item.new(
-        title: ALIAS[key],
+        title: Services::Ticker::ALIAS[key],
         symbol: Services::Ticker::INDEX[key],
         value: indexes[key].performance,
         subtitle: indexes[key].price.to_s + ' pts'

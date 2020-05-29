@@ -1,36 +1,42 @@
 # frozen_string_literal: true
 
-require 'dotenv'
+require './services/config'
 require 'net/http'
 require 'json'
 
 # fetch premarket futures % change
 module Services
   class Futures
-    INDEX = {
+    USA = {
       sp500: 'Future-US-ES00',
       nasdaq: 'Future-US-NQ00',
       dowjones: 'Future-US-YM00'
     }.freeze
 
-    def initialize
-      Dotenv.load
-    end
+    WORLD = {
+      nikkei: 'Future-US-NIY00',
+      dax: 'Future-DE-DAX00',
+      ftse: 'Future-UK-Z00'
+    }.freeze
 
     def uri
-      URI(ENV['MARKET_API'])
+      Services::Config.futures_api_uri
     end
 
-    def self.pre_market
-      new.pre_market
+    def self.usa
+      new.data(USA)
     end
 
-    def pre_market
+    def self.world
+      new.data(WORLD)
+    end
+
+    def data(list = USA)
       response = Net::HTTP.get(uri)
 
       {}.tap do |h|
         JSON.parse(response)['InstrumentResponses'].each do |r|
-          key = INDEX.key(r.dig('RequestId'))
+          key = list.key(r.dig('RequestId'))
 
           next unless key
 
