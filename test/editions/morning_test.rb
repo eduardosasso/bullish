@@ -39,9 +39,9 @@ module Editions
       futures.expect(:usa, 'nasdaq' => '-0.83%', 'sp500' => '1.65%', 'dowjones' => '2.58%')
 
       ticker = MiniTest::Mock.new
-      ticker.expect(:full_performance,  performance)
-      ticker.expect(:full_performance,  performance)
-      ticker.expect(:full_performance,  performance)
+      ticker.expect(:stats,  performance)
+      ticker.expect(:stats,  performance)
+      ticker.expect(:stats,  performance)
       ticker.expect(:price, 10)
       ticker.expect(:price, 10)
       ticker.expect(:price, 10)
@@ -64,9 +64,9 @@ module Editions
       futures.expect(:usa, 'nasdaq' => '-0.83%', 'sp500' => '1.65%', 'dowjones' => '2.58%')
 
       ticker = MiniTest::Mock.new
-      ticker.expect(:full_performance,  performance)
-      ticker.expect(:full_performance,  performance)
-      ticker.expect(:full_performance,  performance)
+      ticker.expect(:stats,  performance)
+      ticker.expect(:stats,  performance)
+      ticker.expect(:stats,  performance)
       ticker.expect(:price, 10)
       ticker.expect(:price, 10)
       ticker.expect(:price, 10)

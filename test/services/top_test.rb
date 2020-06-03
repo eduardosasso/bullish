@@ -13,7 +13,7 @@ module Services
       top = Services::Top.new
 
       top.stub(:request, JSON.parse(@request_fixture)) do
-        top.stub(:performance, nil) do
+        top.stub(:stats, nil) do
           movers = top.send(type)
 
           assert(movers.count.positive?)

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require 'faraday'
-require 'dotenv'
 require 'json'
+require './services/config'
 require './services/ticker'
 
 # top gainers and losers
@@ -12,10 +12,6 @@ module Services
       G: 'gainers',
       L: 'decliners'
     }.freeze
-
-    def initialize
-      Dotenv.load
-    end
 
     def gainers
       mover(TYPE[:G])
@@ -27,22 +23,15 @@ module Services
 
     def mover(type = TYPE[:G])
       request.dig('data', type, 'instruments').map do |s|
-        Ticker::Detail.new(
-          ticker: s['ticker'],
-          name: s['name'],
-          price: '$' + s['lastPrice'],
-          percent: s['percentChange'] + '%',
-          performance: performance(s['ticker'])
-        )
+        Ticker.new(s['ticker']).tap do |t|
+          name =  s['name']
+          price = '$' + s['lastPrice']
+        end
       end
     end
 
-    def performance(ticker)
-      Ticker.new(ticker).full_performance
-    end
-
     def request
-      req = Faraday.get(ENV['TOP_GAINERS_LOSERS_API'])
+      req = Faraday.get(Config::TOP_GAINERS_LOSERS_API)
 
       JSON.parse(req.body)
     end

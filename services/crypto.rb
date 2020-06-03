@@ -12,14 +12,9 @@ module Services
 
     def self.data
       COINS.map do |key, value|
-        coin = Ticker.new(value)
-
-        Ticker::Detail.new(
-          ticker: value,
-          name: key.to_s,
-          price: coin.price,
-          performance: coin.full_performance
-        )
+        Ticker.new(value).tap do |t|
+          t.name = key.to_s
+        end
       end
     end
   end

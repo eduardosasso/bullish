@@ -4,39 +4,25 @@ require './services/ticker'
 
 module Services
   class World
-    # LIST = [
-    #   'Japan Nikkei 225': 'BTC-USD',
-    #   'London FTSE 100': 'ETH-USD',
-    #   'German DAX': 'XRP-USD',
-    #   'France CAC 40',
-    #   'Europe STOXX 600',
-    #   'Hong Kong Hang Seng',
-    #   'Shanghai',
-    #   'India BSE SENSEX',
-    #   'Australia S&P/ASX 200'
-    # ]
-    #
-
-    LIST = [
-      'London FTSE 100': 'ETH-USD',
-      'German DAX': 'XRP-USD',
-      'Hong Kong Hang Seng',
-      'Shanghai',
-      'Australia S&P/ASX 200'
-    ]
-
-
-    # china, japan, uk, germany, europe, russia, brazil, india
+    LIST = {
+      'Japan Nikkei 225': '^N225',
+      'UK FTSE 100': '^FTSE',
+      'German DAX': '^GDAXI',
+      'France CAC 40': '^FCHI',
+      'Europe STOXX 600': '^STOXX',
+      'Hong Kong Hang Seng': '^HSI',
+      'China Composite': '^SSEC',
+      'India BSE SENSEX': '^BSESN',
+      'Australia S&P/ASX 200': '^AXJO',
+      'Brazil Ibovespa': '^BVSP' 
+    }.freeze
 
     def self.data
-      # COINS.map do |key, value|
-      #   Ticker::Detail.new(
-      #     ticker: value,
-      #     name: key,
-      #     price: 0,
-      #     performance: Ticker.new(value).full_performance
-      #   )
-      # end
+      LIST.map do |key, value|
+        Ticker.new(value).tap do |t|
+          t.name = key.to_s
+        end
+      end
     end
   end
 end

@@ -2,39 +2,26 @@
 
 require 'faraday'
 require 'active_support/all'
+require './services/percent'
+require './services/peak'
+require './services/config'
 
-# get historical performance by ticker symbol
-# https://query1.finance.yahoo.com/v8/finance/chart/^IXIC?interval=1d&range=1d
 module Services
   class Ticker
-    attr_writer :request
-
-    Detail = Struct.new(
-      :ticker,
-      :name,
-      :price,
-      :percent,
-      :volume,
-      :performance,
-      keyword_init: true
-    )
+    attr_writer :request, :name
+    attr_reader :symbol
 
     ALIAS = {
       'sp500': 'S&P 500',
       'nasdaq': 'Nasdaq',
       'dowjones': 'Dow Jones',
-      'nikkei': 'Nikkei',
-      'dax': 'Dax',
-      'ftse': 'FTSE',
       'bitcoin': 'Bitcoin',
       'gold': 'Gold',
-      'treasury': 'Treasury'
+      'treasury': 'Treasury',
+      'russell2000': 'Russell 2000'
     }.freeze
 
     SUB_ALIAS = {
-      'nikkei': 'Japan',
-      'dax': 'Germany',
-      'ftse': 'Britain',
       'treasury': '10-Yr Bond'
     }.freeze
 
@@ -48,9 +35,6 @@ module Services
       russell2000: '^RUT'
     }.freeze
 
-    ENDPOINT = 'https://query1.finance.yahoo.com/v8/finance/chart/'
-    KEY = %w[chart result].freeze
-
     RANGE =
       {
         '1D': '1d',
@@ -60,7 +44,9 @@ module Services
         '6M': '6mo',
         '1Y': '1y',
         '5Y': '5y',
-        '10Y': '10y'
+        '10Y': '10y',
+        'YTD': 'ytd',
+        'MAX': 'max'
       }.with_indifferent_access
 
     def initialize(symbol, range = RANGE['1D'])
@@ -96,7 +82,7 @@ module Services
       new(INDEX[:russell2000], range)
     end
 
-    def full_performance
+    def stats
       {}.tap do |stats|
         RANGE.each do |key, value|
           stats[key] = Ticker.new(@symbol, value).performance
@@ -104,21 +90,22 @@ module Services
       end
     end
 
-    def price
-      # https://query2.finance.yahoo.com/v10/finance/quoteSummary/AAPL?&modules=defaultKeyStatistics,financialData,calendarEvents
-      # https://query2.finance.yahoo.com/v10/finance/quoteSummary/BTC-USD?&modules=price%2CsummaryDetail
+    def name
+      @name ||= details.dig('displayName')
+    end
 
+    def price
       data.dig('meta', 'regularMarketPrice')
     end
 
     def performance
       quotes.unshift(prev_close) if @range == RANGE['1D']
 
-      percent_change(quotes.last, quotes.first).to_s + '%'
+      Percent.diff(quotes.last, quotes.first).to_s
     end
 
-    def percent_change(new, original)
-      (((new.to_f - original.to_f) / original.to_f) * 100).round(2)
+    def peak
+      Peak.new(@symbol)
     end
 
     def url
@@ -129,12 +116,13 @@ module Services
 
       symbol = ERB::Util.url_encode(@symbol)
 
-      ENDPOINT + symbol + '?' + params
+      Config::STATS_API + symbol + '?' + params
     end
 
-    def request
-      Faraday.get(url).tap do |r|
-        log(r)
+    # TODO: improve log
+    def request(endpoint = url, debug = true)
+      Faraday.get(endpoint).tap do |r|
+        log(r) if debug
       end.body
     end
 
@@ -158,6 +146,20 @@ module Services
       end
     end
 
+    def details
+      @details ||=
+        begin
+          result = request(
+            endpoint = Config::DETAILS_API + @symbol,
+            debug = false
+          )
+
+          JSON.parse(result)
+              .dig('quoteResponse', 'result')
+              .try(:first)
+        end
+    end
+
     def data
       @data ||=
         begin
@@ -165,7 +167,7 @@ module Services
 
           raise data if data.dig('chart', 'error')
 
-          data.dig(*KEY).first
+          data.dig('chart', 'result').first
         end
     end
   end

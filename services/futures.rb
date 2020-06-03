@@ -3,6 +3,7 @@
 require './services/config'
 require 'net/http'
 require 'json'
+require 'uri'
 
 # fetch premarket futures % change
 module Services
@@ -19,10 +20,6 @@ module Services
       ftse: 'Future-UK-Z00'
     }.freeze
 
-    def uri
-      Services::Config.futures_api_uri
-    end
-
     def self.usa
       new.data(USA)
     end
@@ -32,6 +29,8 @@ module Services
     end
 
     def data(list = USA)
+      uri = URI(Services::Config::FUTURES_API)
+
       response = Net::HTTP.get(uri)
 
       {}.tap do |h|

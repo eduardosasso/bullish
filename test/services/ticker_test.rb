@@ -21,7 +21,7 @@ module Services
       end
     end
 
-    def test_full_performance
+    def test_stats
       perf = MiniTest::Mock.new
 
       perf.expect(:performance, '1D')
@@ -36,14 +36,8 @@ module Services
       nasdaq = Services::Ticker.nasdaq
 
       Services::Ticker.stub(:new, perf) do
-        assert_equal(Services::Ticker::RANGE.keys.count, nasdaq.full_performance.values.compact.count)
+        assert_equal(Services::Ticker::RANGE.keys.count, nasdaq.stats.values.compact.count)
       end
-    end
-
-    def test_percent_change
-      ticker = Services::Ticker.dowjones
-
-      assert_equal(11.11, ticker.percent_change(100, 90))
     end
   end
 end

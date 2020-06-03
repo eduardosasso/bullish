@@ -18,14 +18,9 @@ module Services
 
     def self.data
       LIST.map do |key, value|
-        stock = Ticker.new(value)
-
-        Ticker::Detail.new(
-          ticker: value,
-          name: key.to_s,
-          price: stock.price,
-          performance: stock.full_performance
-        )
+        Ticker.new(value).tap do |t|
+          t.name = key.to_s
+        end
       end
     end
   end

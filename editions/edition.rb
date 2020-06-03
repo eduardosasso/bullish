@@ -3,6 +3,7 @@
 require './services/ticker'
 require './templates/template'
 require './services/holiday'
+require './services/config'
 
 # types of email
 module Editions
@@ -31,17 +32,12 @@ module Editions
       !Services::Holiday.today?
     end
 
-    # date time in ET where markets operate
-    def date_time_et
-      DateTime.now.utc.in_time_zone('Eastern Time (US & Canada)')
-    end
-
     def formatted_date
-      date_time_et.strftime('%B %d, %Y')
+      Config.date_time_et.strftime('%B %d, %Y')
     end
 
     def formatted_time
-      date_time_et.strftime('%I:%M%p ET')
+      Config.date_time_et.strftime('%I:%M%p ET')
     end
 
     def subscribers_group_id

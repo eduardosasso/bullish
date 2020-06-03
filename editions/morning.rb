@@ -95,7 +95,7 @@ module Editions
 
     def stats(key)
       stock = ticker(key)
-      performance = stock.full_performance
+      performance = stock.stats
 
       data = Templates::Element::Stats.new(
         title: Services::Ticker::ALIAS[key],

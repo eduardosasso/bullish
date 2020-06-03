@@ -70,8 +70,8 @@ module Editions
     end
 
     def stubbed_top
-      gainers = YAML.safe_load(YAML.load_file('./test/fixtures/gainers'), permitted_classes: [Services::Ticker::Detail, Symbol])
-      losers = YAML.safe_load(YAML.load_file('./test/fixtures/losers'), permitted_classes: [Services::Ticker::Detail, Symbol])
+      gainers = YAML.safe_load(YAML.load_file('./test/fixtures/gainers'), permitted_classes: [Services::Ticker, Symbol])
+      losers = YAML.safe_load(YAML.load_file('./test/fixtures/losers'), permitted_classes: [Services::Ticker, Symbol])
 
       top = MiniTest::Mock.new
       top.expect(:gainers, gainers)
