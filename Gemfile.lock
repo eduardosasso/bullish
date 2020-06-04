@@ -8,6 +8,7 @@ GEM
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
     concurrent-ruby (1.1.6)
+    docile (1.3.2)
     dotenv (2.7.5)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
@@ -23,6 +24,10 @@ GEM
     rake (13.0.1)
     sentry-raven (3.0.0)
       faraday (>= 1.0)
+    simplecov (0.18.5)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+    simplecov-html (0.12.2)
     thread_safe (0.3.6)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
@@ -41,6 +46,7 @@ DEPENDENCIES
   nokogiri
   rake
   sentry-raven
+  simplecov
 
 BUNDLED WITH
    2.1.4

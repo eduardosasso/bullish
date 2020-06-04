@@ -24,8 +24,8 @@ module Services
     def mover(type = TYPE[:G])
       request.dig('data', type, 'instruments').map do |s|
         Ticker.new(s['ticker']).tap do |t|
-          name =  s['name']
-          price = '$' + s['lastPrice']
+          t.name =  s['name']
+          t.price = '$' + s['lastPrice']
         end
       end
     end

@@ -14,7 +14,7 @@ module Services
       'China Composite': '^SSEC',
       'India BSE SENSEX': '^BSESN',
       'Australia S&P/ASX 200': '^AXJO',
-      'Brazil Ibovespa': '^BVSP' 
+      'Brazil Ibovespa': '^BVSP'
     }.freeze
 
     def self.data

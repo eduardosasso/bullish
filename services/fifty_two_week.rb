@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './services/config'
 require './services/percent'
 require 'json'
@@ -41,8 +43,8 @@ module Services
           req = Faraday.get(URI(api))
 
           JSON.parse(req.body)
-            .dig('quoteSummary', 'result')
-            .first
+              .dig('quoteSummary', 'result')
+              .first
         end
     end
   end

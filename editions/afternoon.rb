@@ -44,9 +44,9 @@ module Editions
     def preheader
       trending = (top_gainers | top_losers).sample
 
-      value = "#{trending.percent} to #{trending.price}"
+      value = "#{trending.performance} to #{trending.price}"
 
-      if trending.percent.start_with?(Templates::Element::MINUS)
+      if trending.performance.start_with?(Templates::Element::MINUS)
         subject_down(trending.name, value)
       else
         subject_up(trending.name, value)
@@ -142,17 +142,17 @@ module Editions
 
     def stats(stock)
       data = Templates::Element::Stats.new(
-        title: stock.ticker + ' · ' + stock.price,
+        title: stock.symbol + ' · ' + stock.price.to_s,
         subtitle: stock.name,
-        symbol: stock.ticker,
-        _1D: stock.performance['1D'],
-        _5D: stock.performance['5D'],
-        _1M: stock.performance['1M'],
-        _3M: stock.performance['3M'],
-        _6M: stock.performance['6M'],
-        _1Y: stock.performance['1Y'],
-        _5Y: stock.performance['5Y'],
-        _10Y: stock.performance['10Y']
+        symbol: stock.symbol,
+        _1D: stock.stats['1D'],
+        _5D: stock.stats['5D'],
+        _1M: stock.stats['1M'],
+        _3M: stock.stats['3M'],
+        _6M: stock.stats['6M'],
+        _1Y: stock.stats['1Y'],
+        _5Y: stock.stats['5Y'],
+        _10Y: stock.stats['10Y']
       )
 
       Templates::Element.stats(data)

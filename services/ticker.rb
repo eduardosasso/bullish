@@ -8,7 +8,7 @@ require './services/config'
 
 module Services
   class Ticker
-    attr_writer :request, :name
+    attr_writer :request, :name, :price
     attr_reader :symbol
 
     ALIAS = {
@@ -95,7 +95,7 @@ module Services
     end
 
     def price
-      data.dig('meta', 'regularMarketPrice')
+      @price ||= data.dig('meta', 'regularMarketPrice')
     end
 
     def performance

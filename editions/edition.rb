@@ -33,11 +33,11 @@ module Editions
     end
 
     def formatted_date
-      Config.date_time_et.strftime('%B %d, %Y')
+      Services::Config.date_time_et.strftime('%B %d, %Y')
     end
 
     def formatted_time
-      Config.date_time_et.strftime('%I:%M%p ET')
+      Services::Config.date_time_et.strftime('%I:%M%p ET')
     end
 
     def subscribers_group_id

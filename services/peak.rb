@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'date'
 require 'uri'
 require './services/config'
@@ -45,13 +47,13 @@ module Services
     def request
       @request ||=
         begin
-          api = URI.escape(Config::ALL_TIME_HIGH_API % [@symbol, BEGIN_DATE, END_DATE])
+          api = URI.escape(format(Config::ALL_TIME_HIGH_API, @symbol, BEGIN_DATE, END_DATE))
 
           req = Faraday.get(URI(api))
 
           JSON.parse(req.body)
-            .dig('chart', 'result')
-            .first
+              .dig('chart', 'result')
+              .first
         end
     end
   end

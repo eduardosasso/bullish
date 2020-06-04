@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'minitest/autorun'
+require './test/test_helper'
 require './services/top'
 
 module Services
@@ -13,15 +13,12 @@ module Services
       top = Services::Top.new
 
       top.stub(:request, JSON.parse(@request_fixture)) do
-        top.stub(:stats, nil) do
-          movers = top.send(type)
+        movers = top.send(type)
 
-          assert(movers.count.positive?)
-          assert(movers.first.ticker)
-          assert(movers.first.name)
-          assert(movers.first.price)
-          assert(movers.first.percent)
-        end
+        assert(movers.count.positive?)
+        assert(movers.first.symbol)
+        assert(movers.first.name)
+        assert(movers.first.price)
       end
     end
 

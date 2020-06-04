@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'minitest/autorun'
+require './test/test_helper'
 require './editions/afternoon'
 require 'yaml'
 require './services/top'
@@ -70,12 +70,11 @@ module Editions
     end
 
     def stubbed_top
-      gainers = YAML.safe_load(YAML.load_file('./test/fixtures/gainers'), permitted_classes: [Services::Ticker, Symbol])
-      losers = YAML.safe_load(YAML.load_file('./test/fixtures/losers'), permitted_classes: [Services::Ticker, Symbol])
+      stats = { '1D' => '0.24%', '5D' => '0.05%', '1M' => '5.63%', '3M' => '-8.38%', '6M' => '-5.69%', '1Y' => '4.72%', '5Y' => '40.45%', '10Y' => '175.27%' }
 
       top = MiniTest::Mock.new
-      top.expect(:gainers, gainers)
-      top.expect(:losers, losers)
+      top.expect(:gainers, [OpenStruct.new(symbol: 'KO', name: 'Coca-Cola', price: 1, performance: '10%', stats: stats)])
+      top.expect(:losers, [OpenStruct.new(symbol: 'TSLA', name: 'Tesla', price: 2, performance: '20%', stats: stats)])
 
       Services::Top.stub(:new, top) do
         yield

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'minitest/autorun'
+require './test/test_helper'
 require 'minitest/mock'
 require './services/ticker'
 
@@ -32,6 +32,8 @@ module Services
       perf.expect(:performance, '1Y')
       perf.expect(:performance, '5Y')
       perf.expect(:performance, '10Y')
+      perf.expect(:performance, 'YTD')
+      perf.expect(:performance, 'MAX')
 
       nasdaq = Services::Ticker.nasdaq
 

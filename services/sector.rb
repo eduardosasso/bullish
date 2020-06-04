@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './services/ticker'
 
 # https://www.etftrends.com/equity-etf-channel/the-11-stock-market-sectors-and-biggest-related-etfs/
