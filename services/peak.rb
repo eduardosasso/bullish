@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+#:match_requests_on => [:host, :path] frozen_string_literal: true
 
 require 'date'
 require 'uri'
@@ -47,7 +47,7 @@ module Services
     def request
       @request ||=
         begin
-          api = URI.escape(format(Config::ALL_TIME_HIGH_API, @symbol, BEGIN_DATE, END_DATE))
+          api = format(Config::ALL_TIME_HIGH_API, CGI.escape(@symbol), BEGIN_DATE, END_DATE)
 
           req = Faraday.get(URI(api))
 
