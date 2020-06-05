@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #:match_requests_on => [:host, :path] frozen_string_literal: true
 
 require 'date'
