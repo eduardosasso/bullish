@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
 require 'simplecov'
-
-SimpleCov.start do
-  # add_filter '/test/'
-end
+SimpleCov.start
 
 require 'vcr'
-
 VCR.configure do |config|
   config.cassette_library_dir = 'test/fixtures/vcr'
   config.hook_into :faraday

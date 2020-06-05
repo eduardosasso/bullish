@@ -7,11 +7,12 @@ require 'json'
 
 module Services
   class Trending
+    LIMIT = 6
     def stocks
       key = %w[finance result]
       trending = request.dig(*key).first.dig('quotes')
 
-      trending.take(6).map do |s|
+      trending.take(LIMIT).map do |s|
         Ticker.new(s['symbol'])
       end
     end

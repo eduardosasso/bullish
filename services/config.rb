@@ -7,7 +7,7 @@ module Services
   class Config
     TOP_GAINERS_LOSERS_API = ENV['TOP_GAINERS_LOSERS_API']
     FUTURES_API_URI = ENV['MARKET_API']
-    TRENDING_API = ENV['TRENDING_API']
+    TRENDING_API = 'https://query1.finance.yahoo.com/v1/finance/trending/US?count=50'
     QUOTE_SUMMARY_API = 'https://query2.finance.yahoo.com/v10/finance/quoteSummary/%s?&modules=price,summaryDetail'
     ALL_TIME_HIGH_API = 'https://query1.finance.yahoo.com/v8/finance/chart/%s?period1=%s&period2=%s&interval=1d&includePrePost=false&indicators=quote'
     STATS_API = 'https://query1.finance.yahoo.com/v8/finance/chart/'

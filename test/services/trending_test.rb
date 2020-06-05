@@ -3,11 +3,14 @@
 require './test/test_helper'
 require './services/trending'
 
-module Services
-  class TrendingTest < Minitest::Test
-    def test_stocks
-      # s = Services::Trending.new.stocks.first
-      # p s.name
+class TrendingTest < Minitest::Test
+  def test_data
+    VCR.use_cassette('trending') do
+      trending = Services::Trending.new.stocks
+      stock = trending.first
+
+      assert(stock.symbol)
+      assert_equal(Services::Trending::LIMIT, trending.count)
     end
   end
 end
