@@ -4,6 +4,7 @@ require './services/email'
 require './services/log'
 require './editions/morning'
 require './editions/afternoon'
+require './editions/free'
 require './editions/edition'
 
 # buy high sell low
@@ -12,6 +13,10 @@ class Bullish
 
   def initialize(edition = Editions::Edition.new)
     @edition = edition
+  end
+
+  def self.free_edition
+    new(Editions::Free.new)
   end
 
   def self.morning_edition

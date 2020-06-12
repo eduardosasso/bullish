@@ -9,7 +9,7 @@ require './services/config'
 module Services
   class Ticker
     attr_writer :request, :name, :price
-    attr_reader :symbol
+    attr_reader :symbol, :key
 
     ALIAS = {
       'sp500': 'S&P 500',
@@ -51,6 +51,7 @@ module Services
 
     def initialize(symbol, range = RANGE['1D'])
       @symbol = symbol
+      @key = INDEX.key(symbol)
       @range = range
     end
 

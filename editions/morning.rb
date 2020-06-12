@@ -34,11 +34,7 @@ module Editions
         sp500_futures,
         nasdaq_futures,
         dowjones_futures,
-        Templates::Element.divider,
-        performance_title,
-        sp500_performance,
-        nasdaq_performance,
-        dowjones_performance,
+        todays_elements,
         Templates::Element.spacer('20px')
       ]
     end
@@ -56,19 +52,31 @@ module Editions
     end
 
     def sp500_performance
-      stats(:sp500)
+      sp500 = ticker(:sp500)
+      price = sp500.price.to_s + ' pts'
+
+      stats(sp500, price)
     end
 
     def nasdaq_performance
-      stats(:nasdaq)
+      nasdaq = ticker(:nasdaq)
+      price = nasdaq.price.to_s + ' pts'
+
+      stats(nasdaq, price)
     end
 
     def dowjones_performance
-      stats(:dowjones)
+      dowjones = ticker(:dowjones)
+      price = dowjones.price.to_s + ' pts'
+
+      stats(dowjones, price)
     end
 
     def bitcoin_performance
-      stats(:bitcoin)
+      bitcoin = ticker(:bitcoin)
+      price = '$' + bitcoin.price.to_s
+
+      stats(bitcoin, price)
     end
 
     def gold_performance
@@ -83,6 +91,26 @@ module Editions
       stats(:treasury)
     end
 
+    # def monday_elements
+    def thursday_elements
+      [
+        Templates::Element.divider,
+        generic_title('Performance'),
+        sp500_performance,
+        nasdaq_performance,
+        dowjones_performance,
+        bitcoin_performance
+      ]
+    end
+
+    def tuesday_elements
+      [
+        Templates::Element.divider,
+        generic_title('Trending')
+
+      ]
+    end
+
     def item(key)
       data = Templates::Element::Item.new(
         title: Services::Ticker::ALIAS[key],
@@ -93,14 +121,14 @@ module Editions
       Templates::Element.item(data)
     end
 
-    def stats(key)
-      stock = ticker(key)
-      performance = stock.stats
+    def stats(ticker, price = nil)
+      performance = ticker.stats
+      price ||= ticker.price
 
       data = Templates::Element::Stats.new(
-        title: Services::Ticker::ALIAS[key],
-        subtitle: stock.price.to_s + ' pts',
-        symbol: Services::Ticker::INDEX[key],
+        title: Services::Ticker::ALIAS[ticker.key],
+        subtitle: price,
+        symbol: Services::Ticker::INDEX[ticker.key],
         _1D: performance['1D'],
         _5D: performance['5D'],
         _1M: performance['1M'],
@@ -124,16 +152,16 @@ module Editions
       Templates::Element.title(data)
     end
 
-    def performance_title
+    def generic_title(title = 'Performance')
       data = Templates::Element::Title.new(
-        title: 'Performance'
+        title: title
       )
 
       Templates::Element.title(data)
     end
 
     def subscribers_group_id
-      ENV['FREE_GROUP']
+      ENV['PREMIUM_GROUP']
     end
 
     def ticker(key)
@@ -141,7 +169,7 @@ module Editions
     end
 
     def futures
-      @futures ||= Services::Futures.new.usa
+      @futures ||= Services::Futures.usa
     end
   end
 end

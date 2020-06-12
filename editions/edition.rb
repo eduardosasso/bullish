@@ -8,7 +8,17 @@ require './services/config'
 # types of email
 module Editions
   class Edition
+    attr_writer :day_of_the_week
+
     MINUS = '-'
+
+    DAY_ELEMENTS = {
+      monday: :monday_elements,
+      tuesday: :tuesday_elements,
+      wednesday: :wednesday_elements,
+      thursday: :thursday_elements,
+      friday: :friday_elements
+    }.freeze
 
     def subject
       raise 'should override subject'
@@ -30,6 +40,39 @@ module Editions
     def send?
       # TODO: rename to better name
       !Services::Holiday.today?
+    end
+
+    def monday_elements
+      []
+    end
+
+    def tuesday_elements
+      []
+    end
+
+    def wednesday_elements
+      []
+    end
+
+    def thursday_elements
+      []
+    end
+
+    def friday_elements
+      []
+    end
+
+    def todays_elements(day = day_of_the_week)
+      method = DAY_ELEMENTS[day.to_sym]
+      send(method)
+    end
+
+    def all_time_high
+      # Services::Tiker.sp500.peak
+    end
+
+    def day_of_the_week
+      @day_of_the_week ||= Services::Config.date_time_et.strftime('%A').downcase
     end
 
     def formatted_date

@@ -20,5 +20,15 @@ module Editions
         end
       end
     end
+
+    def test_todays_elements
+      edition = Editions::Edition.new
+
+      method = Editions::Edition::DAY_ELEMENTS[edition.day_of_the_week.to_sym]
+
+      edition.stub(method, edition.day_of_the_week) do
+        assert_equal(edition.day_of_the_week, edition.todays_elements)
+      end
+    end
   end
 end

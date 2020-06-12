@@ -20,6 +20,12 @@ module Services
       ftse: 'Future-UK-Z00'
     }.freeze
 
+    ALIAS = {
+      nikkei: { title: 'Nikkei', subtitle: 'Tokyo' },
+      dax: { title: 'DAX', subtitle: 'Frankfurt' },
+      ftse: { title: 'FTSE', subtitle: 'London' }
+    }.freeze
+
     def self.usa
       new.data(USA)
     end

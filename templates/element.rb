@@ -21,9 +21,26 @@ module Templates
     Item = Struct.new(
       :title,
       :subtitle,
+      :undertitle,
       :symbol,
       :value,
       :color, # set automatically
+      keyword_init: true
+    )
+
+    Group = Struct.new(
+      :title1,
+      :subtitle1,
+      :undertitle1,
+      :symbol1,
+      :value1,
+      :color1, # set automatically
+      :title2,
+      :subtitle2,
+      :undertitle2,
+      :symbol2,
+      :value2,
+      :color2, # set automatically
       keyword_init: true
     )
 
@@ -88,6 +105,15 @@ module Templates
       item_struct.color = color(item_struct.value) if item_struct
 
       render(:item, item_struct)
+    end
+
+    def self.group(group_struct = nil)
+      if group_struct
+        group_struct.color1 = color(group_struct.value1)
+        group_struct.color2 = color(group_struct.value2)
+      end
+
+      render(:group, group_struct)
     end
 
     def self.stats(stats_struct = nil)
