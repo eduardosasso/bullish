@@ -64,7 +64,9 @@ module Editions
 
       stubbed_top do
         afternoon.stub(:indexes, indexes) do
-          assert(afternoon.elements)
+          afternoon.stub(:todays_elements, []) do
+            assert(afternoon.elements)
+          end
         end
       end
     end
