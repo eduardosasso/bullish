@@ -92,7 +92,7 @@ module Services
     end
 
     def name
-      @name ||= details.dig('displayName')
+      @name ||= details.dig('displayName') || details.dig('shortName')
     end
 
     def price

@@ -69,28 +69,44 @@ module Editions
 
     def monday_elements
       [
-        top_gainers_losers,
-        world_futures
+        world_futures,
+        Templates::Element.divider,
+        index_performance,
+        Templates::Element.spacer('20px'),
+        Templates::Element.divider,
+        top_gainers_losers
       ]
     end
 
     def tuesday_elements
-      [world_futures]
+      [
+        world_futures,
+        Templates::Element.divider,
+        top_gainers_losers
+      ]
     end
 
     def wednesday_elements
       [
-        all_time_high,
-        world_futures
+        tuesday_elements
       ]
     end
 
     def thursday_elements
-      [world_futures]
+      [
+        world_futures,
+        Templates::Element.divider,
+        sector_performance,
+        Templates::Element.spacer('20px')
+      ]
     end
 
     def friday_elements
-      sector_performance
+      [
+        index_performance,
+        Templates::Element.divider,
+        world
+      ]
     end
 
     def main_title
@@ -102,13 +118,12 @@ module Editions
     end
 
     def sector_performance
-      sector = Services::Sector.data.sample.map do |sector|
-        stats(sector)
-      end
-
       [
-        generic_title('Sector', 'Performance')
-      ] | sector
+        generic_title('Sector', 'Performance'),
+        Services::Sector.data.map do |sector|
+          stats(sector)
+        end
+      ]
     end
 
     def top_gainers_losers
@@ -119,8 +134,7 @@ module Editions
         Templates::Element.divider,
         top_losers_tittle,
         losers_performance,
-        Templates::Element.spacer('20px'),
-        Templates::Element.divider
+        Templates::Element.spacer('20px')
       ]
     end
 
@@ -141,31 +155,6 @@ module Editions
         generic_title('Tomorrow', 'Asia & Europe Futures'),
         Templates::Element.spacer('25px'),
         futures
-      ]
-    end
-
-    def all_time_high
-      data = Templates::Element::Group.new(
-        title1: 'S&P 500',
-        subtitle1: 'Feb 20, 2020',
-        undertitle1: '3,190.14 pts',
-        value1: '-6.7%',
-        title2: 'Nasdaq',
-        subtitle2: 'Jun 9, 2020',
-        undertitle2: '10,020.34 pts',
-        value2: '-0.3%'
-      )
-
-      group = Templates::Element.group(data)
-
-      [
-        generic_title('All-Time High', 'Difference since last record'),
-        Templates::Element.spacer('25px'),
-        # generic_item('S&P500', '-6.7%', 'Feb 20, 2020', '3190.14 pts'),
-        # generic_item('Nasdaq', '-0.3%', 'Feb 22, 2020', '10020.347 pts'),
-        # generic_item('Dow Jones', '-8.9%', 'Jan 18 2020', '26989.99 pts'),
-        group,
-        Templates::Element.divider
       ]
     end
 
@@ -231,34 +220,14 @@ module Editions
 
     def gainers_performance
       top_gainers.map do |stock|
-        stats(stock)
+        stats_top(stock)
       end
     end
 
     def losers_performance
       top_losers.map do |stock|
-        stats(stock)
+        stats_top(stock)
       end
-    end
-
-    def stats(stock)
-      stats = stock.stats
-
-      data = Templates::Element::Stats.new(
-        title: stock.symbol + ' · ' + stock.price.to_s,
-        subtitle: stock.name,
-        symbol: stock.symbol,
-        _1D: stats['1D'],
-        _5D: stats['5D'],
-        _1M: stats['1M'],
-        _3M: stats['3M'],
-        _6M: stats['6M'],
-        _1Y: stats['1Y'],
-        _5Y: stats['5Y'],
-        _10Y: stats['10Y']
-      )
-
-      Templates::Element.stats(data)
     end
 
     def top_gainers

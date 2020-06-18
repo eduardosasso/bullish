@@ -2,8 +2,6 @@
 
 require './editions/edition'
 require './services/futures'
-require './templates/template'
-require './templates/element'
 
 module Editions
   class Morning < Edition
@@ -34,8 +32,8 @@ module Editions
         sp500_futures,
         nasdaq_futures,
         dowjones_futures,
-        todays_elements,
-        Templates::Element.spacer('20px')
+        Templates::Element.divider,
+        todays_elements
       ]
     end
 
@@ -51,95 +49,46 @@ module Editions
       item(:dowjones)
     end
 
-    def sp500_performance
-      sp500 = ticker(:sp500)
-      price = sp500.price.to_s + ' pts'
-
-      stats(sp500, price)
-    end
-
-    def nasdaq_performance
-      nasdaq = ticker(:nasdaq)
-      price = nasdaq.price.to_s + ' pts'
-
-      stats(nasdaq, price)
-    end
-
-    def dowjones_performance
-      dowjones = ticker(:dowjones)
-      price = dowjones.price.to_s + ' pts'
-
-      stats(dowjones, price)
-    end
-
-    def bitcoin_performance
-      bitcoin = ticker(:bitcoin)
-      price = '$' + bitcoin.price.to_s
-
-      stats(bitcoin, price)
-    end
-
-    def gold_performance
-      stats(:gold)
-    end
-
-    def russell2000_performance
-      stats(:russell2000)
-    end
-
-    def treasury_performance
-      stats(:treasury)
-    end
-
-    # def monday_elements
-    def thursday_elements
+    def monday_elements
       [
-        Templates::Element.divider,
-        generic_title('Performance'),
-        sp500_performance,
-        nasdaq_performance,
-        dowjones_performance,
-        bitcoin_performance
+        trending
       ]
     end
 
     def tuesday_elements
       [
+        index_performance,
+        gold_performance,
+        Templates::Element.spacer('20px'),
         Templates::Element.divider,
-        generic_title('Trending')
-
+        trending(3)
       ]
     end
 
-    def item(key)
-      data = Templates::Element::Item.new(
-        title: Services::Ticker::ALIAS[key],
-        symbol: Services::Ticker::INDEX[key],
-        value: futures[key]
-      )
-
-      Templates::Element.item(data)
+    def wednesday_elements
+      [
+        index_performance,
+        treasury_performance,
+        Templates::Element.spacer('20px'),
+        Templates::Element.divider,
+        trending(3)
+      ]
     end
 
-    def stats(ticker, price = nil)
-      performance = ticker.stats
-      price ||= ticker.price
+    def thursday_elements
+      [
+        index_performance,
+        russell2000_performance,
+        Templates::Element.spacer('20px'),
+        Templates::Element.divider,
+        trending(3)
+      ]
+    end
 
-      data = Templates::Element::Stats.new(
-        title: Services::Ticker::ALIAS[ticker.key],
-        subtitle: price,
-        symbol: Services::Ticker::INDEX[ticker.key],
-        _1D: performance['1D'],
-        _5D: performance['5D'],
-        _1M: performance['1M'],
-        _3M: performance['3M'],
-        _6M: performance['6M'],
-        _1Y: performance['1Y'],
-        _5Y: performance['5Y'],
-        _10Y: performance['10Y']
-      )
-
-      Templates::Element.stats(data)
+    def friday_elements
+      [
+        trending
+      ]
     end
 
     def title
@@ -152,20 +101,8 @@ module Editions
       Templates::Element.title(data)
     end
 
-    def generic_title(title = 'Performance')
-      data = Templates::Element::Title.new(
-        title: title
-      )
-
-      Templates::Element.title(data)
-    end
-
     def subscribers_group_id
       ENV['PREMIUM_GROUP']
-    end
-
-    def ticker(key)
-      Services::Ticker.send(key)
     end
 
     def futures

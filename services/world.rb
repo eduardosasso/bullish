@@ -11,7 +11,7 @@ module Services
       'France CAC 40': '^FCHI',
       'Europe STOXX 600': '^STOXX',
       'Hong Kong Hang Seng': '^HSI',
-      'China Composite': '^SSEC',
+      'China Composite': '000001.SS',
       'India BSE SENSEX': '^BSESN',
       'Australia S&P/ASX 200': '^AXJO',
       'Brazil Ibovespa': '^BVSP'
