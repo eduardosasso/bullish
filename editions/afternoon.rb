@@ -71,41 +71,33 @@ module Editions
       [
         world_futures,
         Templates::Element.divider,
-        index_performance,
-        Templates::Element.spacer('20px'),
-        Templates::Element.divider,
         top_gainers_losers
       ]
     end
 
     def tuesday_elements
       [
-        world_futures,
-        Templates::Element.divider,
-        top_gainers_losers
+        monday_elements
       ]
     end
 
     def wednesday_elements
       [
-        tuesday_elements
+        monday_elements
       ]
     end
 
     def thursday_elements
       [
-        world_futures,
-        Templates::Element.divider,
-        sector_performance,
-        Templates::Element.spacer('20px')
+        monday_elements
       ]
     end
 
     def friday_elements
       [
-        index_performance,
+        index_week_summary,
         Templates::Element.divider,
-        world
+        sector_summary
       ]
     end
 
@@ -117,11 +109,16 @@ module Editions
       )
     end
 
-    def sector_performance
+    def sector_summary
       [
         generic_title('Sector', 'Performance'),
+        Templates::Element.spacer('25px'),
         Services::Sector.data.map do |sector|
-          stats(sector)
+          [
+            generic_title(sector.name),
+            Templates::Element.spacer('15px'),
+            stats_summary(sector)
+          ]
         end
       ]
     end
@@ -190,16 +187,6 @@ module Editions
       )
 
       Templates::Element.item(data)
-    end
-
-    def generic_title(title, subtitle = nil, undertitle = nil)
-      data = Templates::Element::Title.new(
-        title: title,
-        subtitle: subtitle,
-        undertitle: undertitle
-      )
-
-      Templates::Element.title(data)
     end
 
     def top_gainers_title

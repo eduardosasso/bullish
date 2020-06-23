@@ -114,9 +114,11 @@ module Editions
       stats(treasury)
     end
 
-    def generic_title(title = 'Performance')
+    def generic_title(title, subtitle = nil, undertitle = nil)
       data = Templates::Element::Title.new(
-        title: title
+        title: title,
+        subtitle: subtitle,
+        undertitle: undertitle
       )
 
       Templates::Element.title(data)
@@ -132,11 +134,38 @@ module Editions
       ]
     end
 
+    def index_summary
+      [
+        generic_title('S&P 500'),
+        Templates::Element.spacer('15px'),
+        stats_summary(ticker(:sp500)),
+        generic_title('Nasdaq'),
+        Templates::Element.spacer('15px'),
+        stats_summary(ticker(:nasdaq)),
+        generic_title('Dow Jones'),
+        Templates::Element.spacer('15px'),
+        stats_summary(ticker(:dowjones)),
+        generic_title('Bitcoin'),
+        Templates::Element.spacer('15px'),
+        stats_summary(ticker(:bitcoin))
+      ]
+    end
+
+    def index_week_summary
+      [
+        generic_title('Week', 'Summary'),
+        Templates::Element.spacer('25px'),
+        stats_week_summary(ticker(:sp500)),
+        stats_week_summary(ticker(:nasdaq)),
+        stats_week_summary(ticker(:dowjones)),
+        stats_week_summary(ticker(:bitcoin))
+      ]
+    end
+
     def trending(limit = Services::Trending::LIMIT)
       [
         generic_title('Trending'),
         Services::Trending.new.stocks(limit).map do |ticker|
-          ticker.price = '$' + ticker.price.to_s
           stats_top(ticker)
         end,
         Templates::Element.spacer('20px')
@@ -146,21 +175,28 @@ module Editions
     def crypto
       [
         generic_title('Crypto'),
+        Templates::Element.spacer('25px'),
         Services::Crypto.data.map do |ticker|
-          price = ticker.symbol + ' · $' + ticker.price.to_s
-          stats(ticker, price)
+          [
+            generic_title(ticker.name, ticker.price),
+            Templates::Element.spacer('15px'),
+            stats_summary(ticker)
+          ]
         end,
-        Templates::Element.spacer('20px')
       ]
     end
 
     def world
       [
         generic_title('International'),
-        Services::World.data.map do |ticker|
-          price = ''
-          stats(ticker, price)
-        end.sample(3)
+        Templates::Element.spacer('35px'),
+        Services::World.data.sample(4).map do |ticker|
+          [
+            generic_title(ticker.name),
+            Templates::Element.spacer('15px'),
+            stats_summary(ticker)
+          ]
+        end
       ]
     end
 
@@ -173,11 +209,11 @@ module Editions
     end
 
     def formatted_date
-      Services::Config.date_time_et.strftime('%B %d, %Y')
+      Services::Config.formatted_date
     end
 
     def formatted_time
-      Services::Config.date_time_et.strftime('%I:%M%p ET')
+      Services::Config.formatted_time
     end
 
     def subscribers_group_id
@@ -216,6 +252,30 @@ module Editions
       )
 
       Templates::Element.stats(data)
+    end
+
+    def stats_summary(ticker)
+      data = Templates::Element::Group.new(
+        title1: "Year to date",
+        subtitle1: formatted_date,
+        value1: ticker.stats['YTD'],
+        title2: "All time high",
+        subtitle2: ticker.peak.date,
+        value2: ticker.peak.diff
+      )
+
+      Templates::Element.group(data)
+    end
+
+    def stats_week_summary(ticker)
+      data = Templates::Element::Item.new(
+        title: ticker.name,
+        subtitle: ticker.price,
+        symbol: ticker.symbol,
+        value: ticker.stats['5D']
+      )
+
+      Templates::Element.item(data)
     end
 
     def stats_top(stock)

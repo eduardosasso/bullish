@@ -51,7 +51,10 @@ module Editions
 
     def monday_elements
       [
-        trending
+        index_summary,
+        Templates::Element.spacer('20px'),
+        Templates::Element.divider,
+        trending(5)
       ]
     end
 
@@ -87,7 +90,11 @@ module Editions
 
     def friday_elements
       [
-        trending
+        trending(3),
+        Templates::Element.divider,
+        crypto,
+        Templates::Element.divider,
+        world
       ]
     end
 

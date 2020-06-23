@@ -5,6 +5,8 @@ require 'active_support/all'
 
 module Services
   class Config
+    DATE_FORMAT ='%B %d, %Y' 
+    TIME_FORMAT = '%I:%M%p ET'
     TOP_GAINERS_LOSERS_API = ENV['TOP_GAINERS_LOSERS_API']
     FUTURES_API = ENV['MARKET_API']
     TRENDING_API = 'https://query1.finance.yahoo.com/v1/finance/trending/US?count=50'
@@ -22,6 +24,14 @@ module Services
     # date time in ET where markets operate
     def self.date_time_et
       DateTime.now.utc.in_time_zone('Eastern Time (US & Canada)')
+    end
+
+    def self.formatted_date
+      Services::Config.date_time_et.strftime(DATE_FORMAT)
+    end
+
+    def self.formatted_time
+      Services::Config.date_time_et.strftime(TIME_FORMAT)
     end
   end
 end

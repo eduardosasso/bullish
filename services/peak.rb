@@ -33,7 +33,7 @@ module Services
     def date
       index = quotes.index(max_value)
 
-      Time.at(timestamp[index])
+      Time.at(timestamp[index]).strftime(Services::Config::DATE_FORMAT)
     end
 
     def quotes

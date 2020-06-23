@@ -92,7 +92,7 @@ module Services
     end
 
     def name
-      @name ||= details.dig('displayName') || details.dig('shortName')
+      @name ||= ALIAS[@key] || details.dig('displayName') || details.dig('shortName')
     end
 
     def price
@@ -106,7 +106,7 @@ module Services
     end
 
     def peak
-      Peak.new(@symbol)
+      @peak ||= Peak.new(@symbol)
     end
 
     def url

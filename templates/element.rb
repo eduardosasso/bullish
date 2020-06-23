@@ -31,13 +31,11 @@ module Templates
     Group = Struct.new(
       :title1,
       :subtitle1,
-      :undertitle1,
       :symbol1,
       :value1,
       :color1, # set automatically
       :title2,
       :subtitle2,
-      :undertitle2,
       :symbol2,
       :value2,
       :color2, # set automatically
