@@ -151,8 +151,8 @@ module Services
       @details ||=
         begin
           result = request(
-            endpoint = Config::DETAILS_API + @symbol,
-            debug = false
+            Config::DETAILS_API + @symbol,
+            false
           )
 
           JSON.parse(result)

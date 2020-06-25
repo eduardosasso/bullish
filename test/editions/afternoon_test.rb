@@ -38,9 +38,9 @@ module Editions
       afternoon = Editions::Afternoon.new
 
       afternoon.stub(:indexes, indexes) do
-        assert_match(/#{indexes[:sp500].performance}/, afternoon.sp500_close)
-        assert_match(/#{indexes[:nasdaq].performance}/, afternoon.nasdaq_close)
-        assert_match(/#{indexes[:dowjones].performance}/, afternoon.dowjones_close)
+        assert_match(/#{indexes[:sp500].performance}/, afternoon.item_close(:sp500))
+        assert_match(/#{indexes[:nasdaq].performance}/, afternoon.item_close(:nasdaq))
+        assert_match(/#{indexes[:dowjones].performance}/, afternoon.item_close(:dowjones))
       end
     end
 
@@ -48,8 +48,8 @@ module Editions
       afternoon = Editions::Afternoon.new
 
       stubbed_top do
-        assert(afternoon.gainers_performance)
-        assert(afternoon.losers_performance)
+        assert(afternoon.top_gainers_performance)
+        assert(afternoon.top_losers_performance)
       end
     end
 

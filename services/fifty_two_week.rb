@@ -3,7 +3,7 @@
 require './services/config'
 require './services/percent'
 require 'json'
-require 'uri'
+require 'cgi'
 
 module Services
   class FiftyTwoWeek
@@ -38,7 +38,7 @@ module Services
     def request
       @request ||=
         begin
-          api = URI.escape(Config::QUOTE_SUMMARY_API % @symbol)
+          api = CGI.escape(Config::QUOTE_SUMMARY_API % @symbol)
 
           req = Faraday.get(URI(api))
 

@@ -57,11 +57,11 @@ module Editions
 
     def elements
       [
-        main_title,
+        main_title('Stock Market Closing Data'),
         Templates::Element.spacer('20px'),
-        sp500_close,
-        nasdaq_close,
-        dowjones_close,
+        item_close(:sp500),
+        item_close(:nasdaq),
+        item_close(:dowjones),
         Templates::Element.divider,
         todays_elements
       ]
@@ -71,7 +71,7 @@ module Editions
       [
         world_futures,
         Templates::Element.divider,
-        top_gainers_losers
+        top_gainers_losers_performance
       ]
     end
 
@@ -97,104 +97,20 @@ module Editions
       [
         index_week_summary,
         Templates::Element.divider,
+        top_gainers_losers,
         sector_summary
       ]
     end
 
-    def main_title
-      generic_title(
-        title = formatted_date,
-        subtitle = 'Stock Market Closing Data',
-        undertitle = formatted_time
-      )
-    end
-
-    def sector_summary
-      [
-        generic_title('Sector', 'Performance'),
-        Templates::Element.spacer('25px'),
-        Services::Sector.data.map do |sector|
-          [
-            generic_title(sector.name),
-            Templates::Element.spacer('15px'),
-            stats_summary(sector)
-          ]
-        end
-      ]
-    end
-
-    def top_gainers_losers
-      [
-        top_gainers_title,
-        gainers_performance,
-        Templates::Element.spacer('20px'),
-        Templates::Element.divider,
-        top_losers_tittle,
-        losers_performance,
-        Templates::Element.spacer('20px')
-      ]
-    end
-
-    def world_futures
-      futures = Services::Futures.world.map do |key, value|
-        name = Services::Futures::ALIAS[key]
-
-        data = Templates::Element::Item.new(
-          title: name[:title],
-          subtitle: name[:subtitle],
-          value: value
-        )
-
-        Templates::Element.item(data)
-      end
-
-      [
-        generic_title('Tomorrow', 'Asia & Europe Futures'),
-        Templates::Element.spacer('25px'),
-        futures
-      ]
-    end
-
-    def generic_item(title, value, subtitle = nil, undertitle = nil)
-      data = Templates::Element::Item.new(
-        title: title,
-        subtitle: subtitle,
-        undertitle: undertitle,
-        value: value
-      )
-
-      Templates::Element.item(data)
-    end
-
-    def sp500_close
-      item(:sp500)
-    end
-
-    def nasdaq_close
-      item(:nasdaq)
-    end
-
-    def dowjones_close
-      item(:dowjones)
-    end
-
-    def item(key)
+    def item_close(key)
       data = Templates::Element::Item.new(
         title: Services::Ticker::ALIAS[key],
         symbol: Services::Ticker::INDEX[key],
         value: indexes[key].performance,
-        subtitle: indexes[key].price.to_s + ' pts'
+        subtitle: indexes[key].price
       )
 
       Templates::Element.item(data)
-    end
-
-    def top_gainers_title
-      generic_title('Top Gainers')
-    end
-
-    def top_losers_tittle
-      generic_title('Top Losers')
     end
 
     def indexes
@@ -203,26 +119,6 @@ module Editions
         nasdaq: Services::Ticker.nasdaq,
         dowjones: Services::Ticker.dowjones
       }
-    end
-
-    def gainers_performance
-      top_gainers.map do |stock|
-        stats_top(stock)
-      end
-    end
-
-    def losers_performance
-      top_losers.map do |stock|
-        stats_top(stock)
-      end
-    end
-
-    def top_gainers
-      @top_gainers ||= Services::Top.new.gainers
-    end
-
-    def top_losers
-      @top_losers ||= Services::Top.new.losers
     end
 
     def subscribers_group_id

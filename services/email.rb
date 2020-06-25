@@ -59,9 +59,9 @@ module Services
 
       response = mailerlite.send(method, path) do |r|
         r.body = data.to_json
-      end.tap do |res|
-        raise "#{res.status} - #{path} - #{res.body}" unless res.status == 200
       end
+
+      raise "#{response.status} - #{path} - #{response.body}" unless response.status == 200
 
       JSON.parse(response.body)
     end
@@ -77,7 +77,7 @@ module Services
     end
 
     def test?
-      !!ENV['TEST_GROUP']
+      !ENV['TEST_GROUP'].nil?
     end
 
     def get_request(path, data = {})

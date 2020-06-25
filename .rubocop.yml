@@ -1,15 +1,23 @@
+AllCops:
+  Exclude:
+    - test/**/*.rb
+
 Documentation:
     Enabled: false
+Style/Documentation:
+  Enabled: false
 
 Style/ClassAndModuleChildren:
   AutoCorrect: true
 
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/AbcSize:
+  Max: 20
+
+Metrics/ClassLength:
+  Max: 150
+
 Layout/LineLength:
   Max: 120
-  Exclude:
-    - test/**/*.rb
-
-Metrics/MethodLength:
-  Exclude:
-    - test/**/*.rb
-

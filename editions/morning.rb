@@ -27,26 +27,14 @@ module Editions
 
     def elements
       [
-        title,
+        main_title('Stock Futures Premarket Data'),
         Templates::Element.spacer('20px'),
-        sp500_futures,
-        nasdaq_futures,
-        dowjones_futures,
+        item_futures(:sp500),
+        item_futures(:nasdaq),
+        item_futures(:dowjones),
         Templates::Element.divider,
         todays_elements
       ]
-    end
-
-    def sp500_futures
-      item(:sp500)
-    end
-
-    def nasdaq_futures
-      item(:nasdaq)
-    end
-
-    def dowjones_futures
-      item(:dowjones)
     end
 
     def monday_elements
@@ -98,22 +86,8 @@ module Editions
       ]
     end
 
-    def title
-      data = Templates::Element::Title.new(
-        title: formatted_date,
-        subtitle: 'Stock Futures Premarket Data',
-        undertitle: formatted_time
-      )
-
-      Templates::Element.title(data)
-    end
-
     def subscribers_group_id
       ENV['PREMIUM_GROUP']
-    end
-
-    def futures
-      @futures ||= Services::Futures.usa
     end
   end
 end

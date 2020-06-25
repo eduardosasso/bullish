@@ -24,9 +24,9 @@ module Editions
       Services::Futures.stub(:usa, data) do
         morning = Editions::Morning.new
 
-        assert(morning.sp500_futures)
-        assert(morning.nasdaq_futures)
-        assert(morning.dowjones_futures)
+        assert(morning.item_futures(:sp500))
+        assert(morning.item_futures(:nasdaq))
+        assert(morning.item_futures(:dowjones))
       end
     end
 
