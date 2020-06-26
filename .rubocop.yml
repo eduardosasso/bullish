@@ -4,11 +4,12 @@ AllCops:
 
 Documentation:
     Enabled: false
-Style/Documentation:
-  Enabled: false
 
 Style/ClassAndModuleChildren:
   AutoCorrect: true
+
+Metrics/ModuleLength:
+  Max: 250
 
 Metrics/MethodLength:
   Max: 20

@@ -28,6 +28,16 @@ module Editions
       end
     end
 
+    def test_week_elements
+      afternoon = Editions::Afternoon.new
+
+      VCR.use_cassette('afternoon_edition_week_elements', :match_requests_on => [:method]) do
+        Editions::Edition::DAY_ELEMENTS.each do |key, day_elements|
+          assert(afternoon.send(day_elements))
+        end
+      end
+    end
+
     def test_index_close
       sp500 = OpenStruct.new(price: 12, performance: '0.24%')
       nasdaq = OpenStruct.new(price: 32, performance: '-0.55%')

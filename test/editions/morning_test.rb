@@ -9,6 +9,18 @@ module Editions
       ENV['MARKET_API'] = 'https://google.com'
     end
 
+    # assert that week elements dont raise errors
+    # slow, runs on vcr
+    def test_week_elements
+      morning = Editions::Morning.new
+
+      VCR.use_cassette('morning_edition_week_elements', :match_requests_on => [:method]) do
+        Editions::Edition::DAY_ELEMENTS.each do |key, day_elements|
+          assert(morning.send(day_elements))
+        end
+      end
+    end
+
     def test_subject
       data = { 'nasdaq' => '-0.83%', 'sp500' => '1.65%', 'dowjones' => '2.58%' }
 

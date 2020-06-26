@@ -26,9 +26,8 @@ task :preview_free_email do
   day = ARGV[1]
 
   bullish = Bullish.free_edition
-  bullish.edition.day_of_the_week = day if day
 
-  bullish.save
+  preview_email(bullish, day)
 
   exit
 end
@@ -37,9 +36,8 @@ task :preview_morning_email do
   day = ARGV[1]
 
   bullish = Bullish.morning_edition
-  bullish.edition.day_of_the_week = day if day
 
-  bullish.save
+  preview_email(bullish, day)
 
   exit
 end
@@ -48,9 +46,14 @@ task :preview_afternoon_email do
   day = ARGV[1]
 
   bullish = Bullish.afternoon_edition
+
+  preview_email(bullish, day)
+
+  exit
+end
+
+def preview_email(bullish, day = nil)
   bullish.edition.day_of_the_week = day if day
 
   bullish.save
-
-  exit
 end

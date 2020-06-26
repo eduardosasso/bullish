@@ -11,10 +11,8 @@ module Services
     FUTURES_API = ENV['MARKET_API']
     TRENDING_API = 'https://query1.finance.yahoo.com/v1/finance/trending/US?count=50'
     QUOTE_SUMMARY_API = 'https://query2.finance.yahoo.com/v10/finance/quoteSummary/%s?&modules=price,summaryDetail'
-    ALL_TIME_HIGH_API = %w[
-      https://query1.finance.yahoo.com/v8/finance/chart/%s?
-      period1=%s&period2=%s&interval=1d&includePrePost=false&indicators=quote'
-    ].join.freeze
+    ALL_TIME_HIGH_API = 'https://query1.finance.yahoo.com/v8/finance/chart/%s?'\
+      'period1=%s&period2=%s&interval=1d&includePrePost=false&indicators=quote'
     STATS_API = 'https://query1.finance.yahoo.com/v8/finance/chart/'
     DETAILS_API = 'https://query1.finance.yahoo.com/v7/finance/quote?symbols='
 
@@ -35,6 +33,14 @@ module Services
 
     def self.formatted_time
       Services::Config.date_time_et.strftime(TIME_FORMAT)
+    end
+
+    def self.test?
+      !ENV['TEST_GROUP'].nil?
+    end
+
+    def self.premium_group_id
+      ENV['PREMIUM_GROUP']
     end
   end
 end

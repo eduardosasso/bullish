@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require 'net/http'
-require 'dotenv'
 require 'faraday'
 require 'json'
+require './services/config'
 
 # https://developers.mailerlite.com/reference
 # prepare and send emails using mailerlite
@@ -12,8 +12,6 @@ module Services
     attr_reader :subject, :body, :group
 
     def initialize(edition = Edition)
-      Dotenv.load
-
       @subject = edition.subject
       @body = edition.content
       @group = edition.subscribers_group_id
@@ -33,7 +31,7 @@ module Services
         groups: group
       }
 
-      if test?
+      if Services::Config.test?
         body[:subject] += ' **TEST**'
         body[:groups] = ENV['TEST_GROUP']
       end
@@ -74,10 +72,6 @@ module Services
           'X-MailerLite-ApiKey': ENV['MAILERLITE_API_KEY']
         }
       )
-    end
-
-    def test?
-      !ENV['TEST_GROUP'].nil?
     end
 
     def get_request(path, data = {})

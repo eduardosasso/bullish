@@ -87,7 +87,7 @@ module Editions
     end
 
     def subscribers_group_id
-      ENV['PREMIUM_GROUP']
+      Services::Config.premium_group_id
     end
   end
 end

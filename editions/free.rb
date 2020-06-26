@@ -6,11 +6,11 @@ module Editions
   class Free < Morning
     def elements
       [
-        title,
+        main_title('Stock Futures Premarket Data'),
         Templates::Element.spacer('20px'),
-        sp500_futures,
-        nasdaq_futures,
-        dowjones_futures,
+        item_futures(:sp500),
+        item_futures(:nasdaq),
+        item_futures(:dowjones),
         Templates::Element.divider,
         generic_title('Performance'),
         sp500_performance,
@@ -21,7 +21,7 @@ module Editions
     end
 
     def subscribers_group_id
-      ENV['FREE_GROUP']
+      Services::Config.free_group_id
     end
   end
 end
