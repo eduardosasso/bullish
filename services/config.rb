@@ -42,5 +42,9 @@ module Services
     def self.premium_group_id
       ENV['PREMIUM_GROUP']
     end
+
+    def self.free_group_id
+      ENV['FREE_GROUP']
+    end
   end
 end

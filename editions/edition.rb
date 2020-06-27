@@ -121,8 +121,8 @@ module Editions
     end
 
     # save as html file for testing
-    def save
-      filename = 'tmp/' + subject + '.html'
+    def save(name=subject)
+      filename = 'tmp/' + name + '.html'
 
       File.open(filename, 'w+') do |f|
         f.write(content)

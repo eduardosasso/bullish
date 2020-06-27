@@ -121,7 +121,7 @@ module Services
     end
 
     # TODO: improve log
-    def request(endpoint = url, debug = true)
+    def request(endpoint = url, debug = false)
       Faraday.get(endpoint).tap do |r|
         log(r) if debug
       end.body
