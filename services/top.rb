@@ -25,7 +25,7 @@ module Services
       request.dig('data', type, 'instruments').map do |s|
         Ticker.new(s['ticker']).tap do |t|
           t.name =  s['name']
-          t.price = '$' + s['lastPrice']
+          t.price = s['lastPrice']
         end
       end
     end

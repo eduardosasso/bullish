@@ -17,7 +17,7 @@ module Services
       'dowjones': 'Dow Jones',
       'bitcoin': 'Bitcoin',
       'gold': 'Gold',
-      'treasury': 'Treasury',
+      'treasury': '10-Yr Treasury',
       'russell2000': 'Russell 2000'
     }.freeze
 
@@ -96,13 +96,17 @@ module Services
     end
 
     def price
-      @price ||= data.dig('meta', 'regularMarketPrice')
+      @price ||= format_number(data.dig('meta', 'regularMarketPrice'))
     end
 
     def performance
       quotes.unshift(prev_close) if @range == RANGE['1D']
 
       Percent.diff(quotes.last, quotes.first).to_s
+    end
+
+    def format_number(number)
+      ActiveSupport::NumberHelper.number_to_rounded(number, delimiter: ',', precision: 2)
     end
 
     def peak
