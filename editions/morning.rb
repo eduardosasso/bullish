@@ -10,19 +10,27 @@ module Editions
       key = sample.keys.first
       value = sample.values.first
 
-      up_down = value.start_with?(Templates::Element::MINUS) ? 'down' : 'up'
+      down = %w[down negative 👎 🔻 🔴 👇].sample
+      up = %w[up positive 👍 🟢 ☝️].sample
 
-      "#{Services::Ticker::ALIAS[key.to_sym]} is #{up_down} #{value} in premarket"
+      preposition = ['is trending', 'is'].sample
+      premarket = ['premarket', 'pre-market', 'early trading', 'market futures'].sample
+
+      up_down = value.start_with?(Templates::Element::MINUS) ? down : up
+
+      "#{Services::Ticker::ALIAS[key.to_sym]} #{preposition} #{up_down} #{value} in " + premarket
     end
 
-    # TODO: add emoji
-    # TODO add some random stock number here
     def preheader
-      [
-        'Do not put all your eggs in one basket',
-        'Our favorite holding period is forever',
-        '1: Never lose money. 2: Never forget 1'
-      ].sample
+      field = %i[symbol name].sample
+
+      stocks = Services::Trending.new.stocks.sample(2).map(&field).join(' and ')
+
+      this_morning = ['this morning', 'this ' + day_of_the_week.to_s, 'today'].sample
+
+      trending = ['on 🔥', 'trending', '💥', '⚡️'].sample
+
+      stocks + ' are ' + trending + ' ' + this_morning + '...'
     end
 
     def elements

@@ -7,6 +7,7 @@ require './services/config'
 require './services/trending'
 require './services/crypto'
 require './services/world'
+require './services/log'
 require './editions/widgets'
 
 module Editions
@@ -94,6 +95,9 @@ module Editions
 
     def gold_performance
       stats(ticker(:gold))
+    rescue StandardError => e
+      Services::Log.error(e.message)
+      []
     end
 
     def russell2000_performance
@@ -102,6 +106,9 @@ module Editions
 
     def treasury_performance
       stats(ticker(:treasury))
+    rescue StandardError => e
+      Services::Log.error(e.message)
+      []
     end
 
     def ticker(key)
@@ -121,7 +128,7 @@ module Editions
     end
 
     # save as html file for testing
-    def save(name=subject)
+    def save(name = subject)
       filename = 'tmp/' + name + '.html'
 
       File.open(filename, 'w+') do |f|

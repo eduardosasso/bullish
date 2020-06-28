@@ -14,18 +14,24 @@ task :send_free_edition do
   day = ARGV[1]
 
   send_email(Bullish.free_edition, day)
+
+  exit
 end
 
 task :send_morning_edition do
   day = ARGV[1]
 
   send_email(Bullish.morning_edition, day)
+
+  exit
 end
 
 task :send_afternoon_edition do
   day = ARGV[1]
 
   send_email(Bullish.afternoon_edition, day)
+
+  exit
 end
 
 task :preview_free_email do
@@ -59,21 +65,21 @@ task :preview_afternoon_email do
 end
 
 task :preview_all do
-  Editions::Edition::DAY_ELEMENTS.each do |day, value|
+  Editions::Edition::DAY_ELEMENTS.each do |day, _value|
     puts '- ' + day.to_s + ' free'
     free = Bullish.free_edition
-    free.edition.day_of_the_week = day 
-    free.edition.save(day.to_s + '-free')
+    free.edition.day_of_the_week = day
+    free.edition.save(day.to_s + '-free ' + free.edition.subject)
 
     puts '- ' + day.to_s + ' morning'
     morning = Bullish.morning_edition
     morning.edition.day_of_the_week = day
-    morning.edition.save(day.to_s + '-morning')
+    morning.edition.save(day.to_s + '-morning ' + morning.edition.subject)
 
     puts '- ' + day.to_s + ' afternoon'
     afternoon = Bullish.afternoon_edition
-    afternoon.edition.day_of_the_week = day 
-    afternoon.edition.save(day.to_s + '-afternoon')
+    afternoon.edition.day_of_the_week = day
+    afternoon.edition.save(day.to_s + '-afternoon ' + afternoon.edition.subject)
   end
 end
 

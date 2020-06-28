@@ -7,8 +7,7 @@ module Editions
         generic_title('Performance'),
         sp500_performance,
         nasdaq_performance,
-        dowjones_performance,
-        bitcoin_performance
+        dowjones_performance
       ]
     end
 
@@ -44,7 +43,7 @@ module Editions
       [
         generic_title('Sector', 'Performance'),
         Templates::Element.spacer('25px'),
-        Services::Sector.data.sample(8).map do |sector|
+        Services::Sector.data.sample(6).map do |sector|
           [
             generic_title(sector.name),
             Templates::Element.spacer('15px'),

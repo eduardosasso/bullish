@@ -9,12 +9,12 @@ module Services
       'Energy': 'XLE',
       'Materials': 'GDX',
       'Industrials': 'DIA',
-      'Consumer Discretionary': 'XLY',
-      'Consumer Staples': 'XLP',
+      'C. Discretionary': 'XLY',
+      'C. Staples': 'XLP',
       'Health Care': 'XLV',
       'Financials': 'XLF',
       'Technology': 'XLK',
-      'Telecommunication': 'XLC',
+      'Telecom': 'XLC',
       'Utilities': 'XLU',
       'Real Estate': 'VNQ'
     }.freeze

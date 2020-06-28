@@ -22,25 +22,29 @@ module Editions
     end
 
     def subject_up(index, value)
+      emoji = %w[☝️ 👍 🟢].sample
+
       [
-        "#{index} closed up #{value}",
-        "#{index} jumped #{value}",
-        "#{index} rose #{value}",
-        "#{index} added #{value}",
-        "#{index} climbed #{value}",
-        "#{index} finished up #{value}"
-      ].sample + ' today'
+        "#{index} closed up #{emoji} #{value}",
+        "#{index} #{emoji} jumped #{value}",
+        "#{index} rose #{value} #{emoji}",
+        "#{index} added #{emoji} #{value}",
+        "#{index} #{emoji} climbed #{value}",
+        " #{emoji} #{index} finished up #{value}"
+      ].sample + ' ' + ['today', day_of_the_week.to_s].sample
     end
 
     def subject_down(index, value)
+      emoji = %w[👎 🔻 🔴 👇].sample
+
       [
-        "#{index} dropped #{value}",
-        "#{index} closed down #{value}",
-        "#{index} declined #{value}",
-        "#{index} fell #{value}",
-        "#{index} thumbled #{value}",
-        "#{index} lost #{value}"
-      ].sample + ' today'
+        "#{emoji} #{index} dropped #{value}",
+        "#{index} #{emoji} closed down #{value}",
+        "#{index} declined #{emoji} #{value}",
+        "#{index} fell #{value}  #{emoji}",
+        "#{emoji} #{index} thumbled #{value}",
+        "#{index}  #{emoji} lost #{value}"
+      ].sample + ' ' + ['today', day_of_the_week.to_s].sample
     end
 
     def preheader

@@ -13,7 +13,7 @@ module Services
       'Hong Kong Hang Seng': '^HSI',
       'China Composite': '000001.SS',
       'India BSE SENSEX': '^BSESN',
-      'Australia S&P/ASX 200': '^AXJO',
+      'AUS S&P/ASX 200': '^AXJO',
       'Brazil Ibovespa': '^BVSP'
     }.freeze
 
