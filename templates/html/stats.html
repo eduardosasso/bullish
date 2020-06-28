@@ -1,0 +1,77 @@
+<mj-section padding-bottom="10px" padding-top="30px">
+  <mj-column>
+    <mj-text font-size="24px" color="#FFF" font-family="helvetica" font-weight="bold" align="center" line-height="25px" padding-bottom="0px">
+      {{#symbol}}
+        <a href="https://finance.yahoo.com/quote/{{symbol}}/" target="_blank" style="color:#FFF; text-decoration:none">
+          {{title}}
+        </a>
+      {{/symbol}}
+      {{^symbol}}
+        {{title}}
+      {{/symbol}}
+    </mj-text>
+    {{#subtitle}}
+      <mj-text font-size="14px" color="#FFF" font-family="helvetica" align="center" padding-top="6px">
+        {{#symbol}}
+          <a href="https://finance.yahoo.com/quote/{{symbol}}/" target="_blank" style="color:#FFF; text-decoration:none">
+            {{subtitle}}
+          </a>
+        {{/symbol}}
+        {{^symbol}}
+          {{subtitle}}
+        {{/symbol}}
+      </mj-text>
+    {{/subtitle}}
+  </mj-column>
+</mj-section>
+
+<mj-section padding="0px">
+  <mj-column>
+    <mj-table width="270px" align="center" padding="0px">
+      <tr>
+        <td style='font-size:16px; color:#FFF; font-family:helvetica; line-height:25px; text-align:right; padding-right:5px;width:35px'>1D</td>
+        <td style='font-size:20px; color:{{_1D_color}}; font-family:helvetica; line-height:25px; text-align:left; padding-right:5px; width:100px; font-weight:bold'>{{_1D}}</td>
+        <td style='font-size:16px; color:#FFF; font-family:helvetica; line-height:25px; padding-bottom:2px; text-align:right; padding-right:5px; width:35px'>6M</td>
+        <td style='font-size:20px; color:{{_6M_color}}; font-family:helvetica; line-height:25px; text-align:left; padding-right:5px; width:100px; font-weight:bold'>{{_6M}}</td>
+      </tr>
+    </mj-table>
+  </mj-column>
+</mj-section>
+
+<mj-section padding="0px">
+  <mj-column>
+    <mj-table width="270px" align="center" padding="0px">
+      <tr>
+        <td style='font-size:16px; color:#FFF; font-family:helvetica; line-height:25px; text-align:right; padding-right:5px; width:35px'>5D</td>
+        <td style='font-size:20px; color:{{_5D_color}}; font-family:helvetica; line-height:25px; text-align:left; padding-right:5px; width:100px; font-weight:bold'>{{_5D}}</td>
+        <td style='font-size:16px; color:#FFF; font-family:helvetica; line-height:25px; padding-bottom:2px;text-align:right; padding-right:5px;width:35px'>1Y</td>
+        <td style='font-size:20px; color:{{_1Y_color}}; font-family:helvetica; line-height:25px; text-align:left; padding-right:5px; width:100px; font-weight:bold'>{{_1Y}}</td>
+      </tr>
+    </mj-table>
+  </mj-column>
+</mj-section>
+<mj-section padding="0px">
+  <mj-column>
+    <mj-table width="270px" align="center" padding="0px">
+      <tr>
+        <td style='font-size:16px; color:#FFF; font-family:helvetica; line-height:25px; text-align:right; padding-right:5px; width:35px'>1M</td>
+        <td style='font-size:20px; color:{{_1M_color}}; font-family:helvetica; line-height:25px; text-align:left; padding-right:5px; width:100px; font-weight:bold'>{{_1M}}</td>
+        <td style='font-size:16px; color:#FFF; font-family:helvetica; line-height:25px; padding-bottom:2px; text-align:right; padding-right:5px; width:35px'>5Y</td>
+        <td style='font-size:20px; color:{{_5Y_color}}; font-family:helvetica; line-height:25px; text-align:left; padding-right:5px; width:100px; font-weight:bold'>{{_5Y}}</td>
+      </tr>
+    </mj-table>
+  </mj-column>
+</mj-section>
+
+<mj-section padding="0px">
+  <mj-column>
+    <mj-table width="270px" align="center" padding="0px">
+      <tr>
+        <td style='font-size:16px; color:#FFF; font-family:helvetica; line-height:25px; text-align:right; padding-right:5px; width:35px;'>3M</td>
+        <td style='font-size:20px; color:{{_3M_color}}; font-family:helvetica; line-height:25px; text-align:left; padding-right:5px; width:100px; font-weight:bold'>{{_3M}}</td>
+        <td style='font-size:16px; color:#FFF; font-family:helvetica; line-height:25px; padding-bottom:2px; text-align:right; padding-right:5px;width:35px'>10Y</td>
+        <td style='font-size:20px; color:{{_10Y_color}}; font-family:helvetica; line-height:25px; text-align:left; padding-right:5px; width:100px; font-weight:bold'>{{_10Y}}</td>
+      </tr>
+    </mj-table>
+  </mj-column>
+</mj-section>

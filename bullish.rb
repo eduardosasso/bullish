@@ -1,25 +1,30 @@
 # frozen_string_literal: true
 
-require './email'
-require './premarket/premarket_edition'
-require './closing/closing_edition'
-require './edition'
-require 'raven'
+require './services/email'
+require './services/log'
+require './editions/morning'
+require './editions/afternoon'
+require './editions/free'
+require './editions/edition'
 
 # buy high sell low
 class Bullish
   attr_reader :edition
 
-  def initialize(edition = Edition.new)
+  def initialize(edition = Editions::Edition.new)
     @edition = edition
   end
 
-  def self.premarket_edition
-    new(PremarketEdition.new)
+  def self.free_edition
+    new(Editions::Free.new)
   end
 
-  def self.closing_edition
-    new(ClosingEdition.new)
+  def self.morning_edition
+    new(Editions::Morning.new)
+  end
+
+  def self.afternoon_edition
+    new(Editions::Afternoon.new)
   end
 
   # send email to subscribers
@@ -27,22 +32,16 @@ class Bullish
   def post
     retries ||= 0
 
-    Email.new(edition).post if edition.send?
+    Services::Email.new(edition).post if edition.send?
   rescue StandardError => e
     retries += 1
     retry if retries < 3
 
-    Raven.capture_message(e.message)
-
+    Services::Log.error(e.message)
     raise e
   end
 
-  # save as html file for testing
   def save
-    filename = 'tmp/' + edition.subject + '.html'
-
-    File.open(filename, 'w+') do |f|
-      f.write(edition.content)
-    end
+    @edition.save
   end
 end

@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://query1.finance.yahoo.com/v1/finance/trending/US?count=50
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      x-yahoo-request-id:
+      - fcbrakpfdjh3g
+      cache-control:
+      - max-age=300, stale-while-revalidate=15, stale-if-error=3600
+      content-type:
+      - application/json;charset=utf-8
+      vary:
+      - Origin
+      content-length:
+      - '345'
+      date:
+      - Fri, 05 Jun 2020 04:05:04 GMT
+      age:
+      - '0'
+      strict-transport-security:
+      - max-age=15552000
+      server:
+      - ATS
+      public-key-pins-report-only:
+      - max-age=2592000; pin-sha256="2fRAUXyxl4A1/XHrKNBmc8bTkzA7y4FB/GLJuNAzCqY=";
+        pin-sha256="I/Lt/z7ekCWanjD0Cvj5EqXls2lOaThEA0H2Bg4BT/o="; pin-sha256="K87oWBWM9UZfyddvDfoxL+8lpNyoUB2ptGtn0fv6G2Q=";
+        pin-sha256="Wd8xe/qfTwq3ylFNd3IpaqLHZbh2ZNCLluVzmeNkcpw="; pin-sha256="WoiWRyIOVNa9ihaBciRSC7XHjliYS9VwUGOIud4PB18=";
+        pin-sha256="cGuxAXyFXFkWm61cF4HPWX8S0srS9j0aSqN0k4AP+4A="; pin-sha256="dolnbtzEBnELx/9lOEQ22e6OZO/QNb6VSSX2XHA3E7A=";
+        pin-sha256="i7WTqTvh0OioIruIfFR4kMPnBqrS2rdiVPl/s2uC/CY="; pin-sha256="r/mIkG3eEpVdm+u/ko/cwxzOMo1bk4TyHIlByibiA5E=";
+        pin-sha256="uUwZgwDOxcBXrQcntwu+kYFpkiVkOaezL0WYEZ3anJc="; includeSubdomains;
+        report-uri="http://csp.yahoo.com/beacon/csp?src=yahoocom-hpkp-report-only"
+      x-frame-options:
+      - SAMEORIGIN
+      referrer-policy:
+      - no-referrer-when-downgrade
+      connection:
+      - keep-alive
+      expect-ct:
+      - max-age=31536000, report-uri="http://csp.yahoo.com/beacon/csp?src=yahoocom-expect-ct-report-only"
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"finance":{"result":[{"count":50,"quotes":[{"symbol":"AAL"},{"symbol":"NKLA"},{"symbol":"WORK"},{"symbol":"HTZ"},{"symbol":"ZI"},{"symbol":"LK"},{"symbol":"TMDI"},{"symbol":"IVR"},{"symbol":"SHIP"},{"symbol":"DAL"},{"symbol":"TOPS"},{"symbol":"AVGO"},{"symbol":"TRXC"},{"symbol":"MFA"},{"symbol":"DOCU"},{"symbol":"ATNM"},{"symbol":"VISL"},{"symbol":"XSPA"},{"symbol":"PLUG"},{"symbol":"CPE"},{"symbol":"BIOC"},{"symbol":"QEP"},{"symbol":"TTNP"},{"symbol":"ADMS"},{"symbol":"UAL"},{"symbol":"JBLU"},{"symbol":"MDB"},{"symbol":"CLSD"},{"symbol":"PENN"},{"symbol":"EBAY"},{"symbol":"LSXMK"},{"symbol":"GPS"},{"symbol":"DTEA"},{"symbol":"JCP"},{"symbol":"SJM"},{"symbol":"TMD.TO"},{"symbol":"AZN"},{"symbol":"MITT"},{"symbol":"NYMT"},{"symbol":"BNGO"},{"symbol":"GNPX"},{"symbol":"CCL"},{"symbol":"UAVS"},{"symbol":"TGTX"},{"symbol":"CHFS"},{"symbol":"TUP"},{"symbol":"JCPNQ"},{"symbol":"RH"},{"symbol":"EMAN"},{"symbol":"EHTH"}],"jobTimestamp":1591326409275,"startInterval":202006050200}],"error":null}}'
+  recorded_at: Fri, 05 Jun 2020 04:05:04 GMT
+recorded_with: VCR 6.0.0

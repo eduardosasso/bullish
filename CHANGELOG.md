@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2020-06-28
+### Added
+- Morning and afternoon premium editions
+- New indicators, gainers/losers, trending ...
+- New email template based on MJML
+- More dynamic subject and preheader + emojis
+
 ## 2020-04-27
 ### Changed
 - Replaced SendGrid with MailerLite

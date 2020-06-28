@@ -1,0 +1,40 @@
+<mj-section padding-top="0px" padding-bottom="20px">
+  <mj-column>
+    <mj-text font-size="22px" color="#FFF" font-family="helvetica" font-weight="bold" align="center" padding-bottom="0px">
+      {{#symbol}}
+        <a href="https://finance.yahoo.com/quote/{{symbol}}/" target="_blank" style="color:#FFF; text-decoration:none">
+          {{title}}
+        </a>
+      {{/symbol}}
+      {{^symbol}}
+        {{title}}
+      {{/symbol}}
+    </mj-text>
+    {{#subtitle}}
+      <mj-text font-size="14px" color="#FFF" font-family="helvetica" align="center" padding-top="5px" padding-bottom="4px">
+        {{#symbol}}
+          <a href="https://finance.yahoo.com/quote/{{symbol}}/" target="_blank" style="color:#FFF; text-decoration:none">
+            {{subtitle}}
+          </a>
+        {{/symbol}}
+        {{^symbol}}
+          {{subtitle}}
+        {{/symbol}}
+      </mj-text>
+    {{/subtitle}}
+    {{#undertitle}}
+      <mj-text font-size="14px" color="#FFF" font-family="helvetica" align="center" padding-top="5px" padding-bottom="4px">
+        {{#symbol}}
+          <a href="https://finance.yahoo.com/quote/{{symbol}}/" target="_blank" style="color:#FFF; text-decoration:none">
+            {{undertitle}}
+          </a>
+        {{/symbol}}
+        {{^symbol}}
+          {{undertitle}}
+        {{/symbol}}
+      </mj-text>
+      {{/undertitle}}
+    <mj-text font-size="30px" color="{{color}}" font-family="helvetica" font-weight="bold" align="center">{{value}}</mj-text>
+  </mj-column>
+</mj-section>
+
