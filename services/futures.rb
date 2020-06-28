@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 require './services/config'
-require 'net/http'
+require 'faraday'
 require 'json'
-require 'uri'
 
 # fetch premarket futures % change
 module Services
@@ -35,9 +34,7 @@ module Services
     end
 
     def data(list = USA)
-      uri = URI(Services::Config::FUTURES_API)
-
-      response = Net::HTTP.get(uri)
+      response = Faraday.get(Services::Config::FUTURES_API).body
 
       {}.tap do |h|
         JSON.parse(response)['InstrumentResponses'].each do |r|
