@@ -1,0 +1,37 @@
+<script src="https://js.stripe.com/v3"></script>
+
+<div id="error-message"></div>
+
+<!-- https://stripe.com/docs/payments/checkout/client-subscription?platform=plugins&lang=javascript&client=html -->
+<script>
+  (function() {
+    var dev = "pk_test_ktRVaN8BaTD75yFTPikGWC4T";
+    var prod = "pk_live_H1Dz9fXe9TL1ppGmt2fVVucF";
+
+    var devPrice = "price_1H0EfUJsg3M9lTqlI2zY1gLP";
+    var prodPrice = "price_1H0ID4Jsg3M9lTql6K0H1qFh";
+
+    var urlParams = new URLSearchParams(window.location.search);
+    var email = urlParams.get("email");
+
+    var stripe = Stripe(dev);
+
+    var options = {
+      lineItems: [{ price: devPrice, quantity: 1 }],
+      mode: "subscription",
+      successUrl: "https://bullish.email/success",
+      cancelUrl: "https://bullish.email/canceled"
+    };
+
+    if (email) options["customerEmail"] = email;
+
+    stripe.redirectToCheckout(options).then(function(result) {
+      if (result.error) {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, display the localized error message to your customer.
+        var displayError = document.getElementById("error-message");
+        displayError.textContent = result.error.message;
+      }
+    });
+  })();
+</script>

@@ -39,3 +39,9 @@ date_format: "%B %d, %Y"
 google_analytics: 'UA-148146327-2'
 
 css_url: /leter.css
+
+custom:
+  success:
+    date_format:
+  canceled:
+    date_format:
