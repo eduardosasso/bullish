@@ -15,7 +15,11 @@ module Services
     end
 
     def test_not_holiday
-      refute(Services::Holiday.today?)
+      holiday = Services::Holiday::DATES.sample
+
+      date = Date.parse(holiday) + 1
+
+      refute(Services::Holiday.today?(date))
     end
 
     # break to make sure I update the

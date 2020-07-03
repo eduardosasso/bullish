@@ -8,23 +8,29 @@ require 'date'
 
 module Templates
   class Template
-    def initialize(elements = [Element.title], preheader = nil)
-      @preheader = preheader
+    attr_accessor :preheader, :premium
 
-      @body = [
-        Element.header,
+    def initialize(elements = [Element.title])
+      @elements = elements
+      @preheader = nil
+      @premium = false
+    end
+
+    def body
+      [
+        Element.header(@premium),
         Element.spacer('15px'),
         Element.divider,
-        elements,
+        @elements,
         Element.divider,
-        Element.footer
+        Element.footer(@premium)
       ].flatten.join(' ')
     end
 
     def compile
       data = Element::Html.new(
         preheader: @preheader,
-        body: @body
+        body: body
       )
 
       Element.html(data)
@@ -36,6 +42,13 @@ module Templates
       html = Services::Mjml.new(mjml).to_html
 
       Services::Minifier.html(html)
+    end
+
+    def self.edition(edition)
+      new(edition.elements).tap do |t|
+        t.preheader = edition.preheader
+        t.premium = edition.premium?
+      end
     end
 
     def self.save(content, name = preview_name)

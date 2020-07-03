@@ -8,6 +8,11 @@
     </mj-text>
     <mj-text font-size="12px" color="#FFF" font-family="helvetica" align="center" padding-top="0px">One Recursive Loop</mj-text>
     <mj-text font-size="12px" color="#FFF" font-family="helvetica" align="center" padding-top="0px">Silicon Valley, CA</mj-text>
+    {{#premium}}
+      <mj-text font-size="12px" color="#FFF" font-family="helvetica" align="center">
+        <a href="https://bullish.netlify.app/.netlify/functions/subscription?id={$customer_id}" target="_blank" style="color:#FFF; text-decoration:underline">Update subscription</a>
+      </mj-text>
+    {{/premium}}
     <mj-text font-size="12px" color="#FFF" font-family="helvetica" align="center">
       <a href="{$unsubscribe}" target="_blank" style="color:#FFF; text-decoration:underline">Unsubscribe</a>
     </mj-text>

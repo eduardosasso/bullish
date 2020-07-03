@@ -45,3 +45,5 @@ custom:
     date_format:
   canceled:
     date_format:
+  error:
+    date_format:

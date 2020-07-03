@@ -35,7 +35,7 @@ module Editions
     end
 
     def content
-      Templates::Template.new(elements, preheader).to_html
+      Templates::Template.edition(self).to_html
     end
 
     def elements
@@ -125,6 +125,10 @@ module Editions
 
     def formatted_time
       Services::Config.formatted_time
+    end
+
+    def premium?
+      subscribers_group_id == Services::Config.premium_group_id
     end
 
     # save as html file for testing

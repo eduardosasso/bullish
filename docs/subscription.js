@@ -1,17 +1,28 @@
 exports.handler = async event => {
-  const subject = event.queryStringParameters.name || "World";
+  var url = "";
 
-  const stripe = require("stripe")("sk_test_D6RF8TPpIHosXCs0Nk5zzUum");
+  try {
+    const customerId = event.queryStringParameters.id;
 
-  var session = await stripe.billingPortal.sessions.create({
-    customer: "cus_HZSNNTtJhCIyzp",
-    return_url: "https://bullish.email"
-  });
+    var dev = "sk_test_516YMkSJsg3M9lTqlK4LsbsU0Kv99WcKCPwxyYaZgCJSj47kbddyFxIJTaVoN5PSrlgaYm6jB99vmzzhU7bmHnWNY00bruLuMPw";
+    var prod = "";
+
+    const stripe = require("stripe")(dev);
+
+    var session = await stripe.billingPortal.sessions.create({
+      customer: customerId,
+      return_url: "https://bullish.email"
+    });
+
+    url = session.url;
+  } catch {
+    url = "https://bullish.email/error";
+  }
 
   return {
     statusCode: 301,
     headers: {
-      Location: session.url
+      Location: url
     }
   };
 };

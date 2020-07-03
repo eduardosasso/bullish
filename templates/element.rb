@@ -18,6 +18,11 @@ module Templates
       keyword_init: true
     )
 
+    Premium = Struct.new(
+      :premium,
+      keyword_init: true
+    )
+
     Item = Struct.new(
       :title,
       :subtitle,
@@ -77,12 +82,12 @@ module Templates
       render(:html, html_struct)
     end
 
-    def self.header
-      load(:header)
+    def self.header(premium = false)
+      render(:header, Premium.new(premium: premium))
     end
 
-    def self.footer
-      load(:footer)
+    def self.footer(premium = false)
+      render(:footer, Premium.new(premium: premium))
     end
 
     def self.divider
