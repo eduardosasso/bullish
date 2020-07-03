@@ -10,6 +10,7 @@ exports.handler = async event => {
 
   return {
     statusCode: 200,
+    body: session.url,
     headers: {
       Location: session.url
     }
