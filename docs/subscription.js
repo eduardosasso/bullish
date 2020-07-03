@@ -1,3 +1,4 @@
+// https://bullish.netlify.app/.netlify/functions/subscription
 exports.handler = async event => {
   var url = "";
 

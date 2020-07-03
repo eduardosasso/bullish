@@ -27,7 +27,7 @@ module Editions
       assert(edition.premium?)
 
       edition = Editions::Free.new
-      assert(!edition.premium?)
+      refute(edition.premium?)
     end
   end
 end
