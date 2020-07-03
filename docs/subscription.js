@@ -9,8 +9,7 @@ exports.handler = async event => {
   });
 
   return {
-    statusCode: 200,
-    body: session.url,
+    statusCode: 301,
     headers: {
       Location: session.url
     }
