@@ -24,9 +24,13 @@ module Editions
 
     def test_premium?
       edition = Editions::Morning.new
-      assert(edition.premium?)
 
+      assert(edition.premium?)
+    end
+
+    def test_not_premium?
       edition = Editions::Free.new
+
       refute(edition.premium?)
     end
   end

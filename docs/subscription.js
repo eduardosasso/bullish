@@ -5,10 +5,9 @@ exports.handler = async event => {
   try {
     const customerId = event.queryStringParameters.id;
 
-    var dev = "sk_test_516YMkSJsg3M9lTqlK4LsbsU0Kv99WcKCPwxyYaZgCJSj47kbddyFxIJTaVoN5PSrlgaYm6jB99vmzzhU7bmHnWNY00bruLuMPw";
-    var prod = "";
+    const key = process.env["STRIPE_SECRET_KEY"];
 
-    const stripe = require("stripe")(dev);
+    const stripe = require("stripe")(key);
 
     var session = await stripe.billingPortal.sessions.create({
       customer: customerId,
