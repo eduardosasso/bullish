@@ -7,6 +7,9 @@ exports.handler = async event => {
 
     const key = process.env["STRIPE_SECRET_KEY"];
 
+    console.log(process.env["STRIPE_SECRET_KEY"]);
+    console.log(process.env);
+
     const stripe = require("stripe")(key);
 
     var session = await stripe.billingPortal.sessions.create({
