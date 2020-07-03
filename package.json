@@ -1,0 +1,27 @@
+{
+  "name": "bullish",
+  "version": "1.0.0",
+  "description": "[![Maintainability](https://api.codeclimate.com/v1/badges/74ac1ec726ae27d0e56e/maintainability)](https://codeclimate.com/github/eduardosasso/bullish/maintainability) ![Build](https://github.com/eduardosasso/bullish/workflows/Build/badge.svg)",
+  "main": "subscription.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "dependencies": {
+    "stripe": "^8.68.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eduardosasso/bullish.git"
+  },
+  "author": "Eduardo Sasso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eduardosasso/bullish/issues"
+  },
+  "homepage": "https://github.com/eduardosasso/bullish#readme"
+}
