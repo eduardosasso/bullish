@@ -40,11 +40,11 @@ module Services
     end
 
     def self.premium_group_id
-      ENV['PREMIUM_GROUP']
+      ENV['PREMIUM_GROUP'] || 'premium_id'
     end
 
     def self.free_group_id
-      ENV['FREE_GROUP']
+      ENV['FREE_GROUP'] || 'free_id'
     end
   end
 end
