@@ -1,37 +1,53 @@
-<script src="https://js.stripe.com/v3"></script>
+<!DOCTYPE html>
 
-<div id="error-message"></div>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
 
-<!-- https://stripe.com/docs/payments/checkout/client-subscription?platform=plugins&lang=javascript&client=html -->
-<script>
-  (function() {
-    var dev = "pk_test_516YMkSJsg3M9lTqlCyX17EUl4tWYbmNzdPZK19ktSEAm9kzJQoNOdnRV5Faeww6Id3ywcEWuYA3kbAOZ3lK6wJIJ0004gq80MI";
-    var prod = "pk_live_516YMkSJsg3M9lTql2OEWHd3jilNay5YU2tlRiuwqmSdilOCpy3TOBWtHvZCgctdPh1gagkiYWuBVCOyFoP4IAhbN00BHAM7ozk";
+    <title>Bullish▲</title>
+    <meta name="description" content="Bullish Premium checkout" />
+  </head>
 
-    var devPrice = "price_1H0EfUJsg3M9lTqlI2zY1gLP";
-    var prodPrice = "price_1H0ID4Jsg3M9lTql6K0H1qFh";
+  <body>
+    <script src="https://js.stripe.com/v3"></script>
 
-    var urlParams = new URLSearchParams(window.location.search);
-    var email = urlParams.get("email");
+    <div id="error-message"></div>
 
-    var stripe = Stripe(dev);
+    <!-- https://stripe.com/docs/payments/checkout/client-subscription?platform=plugins&lang=javascript&client=html -->
+    <!-- https://bullish.email/checkout.html?email= -->
+    <script>
+      (function() {
+        var dev =
+          "pk_test_516YMkSJsg3M9lTqlCyX17EUl4tWYbmNzdPZK19ktSEAm9kzJQoNOdnRV5Faeww6Id3ywcEWuYA3kbAOZ3lK6wJIJ0004gq80MI";
+        var prod =
+          "pk_live_516YMkSJsg3M9lTql2OEWHd3jilNay5YU2tlRiuwqmSdilOCpy3TOBWtHvZCgctdPh1gagkiYWuBVCOyFoP4IAhbN00BHAM7ozk";
 
-    var options = {
-      lineItems: [{ price: devPrice, quantity: 1 }],
-      mode: "subscription",
-      successUrl: "https://bullish.email/success",
-      cancelUrl: "https://bullish.email/canceled"
-    };
+        var devPrice = "price_1H0EfUJsg3M9lTqlI2zY1gLP";
+        var prodPrice = "price_1H0ID4Jsg3M9lTql6K0H1qFh";
 
-    if (email) options["customerEmail"] = email;
+        var urlParams = new URLSearchParams(window.location.search);
+        var email = urlParams.get("email");
 
-    stripe.redirectToCheckout(options).then(function(result) {
-      if (result.error) {
-        // If `redirectToCheckout` fails due to a browser or network
-        // error, display the localized error message to your customer.
-        var displayError = document.getElementById("error-message");
-        displayError.textContent = result.error.message;
-      }
-    });
-  })();
-</script>
+        var stripe = Stripe(prod);
+
+        var options = {
+          lineItems: [{ price: prodPrice, quantity: 1 }],
+          mode: "subscription",
+          successUrl: "https://bullish.email/success",
+          cancelUrl: "https://bullish.email/canceled"
+        };
+
+        if (email) options["customerEmail"] = email;
+
+        stripe.redirectToCheckout(options).then(function(result) {
+          if (result.error) {
+            // If `redirectToCheckout` fails due to a browser or network
+            // error, display the localized error message to your customer.
+            var displayError = document.getElementById("error-message");
+            displayError.textContent = result.error.message;
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

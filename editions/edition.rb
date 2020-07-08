@@ -47,7 +47,6 @@ module Editions
     end
 
     def send?
-      # TODO: rename to better name
       !Services::Holiday.today?
     end
 

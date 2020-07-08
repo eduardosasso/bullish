@@ -1,6 +1,6 @@
 # Bullish▲
 
-## Checkout was canceled.
+### Checkout was canceled.
 
 [Click here to try again](/checkout.html) 
 

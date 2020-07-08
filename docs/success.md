@@ -1,3 +1,3 @@
 # Bullish▲
 
-## Thank you for becoming a Premium subscriber!
+### Thank you for becoming a Premium subscriber!
