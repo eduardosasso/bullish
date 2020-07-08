@@ -15,7 +15,9 @@ exports.handler = async event => {
     });
 
     url = session.url;
-  } catch {
+  } catch(err) {
+    console.error(err);
+
     url = "https://bullish.email/error";
   }
 
