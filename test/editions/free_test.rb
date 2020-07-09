@@ -7,11 +7,12 @@ require 'yaml'
 module Editions
   class FreeTest < Minitest::Test
     # just assert to make sure nothing is breaking
-    VCR.turn_off!
     def test_elements
-        free = Editions::Free.new
+      VCR.turn_off!
+      free = Editions::Free.new
 
-        assert(free.elements)
+      assert(free.elements)
+      VCR.turn_on!
     end
   end
 end
