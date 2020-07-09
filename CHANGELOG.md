@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2020-07-08
+### Added
+- Pro snippets in Free version
+- Stripe payments
+
 ## 2020-06-28
 ### Added
 - Morning and afternoon premium editions
