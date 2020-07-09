@@ -94,6 +94,12 @@ module Templates
       load(:divider)
     end
 
+    def self.subscribe_premium(headline, label = 'Subscribe now')
+      subscribe_struct = OpenStruct.new(label: label, headline: headline)
+
+      render(:premium, subscribe_struct)
+    end
+
     def self.spacer(height = '10px')
       height_struct = OpenStruct.new(height: height)
 
