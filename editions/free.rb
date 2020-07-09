@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require './editions/morning'
+require './editions/afternoon'
 
 module Editions
   class Free < Morning
