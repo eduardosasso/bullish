@@ -63,8 +63,6 @@ module Editions
         'world_futures'
       ].sample
 
-      premium_widget = 'index_summary'
-
       subtitle = [
         'Sneak peak',
         'Freebie',
