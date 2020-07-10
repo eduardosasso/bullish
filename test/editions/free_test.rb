@@ -6,18 +6,12 @@ require 'yaml'
 
 module Editions
   class FreeTest < Minitest::Test
-    def setup
-      VCR.turn_off!
-    end
-
     # just assert to make sure nothing is breaking
     def test_elements
-      free = Editions::Free.new
-      assert(free.elements)
-    end
-
-    def teardown
-      VCR.turn_on!
+      VCR.use_cassette('free_edition_elements', :match_requests_on => [:method]) do
+        free = Editions::Free.new
+        assert(free.elements)
+      end
     end
   end
 end

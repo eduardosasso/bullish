@@ -10,7 +10,7 @@ module Services
       'German DAX': '^GDAXI',
       'France CAC 40': '^FCHI',
       'Europe STOXX 600': '^STOXX',
-      'Hong Kong Hang Seng': '^HSI',
+      'HK Hang Seng': '^HSI',
       'China Composite': '000001.SS',
       'India BSE SENSEX': '^BSESN',
       'AUS S&P/ASX 200': '^AXJO',
