@@ -51,7 +51,7 @@ module Templates
             <mj-preview></mj-preview>
           </mj-head>
           <mj-body background-color='#1b262c' width=\"100%\">
-            header    body   footer
+            header     body   footer
           </mj-body>
         </mjml>
       MJML
@@ -59,12 +59,14 @@ module Templates
       # Templates::Element.stub(:html, 'begin {{body}} end') do
       Templates::Element.stub(:divider, '') do
         Templates::Element.stub(:spacer, '') do
-          Templates::Element.stub(:header, 'header') do
-            Templates::Element.stub(:footer, 'footer') do
-              custom_element = ' body '
+          Templates::Element.stub(:sponsor, '') do
+            Templates::Element.stub(:header, 'header') do
+              Templates::Element.stub(:footer, 'footer') do
+                custom_element = ' body '
 
-              template = Templates::Template.new([custom_element]).compile
-              assert_equal(result, template)
+                template = Templates::Template.new([custom_element]).compile
+                assert_equal(result, template)
+              end
             end
           end
         end
