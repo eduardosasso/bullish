@@ -6,13 +6,18 @@ require 'yaml'
 
 module Editions
   class FreeTest < Minitest::Test
-    # just assert to make sure nothing is breaking
-    # def test_elements
-    #   VCR.turn_off!
-    #   free = Editions::Free.new
+    def setup
+      VCR.turn_off!
+    end
 
-    #   assert(free.elements)
-    #   VCR.turn_on!
-    # end
+    # just assert to make sure nothing is breaking
+    def test_elements
+      free = Editions::Free.new
+      assert(free.elements)
+    end
+
+    def teardown
+      VCR.turn_on!
+    end
   end
 end

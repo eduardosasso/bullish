@@ -26,7 +26,7 @@
         var prodPrice = "price_1H0ID4Jsg3M9lTql6K0H1qFh";
 
         var urlParams = new URLSearchParams(window.location.search);
-        var email = urlParams.get("email");
+        var email = urlParams.get("email").replace(" ", "+");
 
         var stripe = Stripe(prod);
 
