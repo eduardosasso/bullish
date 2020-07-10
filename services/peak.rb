@@ -27,7 +27,8 @@ module Services
     end
 
     def diff
-      Percent.diff(current_value, max_value).to_s
+      value = Percent.diff(current_value, max_value).to_s
+      value == '0.0%' ? 'NEW 🎉' : value
     end
 
     def date

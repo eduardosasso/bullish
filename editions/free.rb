@@ -42,15 +42,14 @@ module Editions
         'Proceed to checkout',
         'Sign up',
         'Join now',
-        'Continue',
         'Go premium',
         'Get instant access',
         'Yes, sign me up!',
         'Yes! I want in ',
-        'Send it to me!',
         'Join the Pros',
+        'Become a PRO',
         'Get it now',
-        'Yes Please'
+        'Upgrade'
       ].sample
 
       premium_widget = [
@@ -64,19 +63,20 @@ module Editions
         'world_futures'
       ].sample
 
-      title = [
-        'Paid feature',
-        'Premium sample',
-        'PRO snippet',
-        'Free Pro snippet',
-        'Pro sample'
+      premium_widget = 'index_summary'
+
+      subtitle = [
+        'Sneak peak',
+        'Freebie',
+        'Free snippet',
+        'Free sample'
       ].sample
 
       [
-        generic_title(title),
+        generic_title('Premium only', subtitle),
         Templates::Element.divider,
         send(premium_widget),
-        Templates::Element.subscribe_premium(headline, label)
+        Templates::Element.subscribe_premium(nil, label)
       ]
     end
 

@@ -20,11 +20,12 @@ module Templates
       [
         Element.header(@premium),
         Element.spacer('15px'),
+        sponsor,
         Element.divider,
         @elements,
         Element.divider,
         Element.footer(@premium)
-      ].flatten.join(' ')
+      ].flatten.compact.join(' ')
     end
 
     def compile
@@ -34,6 +35,19 @@ module Templates
       )
 
       Element.html(data)
+    end
+
+    def sponsor
+      return if @premium
+
+      labels = [
+        'Your Ad here',
+        'Advertise here',
+        'Your business here',
+        'Sponsor this space'
+      ]
+
+      Element.sponsor(labels.sample)
     end
 
     def to_html

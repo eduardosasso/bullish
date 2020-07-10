@@ -94,6 +94,10 @@ module Templates
       load(:divider)
     end
 
+    def self.sponsor(label = 'Your Ad here')
+      render(:sponsor, OpenStruct.new(label: label))
+    end
+
     def self.subscribe_premium(headline, label = 'Subscribe now')
       subscribe_struct = OpenStruct.new(label: label, headline: headline)
 
