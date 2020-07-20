@@ -41,10 +41,10 @@ module Templates
       return if @premium
 
       labels = [
-        'Your Ad here',
-        'Advertise here',
-        'Your business here',
-        'Sponsor this space'
+        'Click here to signup and get a free stock',
+        'Open an account and earn a free stock',
+        'Get a free stock when you open an account',
+        'Click here and get a free stock'
       ]
 
       Element.sponsor(labels.sample)

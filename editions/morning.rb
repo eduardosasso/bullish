@@ -10,8 +10,8 @@ module Editions
       key = sample.keys.first
       value = sample.values.first
 
-      down = %w[down negative 👎 🔻 🔴 👇].sample
-      up = %w[up positive 👍 🟢 ☝️].sample
+      down = %w[down negative 👎 🔻 🔴 👇 ↓].sample
+      up = %w[up positive 👍 ↑ ☝️].sample
 
       preposition = ['is trending', 'is'].sample
       premarket = ['premarket', 'pre-market', 'early trading', 'market futures'].sample
