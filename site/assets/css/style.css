@@ -1217,7 +1217,7 @@ body {
 .flx_2 h2 {
   font-size: 16px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
+  /* color: rgba(255, 255, 255, 0.8); */
   line-height: 1.4;
   margin-top: 20px;
   margin-bottom: 5px;
@@ -1382,7 +1382,7 @@ body {
   /* height: 100%;
  */
   background: #ffffff;
-  padding: 40px 0;
+  /* padding: 40px 0; */
 }
 
 .yd_prc2 .pricing-intro {
@@ -1418,7 +1418,7 @@ body {
 .yd_prc2 .yd_flx2 .flx_1 {
   line-height: normal;
   padding: 50px 30px;
-  background: #fafafa;
+  /* background: #fafafa; */
   text-align: center;
   border-radius: 20px 20px 0 0;
 }
@@ -1430,7 +1430,7 @@ body {
 .yd_prc2 .yd_flx2 .split_text {
   display: flex;
   margin: auto;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .yd_prc2 .yd_flx2 .split_text_inner {
@@ -1438,19 +1438,20 @@ body {
 }
 
 .yd_prc2 .yd_flx2 h2 {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 600;
-  color: rgb(54, 70, 85);
+  /* color: rgb(54, 70, 85); */
   margin: 0;
 }
 
 .yd_prc2 .yd_flx2 span {
   font-family: "Montserrat";
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 600;
   display: inline-block;
-  color: #97a6b5;
+  /* color: #97a6b5; */
   margin: 15px 0 0 0;
+  /* margin-bottom: 5px; */
 }
 
 .sub_span {
@@ -1466,7 +1467,8 @@ body {
   margin-top: 25px;
   text-align: left;
   margin: auto;
-  width: 220px;
+  width: 230px;
+  padding-top: 20px;
 }
 
 .yd_prc2 .prc_features li span {
@@ -1481,7 +1483,7 @@ body {
   margin: 0 0 10px 0;
 }
 .yd_prc2 .prc_features li img {
-  fill: red;
+  /* fill: red; */
 }
 /* .prc_features li:before { */
 /*   /1* position: absolute; *1/ */
@@ -1494,16 +1496,16 @@ body {
 .yd_prc2 .flx_2 h2,
 .yd_prc2 .flx_2 span,
 .yd_prc2 .flx_2 .prc_features li {
-  color: #97a6b5;
-  color: rgba(255, 255, 255, 0.7);
+  /* color: #97a6b5; */
+  /* color: rgba(255, 255, 255, 0.7); */
 }
 
 .yd_prc2 .flx_2 span {
-  color: #1b262c;
+  /* color: #1b262c; */
 }
 
 .yd_prc2 .prc_features li img {
-  vertical-align: top;
+  /* vertical-align: top; */
   margin-right: 3px;
 }
 
@@ -1706,6 +1708,10 @@ body {
   min-height: 100vh;
 }
 
+.yd_prc2 .yd_flx2 {
+  min-height: 0;
+}
+
 .split_home .yd_flx2 > * {
   flex: 1 100%;
 }
@@ -1716,12 +1722,12 @@ body {
   background: #fff;
   line-height: normal;
   order: 1;
-  min-height: 720px;
+  /* min-height: 720px; */
   text-align: center;
 }
 
 .split_home .flx_2 {
-  background: #1b262c;
+  /* background: #1b262c; */
   min-height: 720px;
   order: 2;
   padding: 0 !important;
@@ -1750,7 +1756,7 @@ body {
   color: #1b262c;
   line-height: 1.2;
   letter-spacing: 0;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .split_home .flx_1 h4 {
@@ -1763,12 +1769,12 @@ body {
 }
 
 .split_home .flx_1 p {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   color: #1b262c;
   font-family: "Montserrat";
   line-height: 1.6;
-  max-width: 360px;
+  max-width: 380px;
   margin: 0 auto;
 }
 
@@ -2031,7 +2037,8 @@ ul#countdown li {
   border-radius: 10px;
   background-color: #f3f3f3;
   outline: none;
-  padding: 0 100px 0 20px;
+  padding: 0 10px 0 10px;
+  width: 250px;
   box-shadow: 0 5px 30px rgba(255, 255, 255, 0.1);
 }
 
@@ -2044,13 +2051,13 @@ ul#countdown li {
   height: 45px;
   border: 0;
   border-radius: 10px;
-  margin-left: -35px;
+  /* margin-left: -35px; */
   padding: 0 25px 0 25px;
   background: #21bf73;
   font-family: "Montserrat";
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   letter-spacing: 0;
   color: #ffffff;
   cursor: pointer;
@@ -2059,6 +2066,9 @@ ul#countdown li {
   -webkit-transition: 500ms;
   -moz-transition: 500ms;
   transition: 500ms;
+  display: block;
+  margin: auto;
+  margin-top: 10px;
 }
 
 #email-error {
@@ -2269,10 +2279,11 @@ ul#countdown li {
   }
 
   .yd_prc2 .yd_flx2 .flx_1 {
+    /* border: black; */
     flex: 1 0 0;
     flex-basis: 50%;
-    padding: 75px;
-    border-radius: 10px 0 0 10px;
+    /* padding: 75px; */
+    /* border-radius: 10px 0 0 10px; */
   }
 
   .yd_prc2 .yd_flx2 .flx_2 {
@@ -2280,6 +2291,7 @@ ul#countdown li {
     flex-basis: 50%;
     padding: 75px;
     border-radius: 0 10px 10px 0;
+    /* background: red; */
   }
 
   .yd_ft_cst .f-image {
@@ -2404,7 +2416,7 @@ ul#countdown li {
 
 @media only screen and (min-width: 240px) and (max-width: 420px) {
   .form input {
-    padding: 0 75px 0 20px;
+    /* padding: 0 75px 0 20px; */
   }
   .form .submit-button {
     margin-left: 0;
@@ -2448,12 +2460,13 @@ ul#countdown li {
   }
 
   .form input {
-    padding: 0 75px 0 20px;
+    /* padding: 0 75px 0 20px; */
   }
 
   .form .submit-button {
     margin-left: 0;
     margin-top: 10px;
+    width: 100%;
   }
 
   #chimp-email-error {
