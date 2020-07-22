@@ -1,6 +1,7 @@
 # Bullish▲
 [![Maintainability](https://api.codeclimate.com/v1/badges/74ac1ec726ae27d0e56e/maintainability)](https://codeclimate.com/github/eduardosasso/bullish/maintainability)
 ![Build](https://github.com/eduardosasso/bullish/workflows/Build/badge.svg)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/35ca47d4-18a3-4e4a-afbb-3405904143f0/deploy-status)](https://app.netlify.com/sites/bullish/deploys)
 
 Bullish is a **free daily email newsletter** with **information about the stock market**, including stock futures, premarket data, current and historical performance for major indexes like S&P 500, Nasdaq, Dow Jones.
 
