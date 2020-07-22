@@ -1440,7 +1440,7 @@ body {
 .yd_prc2 .yd_flx2 h2 {
   font-size: 28px;
   font-weight: 600;
-  /* color: rgb(54, 70, 85); */
+  color: rgb(54, 70, 85);
   margin: 0;
 }
 
@@ -1782,7 +1782,7 @@ body {
   font-family: "Montserrat";
   font-size: 12px;
   font-weight: 500;
-  color: #1b262c;
+  color: #adb5bd;
   position: relative;
   display: inline-block;
   text-decoration: none;
@@ -1871,7 +1871,7 @@ body {
 }
 
 .split_footer ul li a:hover {
-  text-decoration: none;
+  text-decoration: underline;
   color: #97a6b5;
 }
 
@@ -2102,14 +2102,14 @@ ul#countdown li {
 
 #chimp-email-error {
   position: absolute;
-  left: 15%;
-  bottom: -50%;
+  left: 5%;
+  bottom: -20%;
   vertical-align: middle;
   text-align: center;
   font-family: "Montserrat";
   font-size: 13px;
   font-weight: 500;
-  color: #1b262c;
+  color: #d63447;
 }
 
 .yd_cta_box #chimp-email-error {
@@ -2471,13 +2471,13 @@ ul#countdown li {
 
   #chimp-email-error {
     left: 5%;
-    bottom: -30%;
+    bottom: -20%;
   }
 
   .yd_cta_box #response {
     position: absolute;
     left: 5%;
-    bottom: -50%;
+    bottom: -20%;
   }
 
   .yd_cta_box #chimp-email-error {
