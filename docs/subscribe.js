@@ -3,6 +3,9 @@ exports.handler = async event => {
   const request = require("request");
   const email = event.queryStringParameters.email;
 
+  console.info("event", event);
+  console.info("email", email);
+
   const options = {
     url: "https://api.mailerlite.com/api/v2/subscribers",
     json: true,
@@ -19,6 +22,6 @@ exports.handler = async event => {
     if (err) {
       return console.log(err);
     }
-    console.log(body);
+    console.info(body);
   });
 };
