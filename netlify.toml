@@ -1,2 +1,4 @@
+[dev]
+  publish = "./docs/"
 [build]
   functions = "./docs"

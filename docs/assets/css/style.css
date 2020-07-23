@@ -1810,6 +1810,24 @@ body {
   color: #8f2c34;
 }
 
+.sample_badge {
+  background: #f4d35e;
+  position: absolute;
+  top: 12px;
+  /* left: 5px; */
+  padding: 5px;
+  font-family: "Graphik", "Helvetica Neue", helvetica, "Apple Color Emoji", arial, sans-serif;
+  font-size: 13px;
+  /* font-weight: 500; */
+  color: #1B262C;
+  border-radius: 4px;
+  /* border-style: solid; */
+  /* border-color: #DDB425; */
+  /* border-width: 2px; */
+  right: 12px;
+  /* width: 53px; */
+}
+
 @media only screen and (min-width: 767px) {
   .split_home .flx_1 {
     flex: 1.1 0 0;

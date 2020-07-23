@@ -8,7 +8,8 @@
     "test": "test"
   },
   "dependencies": {
-    "request": "^2.88.2",
+    "@sentry/node": "^5.20.0",
+    "axios": "^0.19.2",
     "stripe": "^8.68.0"
   },
   "devDependencies": {},

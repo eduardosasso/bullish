@@ -64,7 +64,7 @@ module Editions
       ].sample
 
       subtitle = [
-        'Sneak peak',
+        'Sneak peek',
         'Freebie',
         'Free snippet',
         'Free sample'

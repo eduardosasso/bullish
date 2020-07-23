@@ -41,6 +41,22 @@ google_analytics: 'UA-148146327-2'
 css_url: /leter.css
 
 custom:
+  terms-of-service:
+    theme:
+      background_color: '#fff'
+      text_color: '#1B262C'
+      accent_color: '#1B262C'
+      heading_color: '#1B262C'
+      page_align: left
+    date_format:
+  privacy-policy:
+    theme:
+      background_color: '#fff'
+      text_color: '#1B262C'
+      accent_color: '#1B262C'
+      heading_color: '#1B262C'
+      page_align: left
+    date_format:
   success:
     date_format:
   canceled:

@@ -1,27 +1,47 @@
 exports.handler = async event => {
-  const key = process.env["MAILERLITE_KEY"];
-  const request = require("request");
-  const email = event.queryStringParameters.email;
+  const key = process.env["MAILERLITE_API_KEY"];
+  const request = require("axios");
 
-  console.info("event", event);
-  console.info("email", email);
+  const Sentry = require("@sentry/node");
 
-  const options = {
-    url: "https://api.mailerlite.com/api/v2/subscribers",
-    json: true,
-    body: {
-      email: email
-    },
-    headers: {
-      "Content-Type": "application/json",
-      "x-mailerlite-apikey": key
-    }
-  };
-
-  request.post(options, (err, res, body) => {
-    if (err) {
-      return console.log(err);
-    }
-    console.info(body);
+  Sentry.init({
+    dsn: process.env["SENTRY_DSN"]
   });
+
+  try {
+    const body = JSON.parse(event.body);
+
+    const options = {
+      method: "POST",
+      url: "https://api.mailerlite.com/api/v2/subscribers",
+      data: {
+        email: body.email
+      },
+      headers: {
+        "Content-Type": "application/json",
+        "x-mailerlite-apikey": key
+      }
+    };
+
+    let response = await request(options);
+
+    console.info(response.data)
+
+    return {
+      statusCode: 200,
+      body: "You're in! Check your email for confirmation."
+    };
+
+    console.info(response.data);
+  } catch (error) {
+    console.log(error.response);
+
+    Sentry.captureException(error);
+    await Sentry.flush(2000);
+
+    return {
+      statusCode: 500,
+      body: "Sorry. Something went wrong."
+    };
+  }
 };

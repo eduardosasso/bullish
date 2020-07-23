@@ -4,8 +4,8 @@ $(document).ready(function() {
     // if valid, post data via AJAX
     submitHandler: function(form) {
       $.post(
-        "subscribe.js",
-        { email: $("#chimp-email").val() },
+        form.action,
+        JSON.stringify({ email: $("#chimp-email").val() }),
         function(data) {
           $("#response").html(data);
         }
