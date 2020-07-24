@@ -1,17 +1,22 @@
 $(document).ready(function() {
-  // jQuery Validation
   $("#chimp-form").validate({
-    // if valid, post data via AJAX
     submitHandler: function(form) {
-      $.post(
-        form.action,
-        JSON.stringify({ email: $("#chimp-email").val() }),
-        function(data) {
-          $("#response").html(data);
-        }
-      );
+      $("#subscribe-button")
+        .attr("value", "...")
+        .prop("disabled", true);
+
+      $.post(form.action, JSON.stringify({ email: $("#chimp-email").val() }))
+        .done(function() {
+          $("#response").css("visibility", "hidden");
+
+          $("#chimp-email").replaceWith("<span>🎉🎉🎉</span>");
+          $("#subscribe-button").attr("value", "Thank you!");
+        })
+        .fail(function() {
+          $("#response").css("visibility", "visible");
+          $("#response").text("Sorry but something went wrong!");
+        });
     },
-    // all fields are required
     rules: {
       email: {
         required: true,

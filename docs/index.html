@@ -115,7 +115,7 @@
                                 <form
                                   id="chimp-form"
                                   class="subscribe-form"
-                                  action="http://localhost:58651/.netlify/functions/subscribe"
+                                  action="http://localhost:60063/.netlify/functions/subscribe"
                                   method="post"
                                   accept-charset="UTF-8"
                                   enctype="application/x-www-form-urlencoded"
@@ -130,6 +130,7 @@
                                     placeholder="Type your email address"
                                     autocomplete="off"
                                   /><input
+                                    id="subscribe-button"
                                     class="submit-button"
                                     type="submit"
                                     value="Subscribe"
@@ -340,12 +341,14 @@
     <!-- Wrapper -->
 
     <!-- Jquery and Js Plugins -->
-    <script type="text/javascript" src="assets/js/jquery-2.1.1.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
     <script
       type="text/javascript"
       src="assets/js/jquery.validate.min.js"
     ></script>
-    <!-- <script type="text/javascript" src="assets/js/bootstrap.min.js"></script> -->
     <script type="text/javascript" src="assets/js/custom.js"></script>
   </body>
 </html>

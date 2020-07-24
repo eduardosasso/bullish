@@ -8,12 +8,13 @@ exports.handler = async event => {
     dsn: process.env["SENTRY_DSN"]
   });
 
-  try {
-    const body = JSON.parse(event.body);
+  const body = JSON.parse(event.body);
 
-    const options = {
+  try {
+
+    let option = {
       method: "POST",
-      url: "https://api.mailerlite.com/api/v2/subscribers",
+      url: "https://sapi.mailerlite.com/api/v2/subscribers",
       data: {
         email: body.email
       },
@@ -23,25 +24,30 @@ exports.handler = async event => {
       }
     };
 
+    // create subscriber
+    await request(options);
+
+    // free group
+    groupUrl = "https://api.mailerlite.com/api/v2/groups/102872974/subscribers";
+
+    options.url = groupUrl;
+
     let response = await request(options);
 
-    console.info(response.data)
+    console.info("SUCCESS: " + body.email);
 
     return {
-      statusCode: 200,
-      body: "You're in! Check your email for confirmation."
+      statusCode: 200
     };
 
-    console.info(response.data);
   } catch (error) {
-    console.log(error.response);
+    console.error("ERROR: " + body.email);
 
     Sentry.captureException(error);
     await Sentry.flush(2000);
 
     return {
-      statusCode: 500,
-      body: "Sorry. Something went wrong."
+      statusCode: 500
     };
   }
 };
