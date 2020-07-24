@@ -57,6 +57,7 @@ p {
 /*----- Helper Classes -----*/
 
 html * {
+  scroll-behavior: smooth;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
