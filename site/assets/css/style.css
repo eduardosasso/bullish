@@ -234,10 +234,11 @@ body {
 }
 
 .logo {
-  position: fixed;
-  top: 3%;
-  left: 5%;
-  z-index: 11;
+  /* position: fixed; */
+  /* top: 3%; */
+  /* left: 5%; */
+  /* z-index: 11; */
+  margin-top: 40px;
 }
 
 .logo .tld {
@@ -1234,28 +1235,32 @@ body {
 
 .flx_2 a {
   font-family: "Montserrat";
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
-  color: #ffffff;
+  color: #1B262C;
   position: relative;
   display: inline-block;
   text-decoration: none;
 }
 
-.flx_2 a:before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  bottom: -3px;
-  left: 0;
-  background-color: #ffffff;
-  visibility: hidden;
-  -webkit-transform: scaleX(0);
-  transform: scaleX(0);
-  -webkit-transition: all 0.2s ease-in-out 0s;
-  transition: all 0.2s ease-in-out 0s;
+.flx_2 a:hover {
+  text-decoration: none;
 }
+
+/* .flx_2 a:before { */
+/*   content: ""; */
+/*   position: absolute; */
+/*   width: 100%; */
+/*   height: 1px; */
+/*   bottom: -3px; */
+/*   left: 0; */
+/*   background-color: #ffffff; */
+/*   visibility: hidden; */
+/*   -webkit-transform: scaleX(0); */
+/*   transform: scaleX(0); */
+/*   -webkit-transition: all 0.2s ease-in-out 0s; */
+/*   transition: all 0.2s ease-in-out 0s; */
+/* } */
 
 .flx_2 a:hover:before {
   visibility: visible;
@@ -1413,7 +1418,7 @@ body {
 
 .yd_prc2 .yd_flx2 .flx_2 {
   /* padding: 50px 30px; */
-  padding-bottom: 40px;
+  padding-bottom: 100px;
   padding-top: 0px;
   text-align: center;
   border-radius: 0 0 20px 20px;
@@ -1753,21 +1758,24 @@ body {
 
 .split_home .flx_1 .section-txt .section-txt-inner {
   margin: auto; /* Important */
+  /* margin: 50px 30px; */
 }
 
 .split_home .flx_1 .section-txt {
-  padding: 50px 50px;
+  /* padding: 50px 30px; */
+  padding-bottom: 30px;
 }
 
 .split_home .flx_1 h1 {
   font-family: "Montserrat";
   /* font-size: 54px; */
   font-size: calc(2.2em + 0.5vw);
+  /* font-size: 32px; */
   font-weight: 800;
   color: #1b262c;
   line-height: 1.2;
   letter-spacing: 0;
-  margin-bottom: 30px;
+  margin: 40px 30px 30px 30px;
 }
 
 .split_home .flx_1 h4 {
@@ -1787,6 +1795,7 @@ body {
   line-height: 1.6;
   max-width: 380px;
   margin: 0 auto;
+  padding: 0px 30px;
 }
 
 .split_home .flx_1 a {
@@ -1845,6 +1854,7 @@ body {
     order: 1;
     flex-basis: 55%;
     transition: 0.3s ease-in;
+    /* margin: 50px 30px; */
   }
 
   .split_home .flx_2 {
@@ -1865,6 +1875,8 @@ body {
 
 .split_footer p {
   font-size: 12px !important;
+  margin: 0 auto;
+  padding: 0px !important;
 }
 
 .split_footer ul {
@@ -1875,6 +1887,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+  /* margin: 0 auto; */
 }
 
 .split_footer ul li {
@@ -2125,6 +2138,20 @@ ul#countdown li {
   color: #d63447;
 }
 
+#success {
+  /* padding-top: 10px; */
+  /* position: absolute; */
+  /* left: 20%; */
+  /* bottom: -90%; */
+  /* vertical-align: middle; */
+  font-family: "Montserrat";
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  /* margin: 0 !important; */
+  color: #21bf73;
+  padding-bottom: 10px;
+}
+
 #checkout_tease {
   /* font-family: "Graphik", "Helvetica Neue", helvetica, "Apple Color Emoji", arial, sans-serif; */
   font-family: "Montserrat";
@@ -2178,9 +2205,10 @@ ul#countdown li {
 
 @media only screen and (min-width: 767px) {
   .logo {
-    position: fixed;
-    top: 5%;
-    left: 2%;
+    /* position: fixed; */
+    /* top: 5%; */
+    /* left: 2%; */
+    /* margin: 0 auto; */
   }
 
   .navbar-nav {
@@ -2329,6 +2357,7 @@ ul#countdown li {
     flex: 1 0 0;
     flex-basis: 50%;
     /* padding: 75px; */
+    padding-bottom: 100px;
     border-radius: 0 10px 10px 0;
     /* background: red; */
   }

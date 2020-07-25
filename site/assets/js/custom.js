@@ -1,16 +1,19 @@
 $(document).ready(function() {
   $("#chimp-form").validate({
     submitHandler: function(form) {
+      $("#response").css("visibility", "hidden");
+
       $("#subscribe-button")
-        .attr("value", "...")
+        .attr("value", "Submiting...")
         .prop("disabled", true);
 
       $.post(form.action, JSON.stringify({ email: $("#chimp-email").val() }))
         .done(function() {
-          $("#response").css("visibility", "hidden");
+          $("#subscribe-button").attr("value", "Done");
 
-          $("#chimp-email").replaceWith("<span>🎉🎉🎉</span>");
-          $("#subscribe-button").attr("value", "Thank you!");
+          $("#chimp-email").replaceWith(
+            "<div id='success'>Thank you! 🎉</div>"
+          );
         })
         .fail(function() {
           $("#response").css("visibility", "visible");
