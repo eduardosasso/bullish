@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2020-07-25
+###
+- New website 🎉
+
 ## 2020-07-08
 ### Added
 - Pro snippets in Free version
