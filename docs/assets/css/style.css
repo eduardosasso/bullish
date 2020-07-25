@@ -1,0 +1,893 @@
+/*------- Fold CSS - Contents -------
+
+1. reset.CSS
+2. Navbar Styling
+3. Hero Section
+4. Flex features 1
+5. Flex features 2
+6. Pricing section
+7. Background reviews
+8. CTA Section and footer
+9. Media Queries
+
+----*/
+
+/*----- 1. Reset.css -----*/
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,body,div,span,object,h1,h2,h3,h4,h5,h6,p,pre,a,address,img,s,ul,li,form,footer,section,summary,time {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+
+footer,section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ul {
+  list-style: none;
+}
+
+/* --- Common Styles ---*/
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Montserrat";
+  font-size: 16px;
+}
+
+p {
+  font-family: "Montserrat";
+  font-size: 14px;
+}
+
+/*----- Helper Classes -----*/
+
+html * {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,*:after,*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/*
+::-webkit-scrollbar {
+	display: none;
+}*/
+
+::-moz-selection {
+  color: #ffffff;
+  background: #1b262c;
+}
+
+::selection {
+  color: #ffffff;
+  background: #1b262c;
+}
+
+.logo {
+  position: fixed;
+  top: 3%;
+  left: 5%;
+  z-index: 11;
+}
+
+.logo .tld {
+  background: #21bf73;
+}
+
+.tld {
+  width: 45px;
+  height: 45px;
+  background: #fff;
+  color: #ffffff;
+  border-radius: 50%;
+  display: table;
+}
+
+.tld2 {
+  background: #1b262c;
+}
+
+.tld-text {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.tld-text h6 {
+  font-family: "Montserrat";
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+.tld-text a {
+  font-family: "Montserrat";
+  font-size: 40px;
+  font-weight: 500;
+  color: #1b262c !important;
+  text-decoration: none !important;
+}
+
+.tld-text a::after {
+  display: none;
+}
+
+/*------ Navbar Styling ------*/
+
+/*------ nav Transparent Styling ------*/
+
+.main {
+  width: 100%;
+  height: 100%;
+}
+
+/*-----------------------------------------------------
+-------------- Flex Features Section 2 ----------------
+-----------------------------------------------------*/
+
+/*----------- Flex Features ------------*/
+
+/*-----------------------------------------------------------
+------------------- YD Custom Features Styling ------------------
+------------------------------------------------------------*/
+
+/*----------------------------------------------
+------------ Single Feature section ------------
+----------------------------------------------*/
+
+/*------------------------------------------------------
+--------------- YD Features block Styling --------------
+------------------------------------------------------*/
+
+/*------------------------------------------------
+--------------- Review Card Styling --------------
+-------------------------------------------------*/
+
+/*---------- YD Flx2 Section Styling -----------*/
+
+.yd_flx2 {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+  line-height: 0;
+}
+
+.yd_flx2 > * {
+  flex: 1 100%;
+}
+
+.flx_1 {
+  background: #f3f3f5;
+  padding: 0;
+}
+
+.flx_2 {
+  background-color: #fff;
+  line-height: normal;
+  padding: 50px;
+  position: relative;
+}
+
+.flx_2 h1 {
+  font-size: 21px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+  letter-spacing: 0;
+  margin-bottom: 20px;
+}
+
+.flx_2 h2 {
+  font-size: 16px;
+  font-weight: 600;
+  /* color: rgba(255, 255, 255, 0.8); */
+  line-height: 1.4;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.flx_2 h6 {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.4;
+}
+
+.flx_2 a {
+  font-family: "Montserrat";
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffffff;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.flx_2 a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -3px;
+  left: 0;
+  background-color: #ffffff;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
+}
+
+.flx_2 a:hover:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+/*----------------------------------------------------------
+----------------- BG Review Section Styling ----------------
+----------------------------------------------------------*/
+
+/*-----------------------------------------------------------
+------------------- Split Features Styling ------------------
+------------------------------------------------------------*/
+
+.split_features {
+  width: 100%;
+  height: 100%;
+  padding: 100px 0;
+}
+
+.split_features .yd_flx2 {
+  min-height: 500px;
+}
+
+.split_features .yd_flx2 .flx_1 {
+  line-height: normal;
+  background: #eee;
+  padding: 0 75px;
+  min-height: 420px;
+}
+
+.split_features .yd_flx2 .flx_1 .split_text {
+  display: flex;
+  margin: auto;
+  height: 100%;
+}
+
+.split_features .yd_flx2 .flx_1 .split_text_inner {
+  margin: auto;
+  /* Important */
+}
+
+.split_features .yd_flx2 .flx_1 h2 {
+  font-family: "Roboto" !important;
+  font-size: 32px;
+  font-weight: 300;
+  color: #111111;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.split_features .yd_flx2 .flx_1 p {
+  font-family: "Roboto" !important;
+  font-size: 17px;
+  font-weight: 400;
+  color: #777;
+  line-height: 1.6;
+  margin-top: 15px;
+}
+
+.split_features .yd_flx2 .flx_2 {
+  padding: 0;
+  background: url(../images/hg.jpg) no-repeat center center;
+  background-size: cover;
+  min-height: 300px;
+}
+
+/*----------------------------------------------------------
+----------------- YD Pricing Section Two -------------------
+-----------------------------------------------------------*/
+
+.yd_prc2 {
+  /* width: 100%;
+ */
+  /* height: 100%;
+ */
+  background: #ffffff;
+  /* padding: 40px 0; */
+}
+
+.yd_prc2 .yd_flx2 .flx_2 {
+  /* padding: 50px 30px; */
+  padding-bottom: 40px;
+  padding-top: 0px;
+  text-align: center;
+  border-radius: 0 0 20px 20px;
+}
+
+.yd_prc2 .yd_flx2 .flx_1 {
+  line-height: normal;
+  padding: 50px 30px;
+  /* background: #fafafa; */
+  text-align: center;
+  border-radius: 20px 20px 0 0;
+}
+
+.yd_prc2 .yd_flx2 .split_text {
+  display: flex;
+  margin: auto;
+  /* height: 100%; */
+}
+
+.yd_prc2 .yd_flx2 .split_text_inner {
+  margin: auto;
+}
+
+.yd_prc2 .yd_flx2 h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: rgb(54, 70, 85);
+  margin: 0;
+}
+
+.yd_prc2 .yd_flx2 span {
+  font-family: "Montserrat";
+  font-size: 32px;
+  font-weight: 600;
+  display: inline-block;
+  /* color: #97a6b5; */
+  margin: 15px 0 0 0;
+  /* margin-bottom: 5px; */
+}
+
+.yd_prc2 .prc_features {
+  list-style-type: none;
+  margin-top: 25px;
+  text-align: left;
+  margin: auto;
+  width: 230px;
+  padding-top: 20px;
+}
+
+.yd_prc2 .prc_features li span {
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-weight: 500;
+  /* color: #97a6b5;
+ */
+  vertical-align: middle;
+  line-height: 1.6;
+  letter-spacing: 0;
+  margin: 0 0 10px 0;
+}
+
+.yd_prc2 .prc_features li img {
+  /* fill: red; */
+}
+
+/* .prc_features li:before { */
+
+/*   /1* position: absolute; *1/ */
+
+/*   top: 0; */
+
+/*   left: 0; */
+
+/*   content:"\e067"; */
+
+/*  /1* content: "\e92b"; *1/ */
+
+/* } */
+
+.yd_prc2 .flx_2 h2,.yd_prc2 .flx_2 span,.yd_prc2 .flx_2 .prc_features li {
+  /* color: #97a6b5; */
+  /* color: rgba(255, 255, 255, 0.7); */
+}
+
+.yd_prc2 .flx_2 span {
+  /* color: #1b262c; */
+}
+
+.yd_prc2 .prc_features li img {
+  /* vertical-align: top; */
+  margin-right: 3px;
+}
+
+.yd_prc2 .yd_flx2 a:hover::before {
+  display: none !important;
+}
+
+/*---------------- YD CTA Box Styling --------------------*/
+
+/* ------------ Bact-to-Top Styling Starts Here ------------*/
+
+.footer {
+  background: #040e1a;
+  background: #fff;
+  padding: 35px 0;
+  border-top: 2px solid #2e2d72;
+}
+
+.footer-inner {
+  background: #fff;
+}
+
+.footer .footer-logo {
+  text-align: center;
+}
+
+.footer .footer-logo h2 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #e5e5e5;
+  text-transform: uppercase;
+  line-height: 1.4;
+  letter-spacing: 1px;
+}
+
+.footer p {
+  font-size: 24px;
+  font-weight: 700;
+  color: #e5e5e5;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+/* ------------ Bact-to-Top Styling Starts Here ------------*/
+
+/*
+
+.bk-top {
+	z-index: 90;
+	width: 50px;
+	height: 75px;
+	background: #6d48e5;
+	color: #f2f2f0;
+	display: table;
+	box-shadow:0 5px 15px rgba(0, 0, 0, .1);
+}
+
+.bk-top-txt {
+	display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+*/
+
+.footer ul {
+  list-style-type: none;
+  text-align: center;
+  margin-top: 0;
+}
+
+.footer ul li {
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.footer ul li a {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer ul li a:hover {
+  text-decoration: none;
+  color: #97a6b5;
+}
+
+/*---------- Split Coming Soon Demo Styling -----------*/
+
+.split_home {
+  width: 100%;
+  height: 100%;
+}
+
+.split_home .yd_flx2 {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+  line-height: 0;
+  min-height: 100vh;
+}
+
+.yd_prc2 .yd_flx2 {
+  min-height: 0;
+}
+
+.split_home .yd_flx2 > * {
+  flex: 1 100%;
+}
+
+.split_home .flx_1 {
+  background: #1e3b70;
+  background: #dbd9cd;
+  background: #fff;
+  line-height: normal;
+  order: 1;
+  /* min-height: 720px; */
+  text-align: center;
+}
+
+.split_home .flx_2 {
+  /* background: #1b262c; */
+  /* min-height: 720px; */
+  order: 2;
+  /* padding: 0 !important; */
+}
+
+.sample.flx_2 {
+  background: #1b262c;
+  min-height: 720px;
+  order: 2;
+  padding: 0 !important;
+  /* margin: 10px; */
+}
+
+.split_home .flx_1 .section-txt {
+  display: flex;
+  max-width: 600px;
+  margin: auto;
+  height: 100%;
+}
+
+.split_home .flx_1 .section-txt .section-txt-inner {
+  margin: auto;
+  /* Important */
+}
+
+.split_home .flx_1 .section-txt {
+  padding: 50px 50px;
+}
+
+.split_home .flx_1 h1 {
+  font-family: "Montserrat";
+  /* font-size: 54px; */
+  font-size: calc(2.2em + 0.5vw);
+  font-weight: 800;
+  color: #1b262c;
+  line-height: 1.2;
+  letter-spacing: 0;
+  margin-bottom: 30px;
+}
+
+.split_home .flx_1 h4 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+  line-height: 1.4;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.split_home .flx_1 p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #1b262c;
+  font-family: "Montserrat";
+  line-height: 1.6;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.split_home .flx_1 a {
+  font-family: "Montserrat";
+  font-size: 12px;
+  font-weight: 500;
+  color: #adb5bd;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.sample_badge {
+  background: #f4d35e;
+  position: absolute;
+  top: 12px;
+  /* left: 5px; */
+  padding: 5px;
+  font-family: "Graphik", "Helvetica Neue", helvetica, "Apple Color Emoji", arial, sans-serif;
+  font-size: 13px;
+  /* font-weight: 500; */
+  color: #1B262C;
+  border-radius: 4px;
+  /* border-style: solid; */
+  /* border-color: #DDB425; */
+  /* border-width: 2px; */
+  right: 12px;
+  /* width: 53px; */
+}
+
+@media only screen and (min-width: 767px) {
+  .split_home .flx_1 {
+    flex: 1.1 0 0;
+    order: 1;
+    flex-basis: 55%;
+    transition: 0.3s ease-in;
+  }
+
+  .split_home .flx_2 {
+    flex: 1 0 0;
+    order: 2;
+    flex-basis: 45%;
+    transition: 0.3s ease-out;
+  }
+}
+
+.split_footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.split_footer p {
+  font-size: 12px !important;
+}
+
+.split_footer ul {
+  list-style-type: none;
+  text-align: center;
+  margin-bottom: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.split_footer ul li {
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.split_footer ul li a {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  /* text-transform: uppercase;
+ */
+  position: relative;
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.split_footer ul li a:hover {
+  text-decoration: underline;
+  color: #97a6b5;
+}
+
+.split_footer ul li {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.split_footer ul li a img {
+  width: 21px;
+  vertical-align: middle;
+}
+
+/*-------- Center Circle Demo  -------- */
+
+.chimp-form .mail {
+  position: relative;
+  background-color: #f9f9f9;
+  box-shadow: none;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  transition: all 0.3s;
+}
+
+.form {
+  padding-top: 15px;
+  position: relative;
+  text-align: none;
+}
+
+.form input {
+  color: #222222;
+  font-family: "Montserrat";
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+  height: 45px;
+  border: 0;
+  border-radius: 10px;
+  background-color: #f3f3f3;
+  outline: none;
+  padding: 0 10px 0 10px;
+  width: 250px;
+  box-shadow: 0 5px 30px rgba(255, 255, 255, 0.1);
+  margin-bottom: 10px;
+}
+
+.form input:focus {
+  outline: none !important;
+  border-color: transparent;
+}
+
+.form .submit-button {
+  height: 45px;
+  border: 0;
+  border-radius: 10px;
+  /* margin-left: -35px; */
+  padding: 0 25px 0 25px;
+  background: #21bf73;
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-weight: 700;
+  /* text-transform: capitalize; */
+  letter-spacing: 0;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 5px 30px rgba(255, 255, 255, 0.05);
+  -webkit-transition: 500ms;
+  -moz-transition: 500ms;
+  transition: 500ms;
+  display: block;
+  margin: auto;
+  /* margin-top: 10px; */
+}
+
+#response {
+  padding-top: 10px;
+  /* position: absolute; */
+  /* left: 20%; */
+  /* bottom: -90%; */
+  /* vertical-align: middle; */
+  font-family: "Montserrat";
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  /* margin: 0 !important; */
+  color: #d63447;
+}
+
+#checkout_tease {
+  /* font-family: "Graphik", "Helvetica Neue", helvetica, "Apple Color Emoji", arial, sans-serif; */
+  font-family: "Montserrat";
+  color: #97a6b5;
+  font-size: 12px;
+  padding-top: 4px;
+}
+
+#response h4 {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-align: center;
+}
+
+/*------------------------------------------
+-------------- Media Queries ---------------
+------------------------------------------*/
+
+@media only screen and (min-width: 767px) {
+  .logo {
+    position: fixed;
+    top: 5%;
+    left: 2%;
+  }
+
+  .flx_1 {
+    flex: 1 0 0;
+  }
+
+  .flx_2 {
+    flex: 1 0 0;
+  }
+
+  .split_features .yd_flx2 .flx_1 {
+    flex: 1 0 0;
+    flex-basis: 50%;
+    padding: 0 100px;
+  }
+
+  .split_features .yd_flx2 .flx_2 {
+    flex: 1 0 0;
+    flex-basis: 50%;
+  }
+
+  .split_features .yd_flx2 .flx_1 h2 {
+    font-size: 38px;
+  }
+
+  .yd_prc2 .yd_flx2 .flx_1 {
+    /* border: black; */
+    flex: 1 0 0;
+    flex-basis: 50%;
+    /* padding: 75px; */
+    /* border-radius: 10px 0 0 10px; */
+  }
+
+  .yd_prc2 .yd_flx2 .flx_2 {
+    flex: 1 0 0;
+    flex-basis: 50%;
+    /* padding: 75px; */
+    border-radius: 0 10px 10px 0;
+    /* background: red; */
+  }
+
+  .footer .footer-logo {
+    text-align: left;
+  }
+}
+
+@media only screen and (min-width: 240px) and (max-width: 420px) {
+  .form input {
+    /* padding: 0 75px 0 20px; */
+  }
+
+  .form .submit-button {
+    margin-left: 0;
+    /* margin-top: 10px; */
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .form {
+    text-align: center;
+  }
+
+  .form input {
+    /* padding: 0 75px 0 20px; */
+  }
+
+  .form .submit-button {
+    margin-left: 0;
+    /* margin-top: 10px; */
+    width: 100%;
+  }
+}
