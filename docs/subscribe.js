@@ -12,7 +12,7 @@ exports.handler = async event => {
 
   try {
 
-    let option = {
+    let options = {
       method: "POST",
       url: "https://sapi.mailerlite.com/api/v2/subscribers",
       data: {
@@ -41,7 +41,7 @@ exports.handler = async event => {
     };
 
   } catch (error) {
-    console.error("ERROR: " + body.email);
+    console.error(body.email);
 
     Sentry.captureException(error);
     await Sentry.flush(2000);
