@@ -1,4 +1,4 @@
 [dev]
-  publish = "./docs/"
+  publish = "./site/"
 [build]
-  functions = "./docs"
+  functions = "./site"
