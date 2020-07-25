@@ -167,13 +167,13 @@ html * {
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* overflow-x: hidden; */
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: relative;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 *,
