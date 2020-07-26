@@ -25,8 +25,12 @@
         var devPrice = "price_1H0EfUJsg3M9lTqlI2zY1gLP";
         var prodPrice = "price_1H0ID4Jsg3M9lTql6K0H1qFh";
 
-        var urlParams = new URLSearchParams(window.location.search);
-        var email = (urlParams.get("email") || "").replace(" ", "+");
+        var email = "";
+
+        try {
+          var urlParams = new URLSearchParams(window.location.search);
+          email = (urlParams.get("email") || "").replace(" ", "+");
+        } catch (err) {}
 
         var stripe = Stripe(prod);
 
