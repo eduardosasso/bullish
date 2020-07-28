@@ -38,7 +38,7 @@ module Templates
     end
 
     def sponsor
-      return if @premium
+      # return if @premium
 
       labels = [
         'Click here to signup and get a free stock',

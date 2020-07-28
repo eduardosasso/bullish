@@ -17,9 +17,10 @@ module Editions
         sp500_performance,
         nasdaq_performance,
         dowjones_performance,
-        Templates::Element.spacer('20px'),
-        Templates::Element.divider,
-        subscribe_premium
+        bitcoin_performance,
+        # Templates::Element.spacer('20px'),
+        # Templates::Element.divider,
+        # subscribe_premium
       ]
     end
 
