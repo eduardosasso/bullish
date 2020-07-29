@@ -385,6 +385,10 @@ body {
   margin: 0 !important;
 }
 
+.producthunt {
+  padding-top: 50px;
+}
+
 .btn-alt-nav:hover {
   color: #fff !important;
 }
