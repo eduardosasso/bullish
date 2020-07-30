@@ -51,7 +51,7 @@ module Templates
             <mj-preview></mj-preview>
           </mj-head>
           <mj-body background-color='#1b262c' width=\"100%\">
-            header     body   footer
+            header    body   footer
           </mj-body>
         </mjml>
       MJML

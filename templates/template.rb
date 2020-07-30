@@ -20,7 +20,7 @@ module Templates
       [
         Element.header(@premium),
         Element.spacer('15px'),
-        sponsor,
+        # sponsor,
         Element.divider,
         @elements,
         Element.divider,

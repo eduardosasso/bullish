@@ -57,8 +57,7 @@ module Editions
     def tuesday_elements
       [
         index_performance,
-        # gold_performance,
-        bitcoin_performance,
+        gold_performance,
         Templates::Element.spacer('20px'),
         Templates::Element.divider,
         trending(3)
