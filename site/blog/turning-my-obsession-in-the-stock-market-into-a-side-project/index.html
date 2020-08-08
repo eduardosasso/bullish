@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>
+      Turning my obsession with the stock market into a side project
+    </title>
+    <meta property="og:title" content="Turning my obsession with the stock market into a side project" />
+    <meta
+      property="og:description"
+      content="TL;DR - Decided to build an automated email newsletter to track the stock market."
+    />
+    <meta
+      property="og:image"
+      content="social.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://bullish.email" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:description"
+      content="TL;DR - Decided to build an automated email newsletter to track the stock market."
+    />
+    <meta name="twitter:title" content="Turning my obsession with the stock market into a side project" />
+    <meta
+      name="twitter:image"
+      content="social.png"
+    />
+    <meta name="twitter:creator" content="@eduardosasso" />
+
+    <meta name="generator" content="Leter" />
+    <meta
+      name="description"
+      content="TL;DR - Decided to build an automated email newsletter to track the stock market and show pre-market data and historical performance of S&P 500, Nasdaq, and Dow Jones to help with my investments."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net/" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/icons/favicon-16x16.png"
+    />
+
+    <style>
+      :root {
+        --background_color: #fff;
+        --page_align: 0 auto;
+        --text_font: "Rubik", sans-serif;
+        --text_color: #1b262c;
+        --text_size: 20px;
+        --heading_font: "Libre Baskerville", serif;
+        --heading_color: #1b262c;
+        --accent_color: #1b262c;
+        --link_color: #21bf73;
+      }
+    </style>
+
+    <link rel="stylesheet" href="/bullish.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Rubik&display=swap"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"
+    />
+
+    <link rel="stylesheet" href="/bullish.css" />
+  </head>
+
+  <body id="classic">
+    <section>
+      <div class="logo"><a href="/"><img src="../logo.png" /></a></div>
+      <h1>Turning my obsession in the stock market into a side project</h1>
+      <hr />
+      <p>
+        <strong>TL;DR</strong> - Decided to build an automated email newsletter
+        to track the stock market and show pre-market data and historical
+        performance of S&amp;P 500, Nasdaq, and Dow Jones to help with my
+        investments.
+      </p>
+      <p>
+        The other day I read this
+        <a href="https://twitter.com/jasonfried/status/1225455247264550917?s=20"
+          >tweet</a
+        >
+        from Jason Fried, the founder of
+        <a href="https://basecamp.com">Basecamp</a>, saying that they are
+        working on a new email app called <a href="https://hey.com">Hey</a>, and
+        that got me thinking.
+      </p>
+      <p>
+        Checking my email is one of the first things I do when I wake up, in a
+        quick scan I know if there’s something important I should pay attention
+        to, I read the news, and I take the time to keep my inbox tidy. Email is
+        a central tool in my daily workflow.
+      </p>
+      <p>
+        One thing I like to do is to subscribe to email newsletters mostly about
+        tech like <a href="https://techmeme.com/">Techmeme</a>,
+        <a href="https://rubyweekly.com/">Ruby Weekly</a>,
+        <a href="https://hackernewsletter.com/">Hacker News</a>,
+        <a href="https://nodeweekly.com/">Node Weekly</a> and news from
+        <a href="https://www.wsj.com/newsletters">WSJ</a>,
+        <a href="https://www.morningbrew.com/">Morning Brew</a> and
+        <a href="https://www.nytimes.com/newsletters">NYT</a>, I signup to a
+        bunch all the time but I’m very diligent only to keep those I’ll read.
+      </p>
+      <p>
+        Email has a bad rep, spam, clutter. Still, for me, it’s such a joy to
+        receive a well-crafted email where people took the time to write
+        something worthwhile and even more time to package that in a beautiful
+        clean design especially in a finicky medium like email with dozens of
+        different clients all rendering things slightly different from one
+        another.
+      </p>
+      <p>
+        Being stranded at home living the “quarantine” life and with some time
+        in my hands, I thought about building something, and my requirements
+        were:
+      </p>
+      <ul>
+        <li>It needs to be something I can finish in over a week tops</li>
+        <li>Any service I use should be free or freemium</li>
+        <li>Needs to be fully automated, no interventions after it’s running</li>
+        <li>Needs to be something useful to me</li>
+      </ul>
+      <p>
+        Watching the markets tank in March was brutal. The stock market was so
+        volatile that it was hard to keep up with its ups and downs, so my idea
+        was to build something around that.
+      </p>
+      <p>
+        There are lots of tools to track the market like
+        <a href="https://www.finviz.com/">screeners</a>, tons of finance
+        websites even Google, you can type a ticker name, and it will give you
+        the
+        <a
+          href="https://www.google.com/search?sxsrf=ALeKk01r11OmoP895rWnQtnKkZ-QzDfYDA%3A1585421184042&amp;source=hp&amp;ei=gJt_XroZ8rzQ8Q_6ipyYAw&amp;q=voo&amp;btnK=Google+Search"
+          >stock price and a chart</a
+        >.
+      </p>
+      <p>
+        When you read the news or listen to podcasts about the topic they always
+        talk about when the market open or close in terms of points like the
+        Nasdaq composite closed down 300 points to 7500 or something like that,
+        that’s useful for someone in finance or more versed in the markets.
+        Still, to me, all I want to know is how much percentage it gained or
+        lost in a given period like the day before, a week ago, six months ago,
+        and with that, I can tell how the market is trending.
+      </p>
+      <p>
+        Another thing that I learned some time ago is related to Stock futures,
+        also called pre-market, and that gives you a good indication if the
+        market is trending up or down for the day before it opens for business.
+      </p>
+      <p>
+        Going back to email and the tweet from Jason Fried, I decided to build
+        an email newsletter with information about the stock markets and data I
+        cared about including:
+      </p>
+      <ul>
+        <li>
+          Pre-market data for major indexes Nasdaq, S&amp;P 500 e Dow Jones
+        </li>
+        <li>Historical performance represented in percentage points</li>
+      </ul>
+      <p>
+        The idea is for the mailing list to go out every weekday before the
+        market opens so you can be informed enough to decide if it’s worth
+        paying close attention to the market on any given day and make some
+        moves.
+      </p>
+      <p>
+        With that in mind, I started with some good old research to figure out
+        what I need to build this thing.
+      </p>
+      <p><strong>Needed</strong></p>
+      <ol>
+        <li>API to get stock market futures</li>
+        <li>API that returns historical data for major indexes</li>
+        <li>Email marketing tool with API support</li>
+        <li>Design UI for the newsletter</li>
+        <li>Service to track errors and notify via email</li>
+        <li>A way to schedule and send the emails every day</li>
+        <li>A website so people can sign up</li>
+        <li>Write code to put everything together</li>
+        <li>Ship it 🚀</li>
+      </ol>
+      <p>
+        I’ve spent the first day or two signing up and playing with finance APIs
+        and email marketing tools until I found one that did what I want and
+        offered a freemium option. I ended up landing on
+        <a href="https://sendgrid.com/">Sendgrid</a> for email and
+        <a href="https://www.alphavantage.co/"
+          ><strike>Alpha Vantage</strike></a
+        >
+        Yahoo Finance undocumented
+        <a
+          href="https://github.com/eduardosasso/bullish/blob/master/ticker.rb#L16"
+          >API</a
+        >
+        for stock market data.
+      </p>
+      <p>
+        It’s incredible the amount of work it takes to build even the simplest
+        thing, besides
+        <a href="https://github.com/eduardosasso/bullish">writing code</a> which
+        is the fun part there are a ton of other tedious admin tasks that need
+        to be done and configured to make everything work like:
+      </p>
+      <ul>
+        <li>Find a name</li>
+        <li>Buy and set up a domain</li>
+        <li>Create and redirect email like markets@bullish.email</li>
+        <li>Validate email and domain on Sendgrid</li>
+        <li>Setup Google Analytics and Google search console</li>
+        <li>
+          Create <a href="https://en.gravatar.com/">Gravatar</a> and Google
+          account to have a profile pic in the email
+        </li>
+        <li>Setup DNS pointing to Github to host the website</li>
+      </ul>
+      <p>
+        Probably finding a name and available domain to register takes the
+        longest in most of my side projects, and it’s the first thing I do
+        contrary to what most people would say. I enjoy playing with names, and
+        finding the one that feels right to me gets me psyched and in the right
+        frame of mind to work on the project.
+      </p>
+      <p>Some of the names I’ve considered:</p>
+      <ul>
+        <li>Buy high sell low</li>
+        <li>Buy the dip</li>
+        <li>Bull or bear</li>
+        <li>Mr. Market</li>
+      </ul>
+      <p>
+        The name that resonated the most with me was <strong>Bullish▲</strong>,
+        I guess because it’s timely related to the end of one of the longest US
+        bull markets in history, and I’ve found the perfect domain available for
+        the small fortune of <strong>$3.88</strong>, and that’s how
+        <a href="https://bullish.email">https://bullish.email</a> happened.
+      </p>
+      <p>
+        <figure>
+          <img
+            src="/images/bullish.png"
+            alt="Promo banner done in guess what? Google slides"
+          />
+          <figcaption>
+            Promo banner done in guess what? Google slides
+          </figcaption>
+        </figure>
+      </p>
+      <p>
+        If there’s one cool thing about tech nowadays is that pretty much
+        everyone offers a free version of something. You can play with any cloud
+        provider and use it gratis forever as long you are within their free
+        tier. You can publish a site on GitHub for free, including SSL, also
+        free; and a bunch of other stuff. It’s awesome!
+      </p>
+      <p>
+        Anyway, back to the project, after I hooked everything together and
+        spent an awful lot of time designing the email in Sendgrid plus a couple
+        more days writing trash code to test things out and then rewriting it
+        again the proper way, I’ve finally got to a working version that was up
+        to my standards.
+      </p>
+      <p>
+        The last thing to do was to decide how to schedule the code to run,
+        prepare, and trigger Sendgrid to send emails every morning. My first
+        choice was to go
+        <a href="https://en.wikipedia.org/wiki/Serverless_computing"
+          >serverless</a
+        >
+        with <a href="https://aws.amazon.com/lambda/">Lambda</a> that would fit
+        nicely and wouldn’t cost a dime, but then I realized I have a
+        <a href="https://www.raspberrypi.org/">Raspberry Pi</a> laying around,
+        so why not use that instead?
+      </p>
+      <p>
+        So I’ve set up the Raspberry Pi to run a
+        <a href="https://en.wikipedia.org/wiki/Cron">Cron</a> job every day
+        around 9:00 AM eastern time, which is 30 minutes before the market opens
+        and I’ve also used a nifty little app called
+        <a href="https://cronhub.io">Cronhub</a> to monitor the job and alert me
+        if it doesn’t run, and that was it. A little over a week’s worth of work
+        and that nice runner’s high kind of feeling of getting another project
+        across the finish line.
+      </p>
+      <p>
+        <figure>
+          <img
+            src="screenshot.png"
+            alt="This is how the email looks like"
+          />
+          <figcaption>This is how the email looks like</figcaption>
+        </figure>
+      </p>
+      <p>
+        If you want to give it a try, you can signup to get
+        <strong><a href="https://bullish.email">Bullish▲</a></strong> in your
+        inbox every morning at
+        <a href="https://bullish.email">https://bullish.email</a>; you can also
+        check out the code on
+        <a href="https://github.com/eduardosasso/bullish/">Github</a>.
+      </p>
+      <p>Stay healthy. Cheers ~</p>
+    </section>
+  </body>
+
+  <script>
+    window.ga =
+      window.ga ||
+      function() {
+        (ga.q = ga.q || []).push(arguments);
+      };
+    ga.l = +new Date();
+    ga("create", "UA-148146327-2", "auto");
+    ga("send", "pageview");
+  </script>
+  <script async src="https://www.google-analytics.com/analytics.js"></script>
+</html>

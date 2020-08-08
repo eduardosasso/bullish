@@ -38,9 +38,50 @@ date_format: "%B %d, %Y"
 # UA-XXXXX-X with your web property ID
 google_analytics: 'UA-148146327-2'
 
-css_url: /leter.css
+css_url: /bullish.css
 
 custom:
+  blog:
+    turning-my-obsession-with-the-stock-market-into-a-side-project:
+      date_format:
+      theme:
+        name: classic      
+        background_color: "#fff"
+        text_color: "#1B262C"
+        heading_color: "#1B262C"
+        link_color: "#21bf73"
+        accent_color: "#1B262C"
+        heading_font: "'Libre Baskerville', serif"
+        text_font: "'Rubik', sans-serif"
+        text_size: "20px"
+        font_url: "https://fonts.googleapis.com/css?family=Roboto:400,700|Merriweather|Lato|Libre+Baskerville|Open+Sans|Rubik&display=swap"
+    from-stock-market-side-project-to-micro-saas:
+      date_format:
+      theme:
+        name: classic      
+        background_color: "#fff"
+        text_color: "#1B262C"
+        heading_color: "#1B262C"
+        link_color: "#21bf73"
+        accent_color: "#1B262C"
+        heading_font: "'Libre Baskerville', serif"
+        text_font: "'Rubik', sans-serif"
+        text_size: "20px"
+        font_url: "https://fonts.googleapis.com/css?family=Roboto:400,700|Merriweather|Lato|Libre+Baskerville|Open+Sans|Rubik&display=swap"
+  about:
+    date_format:
+    theme:
+      name: classic      
+      background_color: "#fff"
+      text_color: "#1B262C"
+      heading_color: "#1B262C"
+      link_color: "#21bf73"
+      accent_color: "#1B262C"
+      heading_font: "'Libre Baskerville', serif"
+      text_font: "'Rubik', sans-serif"
+      text_size: "20px"
+      font_url: "https://fonts.googleapis.com/css?family=Roboto:400,700|Merriweather|Lato|Libre+Baskerville|Open+Sans|Rubik&display=swap"
+
   terms-of-service:
     theme:
       background_color: '#fff'
