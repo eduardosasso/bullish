@@ -40,15 +40,11 @@ module Templates
     def sponsor
       return if @premium
 
-      # labels = [
-      #   'Click here to signup and get a free stock',
-      #   'Open an account and earn a free stock',
-      #   'Get a free stock when you open an account',
-      #   'Click here and get a free stock'
-      # ]
-
       labels = [
-        'Financial news and trends delivered in a short, conversational and millennial way.'
+        'Click here to signup and get a free stock',
+        'Open an account and earn a free stock',
+        'Get a free stock when you open an account',
+        'Click here and get a free stock'
       ]
 
       Element.sponsor(labels.sample)
