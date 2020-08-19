@@ -1806,7 +1806,7 @@ body {
   font-family: "Montserrat";
   font-size: 12px;
   font-weight: 500;
-  color: #adb5bd;
+  color: #97a6b5;
   position: relative;
   display: inline-block;
   text-decoration: none;
@@ -1916,9 +1916,9 @@ body {
   text-decoration: none;
 }
 
-.split_footer ul li a:hover {
-  text-decoration: underline;
-  color: #97a6b5;
+a:hover {
+  text-decoration: underline !important;
+  /* color: #97a6b5; */
 }
 
 .split_footer ul li {
