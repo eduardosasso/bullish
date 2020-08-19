@@ -6,6 +6,7 @@ require './editions/morning'
 require './editions/afternoon'
 require './editions/free'
 require './editions/edition'
+require './services/sample'
 
 # buy high sell low
 class Bullish
@@ -20,11 +21,15 @@ class Bullish
   end
 
   def self.morning_edition
-    new(Editions::Morning.new)
+    new(Editions::Morning.new).tap do |e|
+      Services::Sample.new.upload(e.edition.content)
+    end
   end
 
   def self.afternoon_edition
-    new(Editions::Afternoon.new)
+    new(Editions::Afternoon.new).tap do |e|
+      Services::Sample.new.upload(e.edition.content)
+    end
   end
 
   # send email to subscribers

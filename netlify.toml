@@ -2,3 +2,8 @@
   publish = "./site/"
 [build]
   functions = "./site"
+
+[[redirects]]
+  from = "/sample/*"
+  to = "https://bullish-sample.s3-us-west-2.amazonaws.com/index.html"
+  status = 200
