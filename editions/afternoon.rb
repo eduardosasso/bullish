@@ -22,7 +22,7 @@ module Editions
     end
 
     def subject_up(index, value)
-      emoji = %w[☝️ 👍 🟢].sample
+      emoji = %w[🟢].sample
 
       [
         "#{index} closed up #{emoji} #{value}",
@@ -30,12 +30,12 @@ module Editions
         "#{index} rose #{value} #{emoji}",
         "#{index} added #{emoji} #{value}",
         "#{index} #{emoji} climbed #{value}",
-        " #{emoji} #{index} finished up #{value}"
+        "#{emoji} #{index} finished up #{value}"
       ].sample + ' ' + ['today', day_of_the_week.to_s].sample
     end
 
     def subject_down(index, value)
-      emoji = %w[👎 🔻 🔴 👇].sample
+      emoji = %w[🔴].sample
 
       [
         "#{emoji} #{index} dropped #{value}",

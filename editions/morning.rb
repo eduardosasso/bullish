@@ -10,15 +10,15 @@ module Editions
       key = sample.keys.first
       value = sample.values.first
 
-      down = %w[down negative 👎 🔻 🔴 👇 ↓].sample
-      up = %w[up positive 👍 ↑ ☝️].sample
+      down = %w[down negative ↓].sample
+      up = %w[up positive ↑].sample
 
       preposition = ['is trending', 'is'].sample
       premarket = ['premarket', 'pre-market', 'early trading', 'market futures'].sample
 
       up_down = value.start_with?(Templates::Element::MINUS) ? down : up
 
-      "#{Services::Ticker::ALIAS[key.to_sym]} #{preposition} #{up_down} #{value} in " + premarket
+      "#{Services::Ticker::ALIAS[key.to_sym]} #{preposition} #{up_down} in " + premarket
     end
 
     def preheader
@@ -28,9 +28,7 @@ module Editions
 
       this_morning = ['this morning', 'this ' + day_of_the_week.to_s, 'today'].sample
 
-      trending = ['on 🔥', 'trending', '💥', '⚡️'].sample
-
-      stocks + ' are ' + trending + ' ' + this_morning + '...'
+      stocks + ' are trending ' + this_morning + '...'
     end
 
     def elements
