@@ -9,7 +9,7 @@ Bullish is a **free daily email newsletter** with **information about the stock 
 
 The idea to build Bullish came from the need to have a quick, uncluttered overview of the market right before it opens, showing stock futures that signal if the market is trending up or down for the day and historical performance of the major indexes over time so I can decide if today is a day to  — Buy high and sell low —
 
-Check out the [blog post](https://eduardosasso.co/blog/turning-my-obsession-in-the-stock-market-into-a-side-project/) for more details.
+Check out the [blog post](https://bullish.email/blog/turning-my-obsession-in-the-stock-market-into-a-side-project/) for more details.
 
 Subscribe at **https://bullish.email**
 
