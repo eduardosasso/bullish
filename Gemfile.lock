@@ -41,6 +41,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    mocha (1.11.2)
     multipart-post (2.1.1)
     mustache (1.1.1)
     nokogiri (1.10.9)
@@ -70,6 +71,7 @@ DEPENDENCIES
   htmlcompressor
   minitest
   minitest-reporters
+  mocha
   mustache
   nokogiri
   rake

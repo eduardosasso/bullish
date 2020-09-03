@@ -41,5 +41,12 @@ module Services
         assert_equal(Services::Ticker::RANGE.keys.count, nasdaq.stats.values.compact.count)
       end
     end
+
+    def test_in_date_range?
+      ticker = Services::Ticker.new('bigc', Services::Ticker::RANGE['1Y'])
+      ticker.stubs(:timestamp).returns(1.year.ago.to_i)
+
+      assert ticker.in_date_range?
+    end
   end
 end

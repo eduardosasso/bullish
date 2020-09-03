@@ -14,3 +14,4 @@ Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 
 require 'minitest/autorun'
 require 'minitest/mock'
+require 'mocha/minitest'

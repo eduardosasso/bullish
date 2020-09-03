@@ -49,6 +49,18 @@ module Services
         'MAX': 'max'
       }.with_indifferent_access
 
+    RANGE_DATE = 
+      {
+        '1d': 1.day.ago,
+        '5d': 5.days.ago,
+        '1mo': 1.month.ago,
+        '3mo': 3.months.ago,
+        '6mo': 6.months.ago,
+        '1y': 1.year.ago,
+        '5y': 5.years.ago,
+        '10y': 10.years.ago
+      }.with_indifferent_access
+
     def initialize(symbol, range = RANGE['1D'])
       @symbol = symbol
       @key = INDEX.key(symbol)
@@ -102,6 +114,8 @@ module Services
     def performance
       quotes.unshift(prev_close) if @range == RANGE['1D']
 
+      return '—' unless in_date_range?
+
       Percent.diff(quotes.last, quotes.first).to_s
     end
 
@@ -137,6 +151,26 @@ module Services
 
     def quotes
       data.dig('indicators', 'quote').first.dig('close')
+    end
+
+    def timestamp
+      data.dig('timestamp').first
+    end
+
+    def date
+      Time.at(timestamp).to_datetime
+    end
+
+    def in_date_range?
+      range_date = RANGE_DATE[@range]
+
+      return true if range_date.nil?
+
+      # 2 day buffer
+      # check if timestamp matches range req
+      (range_date.to_datetime - date)
+        .to_i
+        .between?(-2,2)
     end
 
     def log(request)
