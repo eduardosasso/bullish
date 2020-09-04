@@ -68,6 +68,19 @@ custom:
         text_font: "'Rubik', sans-serif"
         text_size: "20px"
         font_url: "https://fonts.googleapis.com/css?family=Roboto:400,700|Merriweather|Lato|Libre+Baskerville|Open+Sans|Rubik&display=swap"
+    how-our-side-project-improved-my-investing-skills:
+      date_format:
+      theme:
+        name: classic      
+        background_color: "#fff"
+        text_color: "#1B262C"
+        heading_color: "#1B262C"
+        link_color: "#21bf73"
+        accent_color: "#1B262C"
+        heading_font: "'Libre Baskerville', serif"
+        text_font: "'Rubik', sans-serif"
+        text_size: "20px"
+        font_url: "https://fonts.googleapis.com/css?family=Roboto:400,700|Merriweather|Lato|Libre+Baskerville|Open+Sans|Rubik&display=swap"
   about:
     date_format:
     theme:
