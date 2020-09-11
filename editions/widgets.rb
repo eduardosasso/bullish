@@ -162,7 +162,11 @@ module Editions
 
     def top_losers_performance
       top_losers.map do |stock|
-        stats_top(stock) rescue nil
+        stats_top(stock)
+      rescue StandardError => e
+        Service::Log.error(e.message)
+
+        nil
       end.compact
     end
 

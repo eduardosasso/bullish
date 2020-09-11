@@ -1,23 +1,24 @@
 # frozen_string_literal: true
 
-require 'aws-sdk-s3'
-require './services/log'
-require 'dotenv/load'
+require './services/s3'
+require './services/config'
 
 module Services
   class Sample
     BUCKET = 'bullish-sample'
-    PUBLIC = 'public-read'
+
+    def initialize(bucket = BUCKET)
+      @bucket = bucket
+
+      @bucket += '-test' if Services::Config.test? 
+    end
 
     def upload(content)
-      s3 = Aws::S3::Client.new
-      s3.copy_object(bucket: BUCKET, copy_source: BUCKET + '/tomorrow.html', key: 'index.html', acl: PUBLIC)
+      s3 = Services::S3.new(@bucket)
 
-      s3 = Aws::S3::Resource.new
-      obj = s3.bucket(BUCKET).object('tomorrow.html')
-      obj.put(body: content, acl: PUBLIC)
-    rescue StandardError => e
-      Services::Log.error(e.message)
+      s3.copy(from: 'tomorrow.html', to: 'index.html') rescue nil
+
+      s3.upload(name: 'tomorrow.html', content: content)
     end
   end
 end

@@ -238,6 +238,38 @@ a:hover {
   border-bottom-color: var(--text_color);
 }
 
+.archive a:not(.directory) {
+  border: none;
+  font-weight: normal;
+}
+
+.archive .date {
+  font-size: 16px;
+  font-weight: 500;
+  color: #97a6b5;
+}
+
+.archive  a:hover {
+  border-bottom: 2px solid;
+  border-bottom-color: var(--text_color);
+}
+
+.archive ul li {
+  padding-bottom: 25px;
+}
+
+.archive ul li p {
+  line-height: 1em;
+}
+
+.archive .directory {
+  margin-left: 2em;
+}
+
+.directory li {
+  line-height: 2em;
+}
+
 section {
   max-width: 700px;
   /* margin: var(--page_align); */
@@ -263,7 +295,7 @@ ul li {
   /* margin-bottom: 15px; */
 }
 
-ul li::before {
+body:not(.archive):not(.directory) ul li::before {
   content: "•";
   color: var(--accent_color);
   display: inline-block;
@@ -414,6 +446,10 @@ ul.slider {
   /* margin-left: 1.2em; */
    padding-left: 24px;
    padding-right: 24px;
+  }
+
+  .archive p {
+    padding-left: 0px;
   }
  
   h2 {

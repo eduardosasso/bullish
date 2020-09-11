@@ -26,7 +26,7 @@ module Editions
     def subscribe_premium
       headline = [
         'Crypto, top gainers and losers',
-        'Internation markets, asia & EU futures',
+        'International markets, asia & EU futures',
         'Sector performance and YTD stats',
         'No ads and all time high performance',
         'Russell 2k, Gold and 10-Yr Treasury',

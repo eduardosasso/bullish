@@ -7,6 +7,9 @@ require './editions/afternoon'
 require './editions/free'
 require './editions/edition'
 require './services/sample'
+require './services/archive'
+require './services/log'
+require './services/config'
 
 # buy high sell low
 class Bullish
@@ -21,15 +24,23 @@ class Bullish
   end
 
   def self.morning_edition
-    new(Editions::Morning.new).tap do |e|
-      Services::Sample.new.upload(e.edition.content)
-    end
+    new(Editions::Morning.new).tap(&:upload)
   end
 
   def self.afternoon_edition
-    new(Editions::Afternoon.new).tap do |e|
-      Services::Sample.new.upload(e.edition.content)
-    end
+    new(Editions::Afternoon.new).tap(&:upload)
+  end
+
+  def upload
+    return if Services::Config.test?
+
+    subject = @edition.subject
+    content = @edition.content
+
+    Services::Sample.new.upload(content)
+    Services::Archive.new.upload(subject, content)
+  rescue StandardError => e
+    Services::Log.error(e.message)
   end
 
   # send email to subscribers

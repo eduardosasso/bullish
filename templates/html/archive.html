@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Archive - Bullish Stock Market</title>
+    <meta name="generator" content="Leter" />
+    <meta
+      name="description"
+      content=" Archive directory of all Bullish Stock Market newsletter editions"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net/" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://bullish.email/assets/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://bullish.email/assets/icons/favicon-16x16.png"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"
+    />
+
+    <style>
+      :root {
+        --background_color: #fff;
+        --page_align: 0 auto;
+        --text_font: "Rubik", sans-serif;
+        --text_color: #212529;
+        --text_size: 20px;
+        --heading_font: "Montserrat";
+        --heading_color: #1b262c;
+        --accent_color: #1b262c;
+        --link_color: #21bf73;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://bullish.email/bullish.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Rubik|Montserrat:500,800&display=swap"
+    />
+  </head>
+
+  <body id="classic" class="archive">
+    <section>
+      <div class="logo">
+        <a href="/"><img src="https://bullish.email/assets/logo.png" /></a>
+      </div>
+      <h1>{{heading}}</h1>
+      <hr />
+      <ul>
+        {{#archive}}
+        <li>
+          <p class="date">{{date}}</p>
+          <a href="{{url}}">{{title}}</a>
+        </li>
+        {{/archive}}
+      </ul>
+    </section>
+  </body>
+
+  <script>
+    window.ga =
+      window.ga ||
+      function () {
+        (ga.q = ga.q || []).push(arguments);
+      };
+    ga.l = +new Date();
+    ga("create", "UA-148146327-2", "auto");
+    ga("send", "pageview");
+  </script>
+  <script async src="https://www.google-analytics.com/analytics.js"></script>
+</html>

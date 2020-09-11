@@ -8,6 +8,7 @@ require 'rake/testtask'
 
 Rake::TestTask.new do |t|
   t.pattern = 'test/**/*_test.rb'
+  t.warning = false 
 end
 
 task :send_free_edition do
@@ -81,6 +82,13 @@ task :preview_all do
     afternoon.edition.day_of_the_week = day
     afternoon.edition.save(day.to_s + '-afternoon ' + afternoon.edition.subject)
   end
+end
+
+task :build_archive do 
+  archive = Services::Archive.new
+
+  archive.build_index
+  archive.build_directory # TODO can be optimized to run once a month
 end
 
 def send_email(bullish, day = nil)

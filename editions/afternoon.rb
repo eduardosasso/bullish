@@ -8,16 +8,18 @@ require './services/sector'
 module Editions
   class Afternoon < Edition
     def subject
-      sample = indexes.to_a.sample(1).to_h
-      key = sample.keys.first
-      value = sample.values.first.performance
+      @subject ||= begin
+        sample = indexes.to_a.sample(1).to_h
+        key = sample.keys.first
+        value = sample.values.first.performance
 
-      index = Services::Ticker::ALIAS[key.to_sym]
+        index = Services::Ticker::ALIAS[key.to_sym]
 
-      if value.start_with?(Templates::Element::MINUS)
-        subject_down(index, value)
-      else
-        subject_up(index, value)
+        if value.start_with?(Templates::Element::MINUS)
+          subject_down(index, value)
+        else
+          subject_up(index, value)
+        end
       end
     end
 
