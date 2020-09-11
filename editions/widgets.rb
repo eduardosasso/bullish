@@ -162,8 +162,8 @@ module Editions
 
     def top_losers_performance
       top_losers.map do |stock|
-        stats_top(stock)
-      end
+        stats_top(stock) rescue nil
+      end.compact
     end
 
     def top_gainers
