@@ -49,7 +49,7 @@ module Services
         'MAX': 'max'
       }.with_indifferent_access
 
-    RANGE_DATE = 
+    RANGE_DATE =
       {
         '1d': 1.day.ago,
         '5d': 5.days.ago,
@@ -170,7 +170,7 @@ module Services
       # check if timestamp matches range req
       (range_date.to_datetime - date)
         .to_i
-        .between?(-2,2)
+        .between?(-2, 2)
     end
 
     def log(request)

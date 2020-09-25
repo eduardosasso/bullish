@@ -34,6 +34,20 @@ class BullishTest < Minitest::Test
     end
   end
 
+  def test_morning_edition
+    Bullish.any_instance.stubs(:upload).returns(nil)
+
+    edition = Bullish.morning_edition.edition
+    assert_instance_of(Editions::Morning, edition)
+  end
+
+  def test_afternoon_edition
+    Bullish.any_instance.stubs(:upload).returns(nil)
+
+    edition = Bullish.afternoon_edition.edition
+    assert_instance_of(Editions::Afternoon, edition)
+  end
+
   def test_dont_post_on_holiday
     holiday = Services::Holiday::DATES.sample
     date = Date.parse(holiday)

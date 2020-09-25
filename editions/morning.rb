@@ -6,19 +6,21 @@ require './services/futures'
 module Editions
   class Morning < Edition
     def subject
-      sample = futures.to_a.sample(1).to_h
-      key = sample.keys.first
-      value = sample.values.first
+      @subject ||= begin
+         sample = futures.to_a.sample(1).to_h
+         key = sample.keys.first
+         value = sample.values.first
 
-      down = %w[down negative ↓].sample
-      up = %w[up positive ↑].sample
+         down = %w[down negative ↓].sample
+         up = %w[up positive ↑].sample
 
-      preposition = ['is trending', 'is'].sample
-      premarket = ['premarket', 'pre-market', 'early trading', 'market futures'].sample
+         preposition = ['is trending', 'is'].sample
+         premarket = ['premarket', 'pre-market', 'early trading', 'market futures'].sample
 
-      up_down = value.start_with?(Templates::Element::MINUS) ? down : up
+         up_down = value.start_with?(Templates::Element::MINUS) ? down : up
 
-      "#{Services::Ticker::ALIAS[key.to_sym]} #{preposition} #{up_down} in " + premarket
+         "#{Services::Ticker::ALIAS[key.to_sym]} #{preposition} #{up_down} in " + premarket
+       end
     end
 
     def preheader

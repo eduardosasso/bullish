@@ -35,7 +35,7 @@ module Editions
     end
 
     def content
-      Templates::Template.edition(self).to_html
+      @content ||= Templates::Template.edition(self).to_html
     end
 
     def elements
