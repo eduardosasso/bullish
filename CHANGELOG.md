@@ -1,8 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2020-09
+### Added
+- Dynamic sample
+- Archive page
+- Trigger emails using Github actions
+
 ## 2020-07-25
-###
+### Added
 - New website 🎉
 
 ## 2020-07-08
