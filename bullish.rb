@@ -32,8 +32,6 @@ class Bullish
   end
 
   def upload
-    return if Services::Config.test?
-
     subject = @edition.subject
     content = @edition.content
 

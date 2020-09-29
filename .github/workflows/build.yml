@@ -18,7 +18,7 @@ env:
   MARKET_API: ${{secrets.MARKET_API}}
   TOP_GAINERS_LOSERS_API: ${{secrets.TOP_GAINERS_LOSERS_API}}
   MAILERLITE_API_KEY: ${{secrets.MAILERLITE_API_KEY}}
-  FREE_GROUP: ${{secrets.FREE_GROUP}}
+  # FREE_GROUP: ${{secrets.FREE_GROUP}}
   PREMIUM_GROUP: ${{secrets.PREMIUM_GROUP}}
   TEST_GROUP: ${{secrets.TEST_GROUP}}
   SENTRY_DSN: ${{secrets.SENTRY_DSN}}
