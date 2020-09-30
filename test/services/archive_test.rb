@@ -12,6 +12,9 @@ module Services
 
       name = "#{Services::Archive::FOLDER}/nasdaq-is-up-2.html"
       content = "Content"
+
+      Services::Popup.any_instance.stubs(:inject).returns(content)
+
       tags = {:subject_base64=>"TmFzZGFxIGlzIHVwIDIl"}
 
       mock.expect(:upload, nil, [name: name, content: content, tags: tags])
@@ -28,7 +31,7 @@ module Services
 
       subject = "Nasdaq is up #{rand(1..8)}% today"
 
-      archive.upload(subject, 'email content')
+      archive.upload(subject, '<head></head>email content')
 
       archive.build_index
 
