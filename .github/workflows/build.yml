@@ -140,7 +140,7 @@ jobs:
       run: bundle exec rake send_afternoon_edition
 
   archive:
-    if: contains(github.event.schedule, '0 10 * * 1-5')
+    if: contains(github.event.schedule, '00 10 * * 1-5')
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2

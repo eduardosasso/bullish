@@ -8,7 +8,7 @@ require 'rake/testtask'
 
 Rake::TestTask.new do |t|
   t.pattern = 'test/**/*_test.rb'
-  t.warning = false 
+  t.warning = false
 end
 
 task :send_free_edition do
@@ -84,11 +84,11 @@ task :preview_all do
   end
 end
 
-task :build_archive do 
+task :build_archive do
   archive = Services::Archive.new
 
   archive.build_index
-  archive.build_directory # TODO can be optimized to run once a month
+  archive.build_directory # TODO: can be optimized to run once a month
 end
 
 def send_email(bullish, day = nil)

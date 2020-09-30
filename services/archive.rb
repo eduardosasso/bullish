@@ -3,6 +3,7 @@
 require './services/s3'
 require './services/log'
 require './services/config'
+require './services/popup'
 require 'base64'
 require 'date'
 require './templates/element'
@@ -22,7 +23,7 @@ module Services
     def initialize(bucket = BUCKET)
       @bucket = bucket
 
-      @bucket += '-test' if Services::Config.test? 
+      @bucket += '-test' if Services::Config.test?
     end
 
     def upload(subject, content)
@@ -31,6 +32,8 @@ module Services
 
       name = "#{FOLDER}/#{name}.html"
       tags = { subject_base64: Base64.urlsafe_encode64(subject, padding: false) }
+
+      content = Services::Popup.new(content).inject
 
       Services::S3.new(@bucket).upload(name: name, content: content, tags: tags)
     end
