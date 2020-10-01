@@ -5,13 +5,18 @@
   functions = "./site"
 
 [[redirects]]
-  from = "/sample/*"
+  from = "/latest-edition/*"
   to = "https://bullish-sample.s3-us-west-2.amazonaws.com/index.html"
   status = 200
 
 [[redirects]]
   from = "/archive/"
   to = "https://bullish-archive.s3-us-west-2.amazonaws.com/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/archive/directory"
+  to = "https://bullish-archive.s3-us-west-2.amazonaws.com/directory/index.html"
   status = 200
 
 [[redirects]]
