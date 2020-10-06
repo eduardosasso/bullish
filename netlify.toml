@@ -20,8 +20,8 @@
   status = 200
 
 [[redirects]]
-  from = "/archive/*/"
-  to = "https://bullish-archive.s3-us-west-2.amazonaws.com/:splat/index.html"
+  from = "/archive/:year_month/"
+  to = "https://bullish-archive.s3-us-west-2.amazonaws.com/:year_month/index.html"
   status = 200
 
 [[redirects]]
