@@ -25,7 +25,7 @@
   status = 200
 
 [[redirects]]
-  from = "/archive/*.html"
+  from = "/archive/*"
   to = "https://bullish-archive.s3-us-west-2.amazonaws.com/:splat"
   status = 200
 
