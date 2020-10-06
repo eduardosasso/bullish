@@ -21,12 +21,11 @@
 
 [[redirects]]
   from = "/archive/*/"
-  to = "https://google.com"
-  # to = "https://bullish-archive.s3-us-west-2.amazonaws.com/:splat/index.html"
+  to = "https://bullish-archive.s3-us-west-2.amazonaws.com/:splat/index.html"
   status = 200
 
 [[redirects]]
-  from = "/archive/*"
+  from = "/archive/*.html"
   to = "https://bullish-archive.s3-us-west-2.amazonaws.com/:splat"
   status = 200
 
