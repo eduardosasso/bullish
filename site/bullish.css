@@ -249,7 +249,7 @@ a:hover {
   color: #97a6b5;
 }
 
-.archive  a:hover {
+.archive  a:hover:not(.logo) {
   border-bottom: 2px solid;
   border-bottom-color: var(--text_color);
 }
