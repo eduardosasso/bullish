@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Building a newsletter archive</title>
+    <meta name="generator" content="Leter" />
+    <meta
+      name="description"
+      content="Building an Archive feature for Bullish stock markets email newsletter."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net/" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/icons/favicon-16x16.png"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"
+    />
+
+    <style>
+      :root {
+        --background_color: #fff;
+        --page_align: 0 auto;
+        --text_font: "Rubik", sans-serif;
+        --text_color: #1b262c;
+        --text_size: 20px;
+        --heading_font: "Montserrat";
+        --heading_color: #1b262c;
+        --accent_color: #1b262c;
+        --link_color: #21bf73;
+      }
+    </style>
+
+    <link rel="stylesheet" href="/bullish.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Rubik|Montserrat:500,800&display=swap"
+    />
+    <!-- MailerLite Universal -->
+    <script>
+      (function (m, a, i, l, e, r) {
+        m["MailerLiteObject"] = e;
+        function f() {
+          var c = { a: arguments, q: [] };
+          var r = this.push(c);
+          return "number" != typeof r ? r : f.bind(c.q);
+        }
+        f.q = f.q || [];
+        m[e] = m[e] || f.bind(f.q);
+        m[e].q = m[e].q || f.q;
+        r = a.createElement(i);
+        var _ = a.getElementsByTagName(i)[0];
+        r.async = 1;
+        r.src = l + "?v" + ~~(new Date().getTime() / 1000000);
+        _.parentNode.insertBefore(r, _);
+      })(
+        window,
+        document,
+        "script",
+        "https://static.mailerlite.com/js/universal.js",
+        "ml"
+      );
+
+      var ml_account = ml("accounts", "2024694", "v7f1i7g4p5", "load");
+    </script>
+    <!-- End MailerLite Universal -->
+  </head>
+
+  <body id="classic">
+    <section>
+      <div class="logo">
+        <a href="/"><img src="../logo.png" /></a>
+      </div>
+      <h1>Building a newsletter archive</h1>
+      <hr />
+      <p>
+        Bullish is a stock market newsletter that I built to keep me informed
+        about the market ups and downs and help with my investments.
+      </p>
+
+      <p>
+        One of the features on my radar was an archiving functionality to help
+        with long-tail SEO and showcase previous editions.
+      </p>
+
+      <p>
+        The final code turned out to be pretty small, but it took a few trial
+        and errors to get to the solution I'll detail below.
+      </p>
+
+      <p>
+        Bullish is nowadays referred to as
+        <a href="https://jamstack.wtf">JAMstack</a>, meaning its a static
+        website, no backend, just plain old HTML and Javascript. It's a cool new
+        way to build modern products without worrying about infrastructure
+        beforehand.
+      </p>
+
+      <p>
+        To build an Archive, first and foremost, we need to decide where to
+        store content, in this case, each email sent, and the obvious solution
+        is S3. You can overengineer whatever you like, but nothing will beat S3
+        for simple file storage.
+      </p>
+
+      <p>
+        The next challenge was to figure out how to route requests coming from
+        <a href="https://bullish.email/archive"
+          >https://bullish.email/archive</a
+        >
+        to S3 but keep the URL’s with clean names like
+        <a
+          href="https://bullish.email/archive/2020-10/nasdaq-lost-1-57-today.html"
+          >https://bullish.email/archive/2020-10/nasdaq-lost-1-57-today.html</a
+        >and for that, what you need is a reverse proxy.
+      </p>
+
+      <p>
+        Bullish’s website runs on
+        <a href="https://www.netlify.com">https://www.netlify.com</a>, and they
+        have an
+        <a href="https://docs.netlify.com/routing/redirects/rewrites-proxies/"
+          >elegant solution</a
+        >
+        to solve this baked into their product.
+      </p>
+      <p>
+        Netlify supports
+        <a href="https://docs.netlify.com/routing/redirects/rewrites-proxies/"
+          >proxy redirects</a
+        >, and that’s what I needed. All I had to do was specify a
+        <a
+          href="https://github.com/eduardosasso/bullish/blob/master/netlify.toml"
+          >netlify.toml</a
+        >
+        with the rules, and everything pretty much worked on the first try.
+      </p>
+
+      <p>
+        With the biggest two problems solved, I focused on wiring the
+        <a
+          href="https://github.com/eduardosasso/bullish/blob/master/services/archive.rb"
+          >code</a
+        >
+        to upload to S3 after each email edition goes out and a rake task to
+        update the archive every day triggered via
+        <a
+          href="https://github.com/eduardosasso/bullish/blob/master/.github/workflows/build.yml#L12"
+          >Github actions as a scheduled event</a
+        >.
+      </p>
+
+      <p>
+        The
+        <a
+          href="https://github.com/eduardosasso/bullish/blob/master/Rakefile#L87"
+          >rake task</a
+        >
+        to update the archive index works by looping through all files in S3 for
+        the current month and feeds that into an
+        <a
+          href="https://github.com/eduardosasso/bullish/blob/master/templates/html/archive.html"
+          >HTML template</a
+        >that uses the
+        <a href="http://mustache.github.io">Mustache template engine</a> to spit
+        out a static index.html file that is uploaded back to S3 to become
+        <a href="https://bullish.email/archive">https://bullish.email/archive</a
+        >.
+      </p>
+
+      <p>
+        Inside S3, the archive bucket has the following folder structure labeled
+        in the format year-month like <b>2020-10</b>, <b>2020-09</b>, where all
+        the emails go plus an index.html file with a list of all the files in
+        each particular folder.
+      </p>
+
+      <p>
+        Another index.html sits in the root of the bucket, which is essentially
+        a copy of the index file from the current month's folder, and that
+        becomes the entry point for
+        <a href="https://bullish.email/archive">/archive</a>.
+      </p>
+
+      <p>
+        During the rake task to update the archive index, we also update the
+        directory, which recycles the past month's folder, let's say
+        <b>2020-09</b> to be under
+        <a href="https://bullish.email/archive/directory">/archive/directory</a
+        >. So <a href="https://bullish.email/archive">/archive</a> points to the
+        current month’s index while
+        <a href="https://bullish.email/archive/directory">/archive/directory</a>
+        has a list of all previous months like
+        <a href="https://bullish.email/archive/2020-09/">/archive/2020-09</a>
+        and so on.
+      </p>
+
+      <p>
+        Another neat thing I did was to inject a popup snippet in the email file
+        before it gets uploaded to S3. If somebody happens to land on an archive
+        URL from a previous edition, they'll get an upsell to subscribe to
+        Bullish in there.
+      </p>
+
+      <p>
+        And this concludes the last big-ticket item from the initial feature set
+        I had planned in the back of my head when I started this project.
+      </p>
+
+      <p>Now it's time to chill, regroup and decide what's next.</p>
+
+      <p>Cheers.</p>
+    </section>
+  </body>
+
+  <script>
+    window.ga =
+      window.ga ||
+      function () {
+        (ga.q = ga.q || []).push(arguments);
+      };
+    ga.l = +new Date();
+    ga("create", "UA-148146327-2", "auto");
+    ga("send", "pageview");
+  </script>
+  <script async src="https://www.google-analytics.com/analytics.js"></script>
+</html>
