@@ -129,12 +129,12 @@
         <a
           href="https://bullish.email/archive/2020-10/nasdaq-lost-1-57-today.html"
           >https://bullish.email/archive/2020-10/nasdaq-lost-1-57-today.html</a
-        >and for that, what you need is a reverse proxy.
+        > and for that, you need some sort of a reverse proxy.
       </p>
 
       <p>
         Bullish’s website runs on
-        <a href="https://www.netlify.com">https://www.netlify.com</a>, and they
+        <a href="https://www.netlify.com">Netlify</a>, and they
         have an
         <a href="https://docs.netlify.com/routing/redirects/rewrites-proxies/"
           >elegant solution</a
@@ -154,13 +154,13 @@
       </p>
 
       <p>
-        With the biggest two problems solved, I focused on <a href="https://github.com/eduardosasso/bullish/blob/master/bullish.rb#L34">wiring</a> the
+        With the two biggest challenges out of the way, I focused on <a href="https://github.com/eduardosasso/bullish/blob/master/bullish.rb#L34">wiring</a> the
         <a
           href="https://github.com/eduardosasso/bullish/blob/master/services/archive.rb"
           >code</a
         >
         to upload to S3 after each email edition goes out and a rake task to
-        update the archive every day triggered via
+        update the archive every day triggered by
         <a
           href="https://github.com/eduardosasso/bullish/blob/master/.github/workflows/build.yml#L12"
           >Github actions as a scheduled event</a
@@ -178,7 +178,7 @@
         <a
           href="https://github.com/eduardosasso/bullish/blob/master/templates/html/archive.html"
           >HTML template</a
-        >that uses the
+        > that uses the
         <a href="http://mustache.github.io">Mustache template engine</a> to spit
         out a static index.html file that is uploaded back to S3 to become
         <a href="https://bullish.email/archive">https://bullish.email/archive</a
@@ -188,7 +188,7 @@
       <p>
         Inside S3, the archive bucket has the following folder structure labeled
         in the format year-month like <b>2020-10</b>, <b>2020-09</b>, where all
-        the emails go plus an index.html file with a list of all the files in
+        the emails go plus an index.html with a list of all the files in
         each particular folder.
       </p>
 
