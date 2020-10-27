@@ -15,6 +15,9 @@ module Services
       'period1=%s&period2=%s&interval=1d&includePrePost=false&indicators=quote'
     STATS_API = 'https://query1.finance.yahoo.com/v8/finance/chart/'
     DETAILS_API = 'https://query1.finance.yahoo.com/v7/finance/quote?symbols='
+    STOCK_NEWS = ENV['STOCK_NEWS']
+    IEX_TOKEN = ENV['IEX_TOKEN']
+    DB_API = ENV['DB_API']
 
     # get historical performance by ticker symbol
     # https://query1.finance.yahoo.com/v8/finance/chart/^IXIC?interval=1d&range=1d

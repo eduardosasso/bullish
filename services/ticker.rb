@@ -5,6 +5,7 @@ require 'active_support/all'
 require './services/percent'
 require './services/peak'
 require './services/config'
+require './services/news/db'
 
 module Services
   class Ticker
@@ -125,6 +126,10 @@ module Services
 
     def peak
       @peak ||= Peak.new(@symbol)
+    end
+
+    def news
+      Services::News::DB.find(@symbol)
     end
 
     def url

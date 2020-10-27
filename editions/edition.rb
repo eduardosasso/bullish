@@ -35,7 +35,11 @@ module Editions
     end
 
     def content
-      @content ||= Templates::Template.edition(self).to_html
+      @content ||= template.to_html
+    end
+
+    def template
+      @template ||= Templates::Template.edition(self)
     end
 
     def elements
@@ -131,12 +135,18 @@ module Editions
     end
 
     # save as html file for testing
-    def save(name = subject)
-      filename = 'tmp/' + name + '.html'
+    def save(data: content, name: subject + '.html')
+      filename = 'tmp/' + name
 
       File.open(filename, 'w+') do |f|
-        f.write(content)
+        f.write(data)
       end
+    end
+
+    def save_template
+      name = 'preview_' + DateTime.now.strftime('%m_%d_%Y') + '.mjml'
+
+      save(data: template.compile, name: name)
     end
   end
 end

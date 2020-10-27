@@ -22,6 +22,9 @@ env:
   PREMIUM_GROUP: ${{secrets.PREMIUM_GROUP}}
   # TEST_GROUP: ${{secrets.TEST_GROUP}}
   SENTRY_DSN: ${{secrets.SENTRY_DSN}}
+  IEX_TOKEN: ${{secrets.IEX_TOKEN}}
+  STOCK_NEWS: ${{secrets.STOCK_NEWS}}
+  DB_API: ${{secrets.DB_API}}
 
 jobs:
   build:

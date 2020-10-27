@@ -24,16 +24,18 @@ class Bullish
   end
 
   def self.morning_edition
-    new(Editions::Morning.new).tap(&:upload)
+    new(Editions::Morning.new)
   end
 
   def self.afternoon_edition
-    new(Editions::Afternoon.new).tap(&:upload)
+    new(Editions::Afternoon.new)
   end
 
-  def upload
-    subject = @edition.subject
-    content = @edition.content
+  def archive
+    return unless edition.premium?
+
+    subject = edition.subject
+    content = edition.content
 
     Services::Sample.new.upload(content)
     Services::Archive.new.upload(subject, content)
@@ -44,9 +46,11 @@ class Bullish
   # send email to subscribers
   # retry 3 times when fail
   def post
+    return unless edition.send?
+
     retries ||= 0
 
-    Services::Email.new(edition).post if edition.send?
+    Services::Email.new(edition).post && archive
   rescue StandardError => e
     retries += 1
     retry if retries < 3
@@ -56,6 +60,10 @@ class Bullish
   end
 
   def save
-    @edition.save
+    edition.save
+  end
+
+  def save_template
+    edition.save_template
   end
 end

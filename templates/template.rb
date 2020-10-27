@@ -53,9 +53,7 @@ module Templates
     def to_html
       mjml = compile
 
-      html = Services::Mjml.new(mjml).to_html
-
-      Services::Minifier.html(html)
+      Services::Mjml.new(mjml).to_html
     end
 
     def self.edition(edition)
@@ -63,18 +61,6 @@ module Templates
         t.preheader = edition.preheader
         t.premium = edition.premium?
       end
-    end
-
-    def self.save(content, name = preview_name)
-      filename = 'tmp/' + name + '.html'
-
-      File.open(filename, 'w+') do |f|
-        f.write(content)
-      end
-    end
-
-    def self.preview_name
-      'preview_' + DateTime.now.strftime('%m_%d_%Y')
     end
   end
 end

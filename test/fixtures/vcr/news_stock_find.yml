@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://sheetdb.io/api/v1/cdcr74wgygdzl
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Wed, 04 Nov 2020 04:46:40 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      set-cookie:
+      - __cfduid=d41bf0904494fd1a86c98319e2977cf631604465199; expires=Fri, 04-Dec-20
+        04:46:39 GMT; path=/; domain=.sheetdb.io; HttpOnly; SameSite=Lax
+      vary:
+      - Accept-Encoding
+      cache-control:
+      - no-cache, private
+      x-ratelimit-limit:
+      - '600'
+      x-ratelimit-remaining:
+      - '598'
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      cf-cache-status:
+      - DYNAMIC
+      cf-request-id:
+      - 06332d229600001c9133956000000001
+      expect-ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      report-to:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=7ZlC1SOc2A%2FmZefP3HtevWfmqWuqBodi9HXM5d7Xme%2B4WXmNxCcPAjgUMMdhEoE8dew%2ByMVPrncacCVzL%2ByJuhZNj4QecMFgGynih9YuTWP2hKgZwgtw"}],"group":"cf-nel","max_age":604800}'
+      nel:
+      - '{"report_to":"cf-nel","max_age":604800}'
+      server:
+      - cloudflare
+      cf-ray:
+      - 5ecbb14a8cae1c91-SJC
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"best":"s","symbol":"PINS","headline":"test","date":"","source":"","url":""}]'
+  recorded_at: Wed, 04 Nov 2020 04:46:40 GMT
+recorded_with: VCR 6.0.0

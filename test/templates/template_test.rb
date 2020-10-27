@@ -6,25 +6,6 @@ require './templates/element'
 
 module Templates
   class TemplateTest < Minitest::Test
-    def test_preview
-      content = Templates::Template.new(
-        [
-          Templates::Element.divider,
-          Templates::Element.title,
-          Templates::Element.item,
-          Templates::Element.item
-        ]
-      ).compile
-
-      Templates::Template.save(content)
-
-      file = File.open("./tmp/#{Templates::Template.preview_name}.html")
-
-      assert(file)
-
-      File.delete(file)
-    end
-
     def test_compile
       template = Templates::Template.new([Templates::Element.title]).compile
 

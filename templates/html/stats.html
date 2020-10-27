@@ -1,5 +1,5 @@
 <mj-section padding-bottom="10px" padding-top="30px">
-  <mj-column>
+  <mj-column width="350px">
     <mj-text font-size="24px" color="#FFF" font-family="helvetica" font-weight="bold" align="center" line-height="25px" padding-bottom="0px">
       {{#symbol}}
         <a href="https://finance.yahoo.com/quote/{{symbol}}/" target="_blank" style="color:#FFF; text-decoration:none">
@@ -22,6 +22,15 @@
         {{/symbol}}
       </mj-text>
     {{/subtitle}}
+    {{#news}}
+      <mj-text font-size="14px" color="#FFF" font-family="helvetica" line-height="20px" align="center" padding-top="4px" padding-right="45px" padding-left="45px">
+        <a href="{{news_url}}" target="_blank" style="color:#FFF; text-decoration:none">
+          {{news}}
+        </a>
+        <br>
+        <i>{{news_source}}</i>
+      </mj-text>
+    {{/news}}
   </mj-column>
 </mj-section>
 
