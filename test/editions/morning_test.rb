@@ -15,6 +15,8 @@ module Editions
       morning = Editions::Morning.new
 
       VCR.use_cassette('morning_edition_week_elements', :match_requests_on => [:method]) do
+        Services::Ticker.any_instance.stubs(:news).returns({})
+
         Editions::Edition::DAY_ELEMENTS.each do |key, day_elements|
           assert(morning.send(day_elements))
         end
@@ -54,6 +56,9 @@ module Editions
       ticker.expect(:price, 10)
       ticker.expect(:price, 10)
       ticker.expect(:price, 10)
+      ticker.expect(:news, {})
+      ticker.expect(:news, {})
+      ticker.expect(:news, {})
       ticker.expect(:key, :sp500)
       ticker.expect(:key, :nasdaq)
       ticker.expect(:key, :dowjones)

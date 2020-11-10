@@ -32,6 +32,8 @@ module Editions
       afternoon = Editions::Afternoon.new
 
       VCR.use_cassette('afternoon_edition_week_elements', :match_requests_on => [:method]) do
+        Services::Ticker.any_instance.stubs(:news).returns({})
+
         Editions::Edition::DAY_ELEMENTS.each do |key, day_elements|
           assert(afternoon.send(day_elements))
         end

@@ -5,10 +5,11 @@ require './bullish'
 require 'minitest/mock'
 require './services/holiday'
 require './editions/edition'
-# require './services/sample'
 
 class BullishTest < Minitest::Test
   def test_post_retry
+    Bullish.any_instance.stubs(:archive).returns('third try')
+
     email = MiniTest::Mock.new
     email.expect(:post, 'first try') { raise 'first try' }
     email.expect(:post, nil) { raise 'second try' }

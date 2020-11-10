@@ -14,7 +14,7 @@ module Services
 
         f.rewind
 
-        return `mjml #{f.path} -s`
+        return `mjml #{f.path} -s --config.beautify false --config.minify true`
       end
     end
   end

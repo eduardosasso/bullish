@@ -237,10 +237,15 @@ module Editions
 
       symbol = Services::Ticker::INDEX[ticker.key] || ticker.symbol
 
+      news = ticker.news || {}
+
       data = Templates::Element::Stats.new(
         title: title,
         subtitle: subtitle,
         symbol: symbol,
+        news: news[:headline],
+        news_url: news[:url],
+        news_source: news[:source],
         _1D: performance['1D'],
         _5D: performance['5D'],
         _1M: performance['1M'],
