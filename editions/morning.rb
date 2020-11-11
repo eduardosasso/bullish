@@ -33,9 +33,13 @@ module Editions
       stocks + ' are trending ' + this_morning + '...'
     end
 
+    def name
+      'Morning edition'
+    end
+
     def elements
       [
-        main_title('Stock Futures Premarket Data'),
+        generic_title('Futures', 'Pre-Market Data', formatted_time),
         Templates::Element.spacer('20px'),
         item_futures(:sp500),
         item_futures(:nasdaq),

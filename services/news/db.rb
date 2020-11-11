@@ -39,7 +39,7 @@ module Services
 
       def self.find(symbol)
         all.select do |news|
-          news.symbol == symbol && news.best.present?
+          news.symbol == symbol.to_s && news.best.present?
         end.sample
       rescue StandardError => e
         Services::Log.error("#{symbol} - #{e.message}")

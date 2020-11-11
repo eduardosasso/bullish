@@ -101,6 +101,11 @@ module Templates
       render(:sponsor, OpenStruct.new(label: label))
     end
 
+    # item should be of Services::News::DB::Item struct
+    def self.news(item)
+      item ? render(:news, item) : spacer('20px')
+    end
+
     def self.subscribe_premium(headline, label = 'Subscribe now')
       subscribe_struct = OpenStruct.new(label: label, headline: headline)
 

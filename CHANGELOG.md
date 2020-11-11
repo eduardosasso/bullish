@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2020-11
+### Added
+- News headlines
+
 ## 2020-09
 ### Added
 - Dynamic sample

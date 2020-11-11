@@ -126,11 +126,15 @@ task :update_news do
   # TODO: temp run separately when general news
   Services::News::DB.reset
 
-  news = Services::Trending.new.stocks.map do |stock|
+  stock_news = Services::Trending.new.stocks.map do |stock|
     Services::News::Crawler.stock(stock.symbol)
   end.flatten.compact
 
-  Services::News::DB.save(items: news) if news.any?
+  market_news = Services::News::Crawler.reuters
+
+  all_news = stock_news + market_news
+
+  Services::News::DB.save(items: all_news) if all_news.any?
 end
 
 task :news do

@@ -20,8 +20,6 @@ module Templates
       [
         Element.header(@premium),
         Element.spacer('15px'),
-        sponsor,
-        Element.divider,
         @elements,
         Element.divider,
         Element.footer(@premium)
@@ -57,7 +55,9 @@ module Templates
     end
 
     def self.edition(edition)
-      new(edition.elements).tap do |t|
+      all_elements = edition.title + edition.elements
+
+      new(all_elements).tap do |t|
         t.preheader = edition.preheader
         t.premium = edition.premium?
       end

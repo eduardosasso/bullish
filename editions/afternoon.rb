@@ -61,6 +61,10 @@ module Editions
       end
     end
 
+    def name
+      'Afternoon edition'
+    end
+
     def elements
       [
         main_title('Stock Market Closing Data'),

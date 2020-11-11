@@ -5,7 +5,7 @@ require 'active_support/all'
 
 module Services
   class Config
-    DATE_FORMAT = '%B %d, %Y'
+    DATE_FORMAT = '%b %d, %Y'
     TIME_FORMAT = '%I:%M%p ET'
     TOP_GAINERS_LOSERS_API = ENV['TOP_GAINERS_LOSERS_API']
     FUTURES_API = ENV['MARKET_API']
@@ -15,6 +15,7 @@ module Services
       'period1=%s&period2=%s&interval=1d&includePrePost=false&indicators=quote'
     STATS_API = 'https://query1.finance.yahoo.com/v8/finance/chart/'
     DETAILS_API = 'https://query1.finance.yahoo.com/v7/finance/quote?symbols='
+    REUTERS_NEWS = 'https://mobile.reuters.com/assets/jsonHeadlines?channel=75&limit=1'
     STOCK_NEWS = ENV['STOCK_NEWS']
     IEX_TOKEN = ENV['IEX_TOKEN']
     DB_API = ENV['DB_API']
