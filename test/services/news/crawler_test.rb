@@ -10,5 +10,10 @@ module Services::News
         assert_equal('[Services::News::DB::Item(keyword_init: true)]', items.collect(&:class).uniq.to_s)
       end
     end
+
+    def test_reuters
+      items = Services::News::Crawler.reuters
+      assert_equal('[Services::News::DB::Item(keyword_init: true)]', items.collect(&:class).uniq.to_s)
+    end
   end
 end

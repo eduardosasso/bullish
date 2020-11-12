@@ -7,7 +7,7 @@ module Editions
   class Free < Morning
     def elements
       [
-        main_title('Stock Futures Premarket Data'),
+        generic_title('Futures', 'Pre-Market Data', formatted_time),
         Templates::Element.spacer('20px'),
         item_futures(:sp500),
         item_futures(:nasdaq),
@@ -48,6 +48,10 @@ module Editions
       [
         Templates::Element.subscribe_premium(headline, label)
       ]
+    end
+
+    def name
+      'Free edition'
     end
 
     def free_trending

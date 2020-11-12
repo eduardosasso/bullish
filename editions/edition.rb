@@ -42,6 +42,19 @@ module Editions
       @template ||= Templates::Template.edition(self)
     end
 
+    def title
+      [
+        Templates::Element.spacer('15px'),
+        generic_title(formatted_date, name),
+        Templates::Element.news(news),
+        Templates::Element.divider
+      ]
+    end
+
+    def name
+      raise 'override with edition name'
+    end
+
     def elements
       raise 'override and return an Array of Element'
     end
@@ -132,6 +145,10 @@ module Editions
 
     def premium?
       subscribers_group_id == Services::Config.premium_group_id
+    end
+
+    def news
+      Services::News::DB.find(:NEWS)
     end
 
     # save as html file for testing
