@@ -67,7 +67,8 @@ module Editions
 
     def elements
       [
-        main_title('Stock Market Closing Data'),
+        generic_title('Closing', formatted_time),
+
         Templates::Element.spacer('20px'),
         item_close(:sp500),
         item_close(:nasdaq),
