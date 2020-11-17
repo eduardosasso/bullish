@@ -2,6 +2,7 @@
 
 require './bullish.rb'
 require './services/news/crawler'
+require './services/twitter'
 
 task default: %w[test]
 
@@ -143,6 +144,18 @@ end
 
 task :reset_news do
   Services::News::DB.new.reset
+end
+
+task :prepare_tweets do
+  Services::Twitter.reset_tweets
+
+  twitter = Services::Twitter.new
+
+  Services::Trending.new.stocks.each do |stock|
+    twitter.add_tweet(stock)
+  end
+
+  twitter.save_tweets
 end
 
 def send_email(bullish, day = nil)
