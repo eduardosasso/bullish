@@ -1,6 +1,7 @@
 require './services/config'
 require 'faraday'
 require './services/log'
+require './templates/element'
 
 module Services
   class Twitter
@@ -29,13 +30,28 @@ module Services
       @tweets <<
         Item.new(
           ticker: stock.symbol,
-          variant1: stock.stats,
+          variant1: variant1(stock),
           variant2: nil,
           # all time high?
           variant3: nil,
           url: url,
           date: today
         )
+    end
+
+    def variant1(stock)
+      variant = ''
+
+      stock.stats.each do |key, value|
+        next if value == '—'
+        next if key == 'MAX'
+
+        icon = value.start_with?(Templates::Element::MINUS) ? '▽' : '△'
+
+        variant += "#{key} #{icon} #{value}\n"
+      end
+
+      variant
     end
 
     def save_tweets
