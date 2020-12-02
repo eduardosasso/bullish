@@ -19,6 +19,8 @@ module Services
     STOCK_NEWS = ENV['STOCK_NEWS']
     IEX_TOKEN = ENV['IEX_TOKEN']
     DB_API = ENV['DB_API']
+    TWITTER_DB_API = ENV['TWITTER_DB_API']
+    TWITTER_QUERY = ENV['TWITTER_QUERY']
 
     # get historical performance by ticker symbol
     # https://query1.finance.yahoo.com/v8/finance/chart/^IXIC?interval=1d&range=1d
