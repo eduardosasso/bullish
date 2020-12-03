@@ -33,7 +33,7 @@ module Services
 
       if Services::Config.test?
         body[:subject] += ' **TEST**'
-        body[:groups] = ENV['TEST_GROUP']
+        body[:groups] = Services::Config.test_group
       end
 
       post_request('/campaigns', body).dig('id')

@@ -59,7 +59,7 @@ module Editions
     end
 
     def subscribers_group_id
-      Services::Config.free_group_id
+      Services::Config.free_group
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './services/config'
 require 'faraday'
 require './services/log'
@@ -25,7 +27,7 @@ module Services
       today = Date.today.strftime('%Y-%m-%d')
 
       query = format(Services::Config::TWITTER_QUERY, stock.symbol, today)
-      url = 'https://twitter.com/search?q=' + CGI.escape(query) 
+      url = 'https://twitter.com/search?q=' + CGI.escape(query)
 
       @tweets <<
         Item.new(
