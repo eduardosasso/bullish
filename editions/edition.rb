@@ -144,7 +144,7 @@ module Editions
     end
 
     def premium?
-      subscribers_group_id == Services::Config.premium_group_id
+      subscribers_group_id == Services::Config.premium_group
     end
 
     def news

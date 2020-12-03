@@ -20,7 +20,9 @@ env:
   MAILERLITE_API_KEY: ${{secrets.MAILERLITE_API_KEY}}
   FREE_GROUP: ${{secrets.FREE_GROUP}}
   PREMIUM_GROUP: ${{secrets.PREMIUM_GROUP}}
+  PREMIUM_GROUP_TRIAL: ${{secrets.PREMIUM_GROUP_TRIAL}}
   # TEST_GROUP: ${{secrets.TEST_GROUP}}
+  # TEST_GROUP_TRIAL: ${{secrets.TEST_GROUP_TRIAL}}
   SENTRY_DSN: ${{secrets.SENTRY_DSN}}
   IEX_TOKEN: ${{secrets.IEX_TOKEN}}
   STOCK_NEWS: ${{secrets.STOCK_NEWS}}
@@ -55,6 +57,7 @@ jobs:
     - name: Run tests
       env:
         TEST_GROUP: ${{secrets.TEST_GROUP}}
+        TEST_GROUP_TRIAL: ${{secrets.TEST_GROUP_TRIAL}}
       run: bundle exec rake
 
   free:

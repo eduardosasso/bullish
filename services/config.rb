@@ -9,13 +9,17 @@ module Services
     TIME_FORMAT = '%I:%M%p ET'
     TOP_GAINERS_LOSERS_API = ENV['TOP_GAINERS_LOSERS_API']
     FUTURES_API = ENV['MARKET_API']
-    TRENDING_API = 'https://query1.finance.yahoo.com/v1/finance/trending/US?count=50'
-    QUOTE_SUMMARY_API = 'https://query2.finance.yahoo.com/v10/finance/quoteSummary/%s?&modules=price,summaryDetail'
-    ALL_TIME_HIGH_API = 'https://query1.finance.yahoo.com/v8/finance/chart/%s?'\
-      'period1=%s&period2=%s&interval=1d&includePrePost=false&indicators=quote'
+    TRENDING_API =
+      'https://query1.finance.yahoo.com/v1/finance/trending/US?count=50'
+    QUOTE_SUMMARY_API =
+      'https://query2.finance.yahoo.com/v10/finance/quoteSummary/%s?&modules=price,summaryDetail'
+    ALL_TIME_HIGH_API =
+      'https://query1.finance.yahoo.com/v8/finance/chart/%s?' \
+        'period1=%s&period2=%s&interval=1d&includePrePost=false&indicators=quote'
     STATS_API = 'https://query1.finance.yahoo.com/v8/finance/chart/'
     DETAILS_API = 'https://query1.finance.yahoo.com/v7/finance/quote?symbols='
-    REUTERS_NEWS = 'https://mobile.reuters.com/assets/jsonHeadlines?channel=75&limit=1'
+    REUTERS_NEWS =
+      'https://mobile.reuters.com/assets/jsonHeadlines?channel=75&limit=1'
     STOCK_NEWS = ENV['STOCK_NEWS']
     IEX_TOKEN = ENV['IEX_TOKEN']
     DB_API = ENV['DB_API']
@@ -45,12 +49,16 @@ module Services
       !ENV['TEST_GROUP'].nil?
     end
 
-    def self.premium_group_id
-      ENV['PREMIUM_GROUP'] || 'premium_id'
+    def self.premium_group
+      [ENV['PREMIUM_GROUP'], ENV['PREMIUM_GROUP_TRIAL']].compact
     end
 
-    def self.free_group_id
-      ENV['FREE_GROUP'] || 'free_id'
+    def self.free_group
+      ENV['FREE_GROUP']
+    end
+
+    def self.test_group
+      [ENV['TEST_GROUP'], ENV['TEST_GROUP_TRIAL']].compact
     end
   end
 end

@@ -99,7 +99,7 @@ module Editions
     end
 
     def subscribers_group_id
-      Services::Config.premium_group_id
+      Services::Config.premium_group
     end
   end
 end
