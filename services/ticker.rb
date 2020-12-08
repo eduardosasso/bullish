@@ -99,7 +99,7 @@ module Services
     def stats
       {}.tap do |stats|
         RANGE.each do |key, value|
-          stats[key] = Ticker.new(@symbol, value).performance
+          stats[key] = Ticker.new(@symbol, value).performance rescue nil
         end
       end
     end
