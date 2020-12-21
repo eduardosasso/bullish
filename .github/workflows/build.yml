@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ master ]
   schedule:
-    # - cron: '50 13 * * 1-5' # free edition mon-fri 8:50 ET
+    - cron: '50 13 * * 1-5' # free edition mon-fri 8:50 ET
     - cron: '55 13 * * 1-5' # premium morning mon-fri 8:55 ET
     - cron: '01 21 * * 1-5' # premium afternoon mon-fri 4:01 ET
     - cron: '00 10 * * 1-5' # build archive mon-fri 6:00 ET

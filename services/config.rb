@@ -50,7 +50,7 @@ module Services
     end
 
     def self.premium_group
-      [ENV['PREMIUM_GROUP'], ENV['PREMIUM_GROUP_TRIAL'], ENV['FREE_GROUP']].compact
+      [ENV['PREMIUM_GROUP'], ENV['PREMIUM_GROUP_TRIAL']].compact
     end
 
     def self.free_group
