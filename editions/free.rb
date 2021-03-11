@@ -35,13 +35,9 @@ module Editions
 
       label = [
         'Subscribe for $4.99/mo',
-        'Give it a try',
         'Try it for $4.99/mo',
         'Sign up for $4.99/mo',
         'Join now for $4.99/mo',
-        'Go premium',
-        'Become a PRO',
-        'Only $4.99/mo',
         'Upgrade for $4.99/mo'
       ].sample
 

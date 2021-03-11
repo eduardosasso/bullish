@@ -26,26 +26,26 @@ module Editions
     def subject_up(index, value)
       emoji = %w[🟢].sample
 
-      [
-        "#{index} closed up #{emoji} #{value}",
-        "#{index} #{emoji} jumped #{value}",
-        "#{index} rose #{value} #{emoji}",
-        "#{index} added #{emoji} #{value}",
-        "#{index} #{emoji} climbed #{value}",
-        "#{emoji} #{index} finished up #{value}"
+      emoji + ' ' + [
+        "#{index} closed up #{value}",
+        "#{index} jumped #{value}",
+        "#{index} rose #{value}",
+        "#{index} added #{value}",
+        "#{index} climbed #{value}",
+        "#{index} finished up #{value}"
       ].sample + ' ' + ['today', day_of_the_week.to_s].sample
     end
 
     def subject_down(index, value)
       emoji = %w[🔴].sample
 
-      [
-        "#{emoji} #{index} dropped #{value}",
-        "#{index} #{emoji} closed down #{value}",
-        "#{index} declined #{emoji} #{value}",
-        "#{index} fell #{value}  #{emoji}",
-        "#{emoji} #{index} thumbled #{value}",
-        "#{index}  #{emoji} lost #{value}"
+      emoji + ' ' + [
+        "#{index} dropped #{value}",
+        "#{index} closed down #{value}",
+        "#{index} declined #{value}",
+        "#{index} fell #{value}",
+        "#{index} thumbled #{value}",
+        "#{index} lost #{value}"
       ].sample + ' ' + ['today', day_of_the_week.to_s].sample
     end
 
@@ -73,6 +73,7 @@ module Editions
         item_close(:sp500),
         item_close(:nasdaq),
         item_close(:dowjones),
+        item_close(:bitcoin),
         Templates::Element.divider,
         todays_elements
       ]
@@ -80,8 +81,6 @@ module Editions
 
     def monday_elements
       [
-        world_futures,
-        Templates::Element.divider,
         top_gainers_losers_performance
       ]
     end
@@ -128,7 +127,8 @@ module Editions
       @indexes ||= {
         sp500: Services::Ticker.sp500,
         nasdaq: Services::Ticker.nasdaq,
-        dowjones: Services::Ticker.dowjones
+        dowjones: Services::Ticker.dowjones,
+        bitcoin: Services::Ticker.bitcoin
       }
     end
 

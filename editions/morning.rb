@@ -90,11 +90,9 @@ module Editions
 
     def friday_elements
       [
-        trending(3),
+        trending(5),
         Templates::Element.divider,
-        crypto,
-        Templates::Element.divider,
-        world
+        crypto
       ]
     end
 

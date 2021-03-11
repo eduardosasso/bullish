@@ -7,7 +7,7 @@ module Services
     COINS = {
       'Bitcoin': 'BTC-USD',
       'Ethereum': 'ETH-USD',
-      'XRP-Ripple': 'XRP-USD'
+      'Dogecoin': 'DOGE-USD'
     }.freeze
 
     def self.data

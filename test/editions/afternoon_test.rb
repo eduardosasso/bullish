@@ -69,8 +69,9 @@ module Editions
       sp500 = OpenStruct.new(price: 12, performance: '0.24%')
       nasdaq = OpenStruct.new(price: 32, performance: '-0.55%')
       dowjones = OpenStruct.new(price: 98, performance: '-0.04%')
+      bitcoin = OpenStruct.new(price: 55498, performance: '-20.04%')
 
-      indexes = { sp500: sp500, nasdaq: nasdaq, dowjones: dowjones }
+      indexes = { sp500: sp500, nasdaq: nasdaq, dowjones: dowjones, bitcoin: bitcoin }
 
       afternoon = Editions::Afternoon.new
 
