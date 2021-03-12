@@ -1,5 +1,13 @@
 # Bullish▲
 
+**Terms & Conditions**
+
+By downloading or using the app, these terms will automatically apply to you – you should make sure therefore that you read them carefully before using the app.
+
+Eduardo Marconato Sasso is committed to ensuring that the app is as useful and efficient as possible. For that reason, we reserve the right to make changes to the app or to charge for its services, at any time and for any reason. We will never charge you for the app or its services without making it very clear to you exactly what you’re paying for.
+
+With respect to Eduardo Marconato Sasso’s responsibility for your use of the app, when you’re using the app, it’s important to bear in mind that although we endeavour to ensure that it is updated and correct at all times, we do rely on third parties to provide information to us so that we can make it available to you. Eduardo Marconato Sasso accepts no liability for any loss, direct or indirect, you experience as a result of relying wholly on this functionality of the app.
+
 **Privacy Policy**
 
 Eduardo Marconato Sasso built the Bullish app as a Commercial app. This SERVICE is provided by Eduardo Marconato Sasso and is intended for use as is.
