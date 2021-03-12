@@ -11,8 +11,7 @@ exports.handler = async event => {
   const body = JSON.parse(event.body);
 
   try {
-
-    let options = {
+    const options = {
       method: "POST",
       url: "https://sapi.mailerlite.com/api/v2/subscribers",
       data: {
@@ -28,11 +27,14 @@ exports.handler = async event => {
     await request(options);
 
     // free group
-    groupUrl = "https://api.mailerlite.com/api/v2/groups/102872974/subscribers";
+    // const groupUrl = "https://api.mailerlite.com/api/v2/groups/102872974/subscribers";
+
+    // premium trial
+    const groupUrl = "https://api.mailerlite.com/api/v2/groups/105236984/subscribers";
 
     options.url = groupUrl;
 
-    let response = await request(options);
+    await request(options);
 
     console.info("SUCCESS: " + body.email);
 
