@@ -93,16 +93,15 @@
                     </div>
                     <h1>The Stock Market in your inbox.</h1>
                     <p>
-                      Insights on the market delivered to your email
-                      twice a day.
+                      Insights on the market delivered to your email twice a day.
+                      <br />Choose a plan.
                     </p>
-
                     <div class="split_text_inner yd_prc2">
                       <div class="yd_flx2">
                         <div class="flx_1">
                           <div class="split_text">
                             <div class="split_text_inner">
-                              <h2>Coverage</h2>
+                              <h2>Free</h2>
                               <ul class="prc_features">
                                 <li>
                                   <img
@@ -143,6 +142,62 @@
                                     alt="check"
                                   />
                                   <span>Bitcoin performance</span>
+                                </li>
+                              </ul>
+                              <div class="form">
+                                <form
+                                  id="chimp-form"
+                                  class="subscribe-form"
+                                  action="https://bullish.email/.netlify/functions/subscribe"
+                                  method="post"
+                                  accept-charset="UTF-8"
+                                  enctype="application/x-www-form-urlencoded"
+                                  autocomplete="off"
+                                  novalidate
+                                >
+                                  <input
+                                    class="mail"
+                                    id="chimp-email"
+                                    type="email"
+                                    name="email"
+                                    placeholder="Type your email address"
+                                    autocomplete="off"
+                                  /><input
+                                    id="subscribe-button"
+                                    class="submit-button"
+                                    type="submit"
+                                    value="Subscribe"
+                                  />
+                                </form>
+                                <div id="checkout_tease">
+                                  Zero spam. Unsubscribe at any time
+                                </div>
+                                <div id="response"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="flx_2">
+                          <div class="split_text">
+                            <div class="split_text_inner">
+                              <h2>Premium</h2>
+                              <ul class="prc_features">
+                                <li>
+                                  <img
+                                    src="assets/icons/check.svg"
+                                    width="18px"
+                                    alt="Check"
+                                  />
+                                  <span>No Ads</span>
+                                </li>
+
+                                <li>
+                                  <img
+                                    src="assets/icons/check.svg"
+                                    width="18px"
+                                    alt="Check"
+                                  />
+                                  <span>All features in free</span>
                                 </li>
                                 <li>
                                   <img
@@ -217,35 +272,15 @@
                                   <span>Year to date stats</span>
                                 </li>
                               </ul>
-                              <div class="form">
-                                <form
-                                  id="chimp-form"
-                                  class="subscribe-form"
-                                  action="https://bullish.email/.netlify/functions/subscribe"
-                                  method="post"
-                                  accept-charset="UTF-8"
-                                  enctype="application/x-www-form-urlencoded"
-                                  autocomplete="off"
-                                  novalidate
-                                >
-                                  <input
-                                    class="mail"
-                                    id="chimp-email"
-                                    type="email"
-                                    name="email"
-                                    placeholder="Type your email address"
-                                    autocomplete="off"
-                                  /><input
-                                    id="subscribe-button"
-                                    class="submit-button"
-                                    type="submit"
-                                    value="Subscribe"
-                                  />
-                                </form>
-                                <div id="checkout_tease">
-                                  Zero spam. Unsubscribe at any time
-                                </div>
-                                <div id="response"></div>
+                              <form class="form" action="checkout.html">
+                                <input
+                                  class="submit-button"
+                                  type="submit"
+                                  value="Sign up for $4.99/mo"
+                                />
+                              </form>
+                              <div id="checkout_tease">
+                                <a href="/archive" target="_blank">Click here to see recent editions</a>
                               </div>
                             </div>
                           </div>
