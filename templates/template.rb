@@ -20,8 +20,11 @@ module Templates
       [
         Element.header(@premium),
         Element.spacer('15px'),
+        sponsor,
+        Element.divider,
         @elements,
         Element.divider,
+        sponsor,
         Element.footer(@premium)
       ].flatten.compact.join(' ')
     end
@@ -39,10 +42,7 @@ module Templates
       return if @premium
 
       labels = [
-        'Click here to signup and get a free stock',
-        'Open an account and earn a free stock',
-        'Get a free stock when you open an account',
-        'Click here and get a free stock'
+        '<a href="https://alternativeassets.club/?utm_source=newslettersponsorship&utm_medium=bullish&utm_campaign=april" style="color:#FFF"><b><u>Alternative Assets</u></b></a><br/> Unique investment ideas worth exploring. <p><a href="https://alternativeassets.club/?utm_source=newslettersponsorship&utm_medium=bullish&utm_campaign=april" style="color: #FFF">Check out Alternative Assets →</a></p>'
       ]
 
       Element.sponsor(labels.sample)

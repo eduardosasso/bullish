@@ -19,7 +19,7 @@ module Editions
         dowjones_performance,
         bitcoin_performance,
         Templates::Element.spacer('20px'),
-        subscribe_premium
+        # subscribe_premium
       ]
     end
 
