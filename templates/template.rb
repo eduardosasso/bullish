@@ -42,7 +42,7 @@ module Templates
       return if @premium
 
       labels = [
-        '<a href="https://alternativeassets.club/?utm_source=newslettersponsorship&utm_medium=bullish&utm_campaign=april" style="color:#FFF"><b><u>Alternative Assets</u></b></a><br/> Unique investment ideas worth exploring. <p><a href="https://alternativeassets.club/?utm_source=newslettersponsorship&utm_medium=bullish&utm_campaign=april" style="color: #FFF">Check out Alternative Assets →</a></p>'
+        '<a href="https://millionerinvestor.com/?utm_source=newsletter&utm_medium=email&utm_campaign=bullish" style="color:#FFF"><b><u>Millioner Investor</u></b></a><br/>The investing newsletter for the next generation <br/> Get 30% off all plans with the “BULL” coupon <p><a href="https://millionerinvestor.com/?utm_source=newsletter&utm_medium=email&utm_campaign=bullish" style="color: #FFF">Click here to learn more →</a></p>'
       ]
 
       Element.sponsor(labels.sample)
