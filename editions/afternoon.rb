@@ -24,9 +24,7 @@ module Editions
     end
 
     def subject_up(index, value)
-      emoji = %w[🟢].sample
-
-      emoji + ' ' + [
+      [
         "#{index} closed up #{value}",
         "#{index} jumped #{value}",
         "#{index} rose #{value}",
@@ -37,9 +35,7 @@ module Editions
     end
 
     def subject_down(index, value)
-      emoji = %w[🔴].sample
-
-      emoji + ' ' + [
+      [
         "#{index} dropped #{value}",
         "#{index} closed down #{value}",
         "#{index} declined #{value}",
@@ -54,11 +50,7 @@ module Editions
 
       value = "#{trending.performance} to #{trending.price}"
 
-      if trending.performance.start_with?(Templates::Element::MINUS)
-        subject_down(trending.name, value)
-      else
-        subject_up(trending.name, value)
-      end
+      trending.performance.start_with?(Templates::Element::MINUS) ? "🔴" : "🟢"
     end
 
     def name

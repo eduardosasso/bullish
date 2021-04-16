@@ -19,18 +19,19 @@ module Editions
         dowjones_performance,
         bitcoin_performance,
         Templates::Element.spacer('20px'),
-        # subscribe_premium
+        subscribe_premium
       ]
     end
 
     def subscribe_premium
       headline = [
         'Crypto, top gainers and losers',
-        'International markets, asia & EU futures',
         'Sector performance and YTD stats',
-        'No ads and all time high performance',
+        'No ads, all time high performance',
         'Russell 2k, Gold and 10-Yr Treasury',
-        'Ad free, trending stocks and more'
+        'Ad free, trending stocks and more',
+        'More indicators, afternoon edition',
+        'Support Bullish 🙏'
       ].sample
 
       label = [
