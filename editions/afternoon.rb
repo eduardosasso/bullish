@@ -50,7 +50,11 @@ module Editions
 
       value = "#{trending.performance} to #{trending.price}"
 
-      trending.performance.start_with?(Templates::Element::MINUS) ? "🔴" : "🟢"
+      if trending.performance.start_with?(Templates::Element::MINUS)
+        subject_down(trending.name, value)
+      else
+        subject_up(trending.name, value)
+      end
     end
 
     def name
