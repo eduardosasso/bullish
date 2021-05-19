@@ -1,0 +1,25 @@
+<!-- Load Stripe.js on your website. -->
+<script src="https://js.stripe.com/v3"></script>
+
+<div id="error-message"></div>
+
+<script>
+  (function() {
+    var stripe = Stripe('pk_live_516YMkSJsg3M9lTql2OEWHd3jilNay5YU2tlRiuwqmSdilOCpy3TOBWtHvZCgctdPh1gagkiYWuBVCOyFoP4IAhbN00BHAM7ozk');
+
+    var checkoutButton = document.getElementById('checkout-button-price_1IsfeqJsg3M9lTqlhmu3DCzN');
+
+    stripe.redirectToCheckout({
+      lineItems: [{price: 'price_1IsfeqJsg3M9lTqlhmu3DCzN', quantity: 1}],
+      mode: 'payment',
+      successUrl: 'https://bullish.email',
+      cancelUrl: 'https://bullish.email',
+    })
+      .then(function (result) {
+        if (result.error) {
+          var displayError = document.getElementById('error-message');
+          displayError.textContent = result.error.message;
+        }
+      });
+  })();
+</script>
