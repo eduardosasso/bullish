@@ -45,7 +45,7 @@ GEM
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     jmespath (1.4.0)
-    mini_portile2 (2.5.0)
+    mini_portile2 (2.5.1)
     minitest (5.14.4)
     minitest-reporters (1.4.3)
       ansi
@@ -57,7 +57,7 @@ GEM
     mustache (1.1.1)
     net-http-persistent (4.0.1)
       connection_pool (~> 2.2)
-    nokogiri (1.11.3)
+    nokogiri (1.11.4)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     racc (1.5.2)
