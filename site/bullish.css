@@ -2,6 +2,59 @@ html {
   font-size: var(--text_size);
 }
 
+.form {
+  padding-top: 15px;
+  position: relative;
+  text-align: center;
+}
+
+.form input {
+  color: #222222;
+  font-family: "Montserrat";
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+  height: 45px;
+  border: 0;
+  border-radius: 10px;
+  background-color: #f3f3f3;
+  outline: none;
+  padding: 0 10px 0 10px;
+  width: 250px;
+  box-shadow: 0 5px 30px rgba(255, 255, 255, 0.1);
+  margin-bottom: 10px;
+}
+
+.form input:focus {
+  outline: none !important;
+  border-color: transparent;
+}
+
+.form .submit-button {
+  height: 45px;
+  border: 0;
+  border-radius: 10px;
+  /* margin-left: -35px; */
+  padding: 0 25px 0 25px;
+  background: #21bf73;
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-weight: 700;
+  /* text-transform: capitalize; */
+  letter-spacing: 0;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 5px 30px rgba(255, 255, 255, 0.05);
+  -webkit-transition: 500ms;
+  -moz-transition: 500ms;
+  transition: 500ms;
+  display: block;
+  margin: auto;
+  /* margin-top: 10px; */
+}
+
+
 ::-moz-selection {
   /* text-shadow: none; */
 }
