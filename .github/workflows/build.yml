@@ -6,8 +6,8 @@ on:
   pull_request:
     branches: [ master ]
   schedule:
-    - cron: '50 12 * * 1-5' # free edition mon-fri 8:50 ET
-    - cron: '55 12 * * 1-5' # premium morning mon-fri 8:55 ET
+    - cron: '50 11 * * 1-5' # free edition mon-fri 8:50 ET
+    - cron: '55 11 * * 1-5' # premium morning mon-fri 8:55 ET
     - cron: '01 20 * * 1-5' # premium afternoon mon-fri 4:01 ET
     - cron: '00 09 * * 1-5' # build archive mon-fri 6:00 ET
 
@@ -61,7 +61,7 @@ jobs:
       run: bundle exec rake
 
   free:
-    if: contains(github.event.schedule, '50 12 * * 1-5')
+    if: contains(github.event.schedule, '50 11 * * 1-5')
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -89,7 +89,7 @@ jobs:
       run: bundle exec rake send_free_edition
 
   morning:
-    if: contains(github.event.schedule, '55 12 * * 1-5')
+    if: contains(github.event.schedule, '55 11 * * 1-5')
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
