@@ -42,7 +42,7 @@ module Templates
       return if @premium
 
       labels = [
-        '<a href="https://alternativeassets.club/?utm_source=newslettersponsorship&utm_medium=bullish&utm_campaign=april" style="color:#FFF"><b><u>Alternative Assets</u></b></a><br/> Unique investment ideas worth exploring. <p><a href="https://alternativeassets.club/?utm_source=newslettersponsorship&utm_medium=bullish&utm_campaign=april" style="color: #FFF">Check out Alternative Assets →</a></p>'
+        '<a href="https://www.startengine.com/nanovms" style="color:#FFF"><b><u>Angel Invest in this Silicon Valley Cyber Company</u></b></a><br/> They have revenue, patents raised 2.4M from Bloomberg Beta & Initialized Capital <p><a href="https://www.startengine.com/nanovms" style="color: #FFF">Click here to learn more →</a></p>'
       ]
 
       Element.sponsor(labels.sample)
