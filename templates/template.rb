@@ -42,7 +42,7 @@ module Templates
       return if @premium
 
       labels = [
-        '<a href="https://www.startengine.com/nanovms" style="color:#FFF"><b><u>Angel Invest in this Silicon Valley Cyber Company</u></b></a><br/> They have revenue, patents raised 2.4M from Bloomberg Beta & Initialized Capital <p><a href="https://www.startengine.com/nanovms" style="color: #FFF">Click here to learn more →</a></p>'
+        '<a href="https://investinonfolio.com" style="color:#FFF"><b><u>High Yield Stable Income</u></b></a><br/> <b>Onfolio Holdings</b> is offering a Preferred Share with a 12% dividend. <p><a href="https://investinonfolio.com" style="color: #FFF">Click here to learn more →</a></p>'
       ]
 
       Element.sponsor(labels.sample)
