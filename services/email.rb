@@ -33,6 +33,7 @@ module Services
       }
 
       if Services::Config.test?
+        body[:name] += ' **TEST**'
         body[:subject] += ' **TEST**'
         body[:groups] = Services::Config.test_group
       end
