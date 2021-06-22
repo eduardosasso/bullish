@@ -26,6 +26,7 @@ module Services
 
     def create_campaign
       body = {
+        name: subject,
         subject: subject,
         type: 'regular',
         groups: group
