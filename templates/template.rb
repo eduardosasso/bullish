@@ -42,7 +42,7 @@ module Templates
       return if @premium
 
       labels = [
-        '<a href="https://investinonfolio.com" style="color:#FFF"><b><u>High Yield Stable Income</u></b></a><br/> <b>Onfolio Holdings</b> is offering a Preferred Share with a 12% dividend. <p><a href="https://investinonfolio.com" style="color: #FFF">Click here to learn more →</a></p>'
+        '<a href="https://app.adjust.com/q8qfi9f" style="color:#FFF"><b><u>An investing platform like no other</u></b></a><br/> On <b>Public.com</b>, you can buy stocks with any amount of money, see what others are investing in, and be part of a community of investors. <p><a href="https://app.adjust.com/q8qfi9f" style="color: #FFF">Get up to $50 in free stock on Bullish →</a></p>'
       ]
 
       Element.sponsor(labels.sample)
