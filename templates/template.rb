@@ -42,7 +42,7 @@ module Templates
       return if @premium
 
       labels = [
-        '<a href="https://app.adjust.com/q8qfi9f" style="color:#FFF"><b><u>An investing platform like no other</u></b></a><br/> On <b>Public.com</b>, you can buy stocks with any amount of money, see what others are investing in, and be part of a community of investors. <p><a href="https://app.adjust.com/q8qfi9f" style="color: #FFF">Get up to $50 in free stock on Bullish →</a></p>'
+        '<a href="https://alternativeassets.club/?utm_source=newslettersponsorship&utm_medium=bullish&utm_campaign=april" style="color:#FFF"><b><u>Alternative Assets</u></b></a><br/> Unique investment ideas worth exploring. <p><a href="https://alternativeassets.club/?utm_source=newslettersponsorship&utm_medium=bullish&utm_campaign=april" style="color: #FFF">Check out Alternative Assets →</a></p>'
       ]
 
       Element.sponsor(labels.sample)
