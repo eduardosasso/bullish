@@ -42,7 +42,7 @@ module Templates
       return if @premium
 
       labels = [
-        '<a href="https://www.moneyminx.com/?utm_source=bullish&utm_medium=email&utm_campaign=sponsored" style="color:#FFF"><b><u>Stop tracking your investments on a spreadsheet</u></b></a><br/>  Money Minx replaces spreadsheets with beautiful net worth <br/>and investments dashboards automatically updated and always ready for you<p><a href="https://www.moneyminx.com/?utm_source=bullish&utm_medium=email&utm_campaign=sponsored" style="color: #FFF">Give Money Minx a try now →</a></p>'
+        '<a href="https://www.actavisresearch.com/95off" style="color:#FFF"><b><u>Actavis Research: We Analyze. You Trade. You Profit.</u></b></a><br/>Start making crypto profits with our essential analysis for less than a dollar!<p><a href="https://www.actavisresearch.com/95off" style="color: #FFF">Click here to learn more →</a></p>'
       ]
 
       Element.sponsor(labels.sample)
