@@ -42,7 +42,7 @@ module Templates
       return if @premium
 
       labels = [
-        '<a href="https://www.actavisresearch.com/95off" style="color:#FFF"><b><u>Actavis Research: We Analyze. You Trade. You Profit.</u></b></a><br/>Start making crypto profits with our essential analysis for less than a dollar!<p><a href="https://www.actavisresearch.com/95off" style="color: #FFF">Click here to learn more →</a></p>'
+        '<a href="https://www.m1finance.com/?utm_source=bullishnewsletter&utm_medium=influencer&utm_campaign=content-influencer&utm_term=newsletter&utm_content=a1-general-202107" style="color:#FFF"><b><u>Invest, borrow, and spend with M1, The Finance Super App™</u></b></a><br/>Join the investors who are automating their money with M1. Start today and get $30. <br/>Terms and conditions apply.<p><a href="https://www.m1finance.com/?utm_source=bullishnewsletter&utm_medium=influencer&utm_campaign=content-influencer&utm_term=newsletter&utm_content=a1-general-202107" style="color: #FFF">Click here to learn more →</a></p>'
       ]
 
       Element.sponsor(labels.sample)
