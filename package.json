@@ -8,9 +8,9 @@
     "test": "test"
   },
   "dependencies": {
-    "@sentry/node": "^5.20.0",
-    "axios": "^0.21.1",
-    "stripe": "^8.68.0"
+    "@sentry/node": "^5.30.0",
+    "axios": "^0.21.4",
+    "stripe": "^8.175.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
