@@ -20,11 +20,11 @@ module Templates
       [
         Element.header(@premium),
         Element.spacer('15px'),
-        # sponsor,
+        sponsor,
         Element.divider,
         @elements,
         Element.divider,
-        # sponsor,
+        sponsor,
         Element.footer(@premium)
       ].flatten.compact.join(' ')
     end
@@ -42,7 +42,7 @@ module Templates
       return if @premium
 
       labels = [
-        '<a href="https://www.m1finance.com/?utm_source=bullishnewsletter&utm_medium=influencer&utm_campaign=content-influencer&utm_term=newsletter&utm_content=a1-general-202107" style="color:#FFF"><b><u>Invest, borrow, and spend with M1, The Finance Super App™</u></b></a><br/>Join the investors who are automating their money with M1. Start today and get $30. <br/>Terms and conditions apply.<p><a href="https://www.m1finance.com/?utm_source=bullishnewsletter&utm_medium=influencer&utm_campaign=content-influencer&utm_term=newsletter&utm_content=a1-general-202107" style="color: #FFF">Click here to learn more →</a></p>'
+        '<a href="https://hotstoks.com?utm_source=bullish" style="color:#FFF"><b><u>Hotstoks SQL • Finance • API</u></b></a><br/>Screen stocks, identify trends, track performance, find patterns, <br/>and more in an all-in-one SQL-based JSON API.<p><a href="https://hotstoks.com?utm_source=bullish" style="color: #FFF">Get started for free →</a></p>'
       ]
 
       Element.sponsor(labels.sample)
