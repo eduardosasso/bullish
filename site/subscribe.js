@@ -13,7 +13,7 @@ exports.handler = async event => {
   try {
     const options = {
       method: "POST",
-      url: "https://sapi.mailerlite.com/api/v2/subscribers",
+      url: "https://api.mailerlite.com/api/v2/subscribers",
       data: {
         email: body.email
       },
