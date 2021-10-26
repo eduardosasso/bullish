@@ -25,6 +25,7 @@ module Editions
 
     def subscribe_premium
       headline = [
+        'Pay once, Get full premium access. Limited lifetime deal',
         'Crypto, top gainers and losers',
         'Sector performance and YTD stats',
         'No ads, all time high performance',
@@ -32,15 +33,16 @@ module Editions
         'Ad free, trending stocks and more',
         'More indicators, afternoon edition',
         'Support Bullish 🙏'
-      ].sample
+      ].first
 
       label = [
+        'I want this!',
         'Subscribe for $4.99/mo',
         'Try it for $4.99/mo',
         'Sign up for $4.99/mo',
         'Join now for $4.99/mo',
         'Upgrade for $4.99/mo'
-      ].sample
+      ].first
 
       [
         Templates::Element.subscribe_premium(headline, label)

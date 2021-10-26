@@ -42,8 +42,10 @@ module Templates
       return if @premium
 
       labels = [
-        '<a href="https://hotstoks.com?utm_source=bullish" style="color:#FFF"><b><u>Hotstoks SQL • Finance • API</u></b></a><br/>Screen stocks, identify trends, track performance, find patterns, <br/>and more in an all-in-one SQL-based JSON API.<p><a href="https://hotstoks.com?utm_source=bullish" style="color: #FFF">Get started for free →</a></p>'
-      ]
+        '<a href="https://click.letterwell.co/163501244653780459261" style="color:#FFF"><b><u>Morning Brew</u></b></a><br/>Find out why over 3 million people read <a href="https://click.letterwell.co/163501244653780459261" style="color: #FFF">Morning Brew.</a><br/>It is free to subscribe!</a>',
+        '<a href="https://click.letterwell.co/163501244653780459261" style="color:#FFF"><b><u>Morning Brew</u></b></a><br/><a href="https://click.letterwell.co/163501244653780459261" style="color:#FFF">Morning Brew</a> delivers the top business stories to over 3 million readers each morning.<br/><a href="https://click.letterwell.co/163501244653780459261" style="color: #FFF">Subscribe now!</a>',
+        '<a href="https://click.letterwell.co/163501244613575774209" style="color:#FFF"><b><u>Dollar Flight Club</u></b></a><br/>An exclusive members-only club that sends you email alerts when they find flights up to 90% off leaving your home airport.'
+     ]
 
       Element.sponsor(labels.sample)
     end
