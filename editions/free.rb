@@ -25,7 +25,7 @@ module Editions
 
     def subscribe_premium
       headline = [
-        'Pay once, Get full premium access. Limited lifetime deal',
+        'Bullish Premium Lifetime Plan Black Friday Deal',
         'Crypto, top gainers and losers',
         'Sector performance and YTD stats',
         'No ads, all time high performance',
@@ -36,7 +36,7 @@ module Editions
       ].first
 
       label = [
-        'I want this!',
+        'Buy now from $49 to $29',
         'Subscribe for $4.99/mo',
         'Try it for $4.99/mo',
         'Sign up for $4.99/mo',
