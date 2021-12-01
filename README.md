@@ -11,7 +11,7 @@ The idea to build Bullish came from the need to have a quick, uncluttered overvi
 
 Check out the [blog post](https://bullish.email/blog/turning-my-obsession-in-the-stock-market-into-a-side-project/) for more details.
 
-Subscribe at **https://bullish.email**
+Subscribe at **https://bullish.email**.
 
 ## License
 Bullish▲ is released under the [MIT](/LICENSE) license.
