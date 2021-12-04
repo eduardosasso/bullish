@@ -42,9 +42,9 @@ module Templates
       return if @premium
 
       labels = [
-        '<a href="https://click.letterwell.co/163501244653780459261" style="color:#FFF"><b><u>Morning Brew</u></b></a><br/>Find out why over 3 million people read <a href="https://click.letterwell.co/163501244653780459261" style="color: #FFF">Morning Brew.</a><br/>It is free to subscribe!</a>',
-        '<a href="https://click.letterwell.co/163501244653780459261" style="color:#FFF"><b><u>Morning Brew</u></b></a><br/><a href="https://click.letterwell.co/163501244653780459261" style="color:#FFF">Morning Brew</a> delivers the top business stories to over 3 million readers each morning.<br/><a href="https://click.letterwell.co/163501244653780459261" style="color: #FFF">Subscribe now!</a>',
-        '<a href="https://click.letterwell.co/163501244613575774209" style="color:#FFF"><b><u>Dollar Flight Club</u></b></a><br/>An exclusive members-only club that sends you email alerts when they find flights up to 90% off leaving your home airport.'
+        '<a href="https://click.letterwell.co/_c7u97Fz1kSuXxgOmVsce" style="color:#FFF"><b><u>Morning Brew</u></b></a><br/>Find out why over 3 million people read <a href="https://click.letterwell.co/_c7u97Fz1kSuXxgOmVsce" style="color: #FFF">Morning Brew.</a><br/>It is free to subscribe!</a>',
+        '<a href="https://click.letterwell.co/_c7u97Fz1kSuXxgOmVsce" style="color:#FFF"><b><u>Morning Brew</u></b></a><br/><a href="https://click.letterwell.co/_c7u97Fz1kSuXxgOmVsce" style="color:#FFF">Morning Brew</a> delivers the top business stories to over 3 million readers each morning.<br/><a href="https://click.letterwell.co/_c7u97Fz1kSuXxgOmVsce" style="color: #FFF">Subscribe now!</a>',
+        '<a href="https://click.letterwell.co/e1hSFjJJA~tluX-V9D-ZX" style="color:#FFF"><b><u>Dollar Flight Club</u></b></a><br/>An exclusive members-only club that sends you email alerts when they find flights up to 90% off leaving your home airport.'
      ]
 
       Element.sponsor(labels.sample)

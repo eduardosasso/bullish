@@ -25,7 +25,6 @@ module Editions
 
     def subscribe_premium
       headline = [
-        'Bullish Premium Lifetime Plan Black Friday Deal',
         'Crypto, top gainers and losers',
         'Sector performance and YTD stats',
         'No ads, all time high performance',
@@ -33,16 +32,13 @@ module Editions
         'Ad free, trending stocks and more',
         'More indicators, afternoon edition',
         'Support Bullish 🙏'
-      ].first
+      ].sample
 
       label = [
-        'Buy now from $49 to $29',
-        'Subscribe for $4.99/mo',
-        'Try it for $4.99/mo',
-        'Sign up for $4.99/mo',
-        'Join now for $4.99/mo',
-        'Upgrade for $4.99/mo'
-      ].first
+        'Get lifetime access for $49 only',
+        'Lifetime subscription for $49', 
+        'Forever premium for only $49'
+      ].sample
 
       [
         Templates::Element.subscribe_premium(headline, label)
