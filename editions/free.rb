@@ -35,7 +35,7 @@ module Editions
       ].sample
 
       label = [
-        'Get lifetime access for $49 only',
+        'Lifetime access for $49 only',
         'Lifetime subscription for $49', 
         'Forever premium for only $49'
       ].sample

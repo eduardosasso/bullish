@@ -20,11 +20,11 @@ module Templates
       [
         Element.header(@premium),
         Element.spacer('15px'),
-        sponsor,
+        # sponsor,
         Element.divider,
         @elements,
         Element.divider,
-        sponsor,
+        # sponsor,
         Element.footer(@premium)
       ].flatten.compact.join(' ')
     end
