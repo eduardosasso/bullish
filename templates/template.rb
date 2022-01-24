@@ -20,11 +20,11 @@ module Templates
       [
         Element.header(@premium),
         Element.spacer('15px'),
-        # sponsor,
+        sponsor,
         Element.divider,
         @elements,
         Element.divider,
-        # sponsor,
+        sponsor,
         Element.footer(@premium)
       ].flatten.compact.join(' ')
     end
@@ -42,9 +42,7 @@ module Templates
       return if @premium
 
       labels = [
-        '<a href="https://click.letterwell.co/_c7u97Fz1kSuXxgOmVsce" style="color:#FFF"><b><u>Morning Brew</u></b></a><br/>Find out why over 3 million people read <a href="https://click.letterwell.co/_c7u97Fz1kSuXxgOmVsce" style="color: #FFF">Morning Brew.</a><br/>It is free to subscribe!</a>',
-        '<a href="https://click.letterwell.co/_c7u97Fz1kSuXxgOmVsce" style="color:#FFF"><b><u>Morning Brew</u></b></a><br/><a href="https://click.letterwell.co/_c7u97Fz1kSuXxgOmVsce" style="color:#FFF">Morning Brew</a> delivers the top business stories to over 3 million readers each morning.<br/><a href="https://click.letterwell.co/_c7u97Fz1kSuXxgOmVsce" style="color: #FFF">Subscribe now!</a>',
-        '<a href="https://click.letterwell.co/e1hSFjJJA~tluX-V9D-ZX" style="color:#FFF"><b><u>Dollar Flight Club</u></b></a><br/>An exclusive members-only club that sends you email alerts when they find flights up to 90% off leaving your home airport.'
+        '<a href="https://www.moneymachinenewsletter.com/lp/fivestocks?utm_source=newsletter&utm_medium=email&utm_campaign=Q1_2022_newsletter&utm_content=fivestocks_bullishStockMarket" style="color:#FFF"><b><u>5 Stocks With The Opportunity For A Massive Move This Week</u></b></a><br/><a href="https://www.moneymachinenewsletter.com/lp/fivestocks?utm_source=newsletter&utm_medium=email&utm_campaign=Q1_2022_newsletter&utm_content=fivestocks_bullishStockMarket" style="color:#FFF">Money Machine Newsletter</a> delivers these stock ideas daily to your inbox.',
      ]
 
       Element.sponsor(labels.sample)
