@@ -2,13 +2,14 @@ name: Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
   schedule:
-    - cron: '55 12 * * 1-5' # premium morning mon-fri 8:55 ET
-    - cron: '01 21 * * 1-5' # premium afternoon mon-fri 4:01 ET
-    - cron: '00 10 * * 1-5' # build archive mon-fri 6:00 ET
+    - cron: "50 11 * * 1-5" # free edition mon-fri 8:50 ET
+    - cron: "55 11 * * 1-5" # premium morning mon-fri 8:55 ET
+    - cron: "01 20 * * 1-5" # premium afternoon mon-fri 4:01 ET
+    - cron: "00 09 * * 1-5" # build archive mon-fri 6:00 ET
 
 env:
   AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
@@ -29,145 +30,145 @@ env:
 
 jobs:
   build:
-    if: github.event_name == 'push' || github.event_name == 'pull_request' 
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12'
-    - run: | 
-        npm install -g mjml
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 2.7.x
-    - uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
-    - name: Install gems
-      run: |
-        mkdir tmp
-        bundle config path vendor/bundle
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-    - name: Run tests
-      env:
-        TEST_GROUP: ${{secrets.TEST_GROUP}}
-        TEST_GROUP_TRIAL: ${{secrets.TEST_GROUP_TRIAL}}
-      run: bundle exec rake
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+      - run: |
+          npm install -g mjml
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.x
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Install gems
+        run: |
+          mkdir tmp
+          bundle config path vendor/bundle
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+      - name: Run tests
+        env:
+          TEST_GROUP: ${{secrets.TEST_GROUP}}
+          TEST_GROUP_TRIAL: ${{secrets.TEST_GROUP_TRIAL}}
+        run: bundle exec rake
 
   free:
-    if: contains(github.event.schedule, '50 12 * * 1-5')
+    if: contains(github.event.schedule, '50 11 * * 1-5')
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12'
-    - run: | 
-        npm install -g mjml
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 2.7.x
-    - uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
-    - name: Install gems
-      run: |
-        mkdir tmp
-        bundle config path vendor/bundle
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-    - name: Trigger free edition email
-      run: bundle exec rake send_free_edition
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+      - run: |
+          npm install -g mjml
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.x
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Install gems
+        run: |
+          mkdir tmp
+          bundle config path vendor/bundle
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+      - name: Trigger free edition email
+        run: bundle exec rake send_free_edition
 
   morning:
-    if: contains(github.event.schedule, '55 12 * * 1-5')
+    if: contains(github.event.schedule, '55 11 * * 1-5')
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12'
-    - run: | 
-        npm install -g mjml
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 2.7.x
-    - uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
-    - name: Install gems
-      run: |
-        mkdir tmp
-        bundle config path vendor/bundle
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-    - name: Trigger morning edition email
-      run: bundle exec rake send_morning_edition
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+      - run: |
+          npm install -g mjml
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.x
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Install gems
+        run: |
+          mkdir tmp
+          bundle config path vendor/bundle
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+      - name: Trigger morning edition email
+        run: bundle exec rake send_morning_edition
 
   afternoon:
-    if: contains(github.event.schedule, '01 21 * * 1-5')
+    if: contains(github.event.schedule, '01 20 * * 1-5')
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12'
-    - run: | 
-        npm install -g mjml
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 2.7.x
-    - uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+      - run: |
+          npm install -g mjml
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.x
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
 
-    - name: Install gems
-      run: |
-        mkdir tmp
-        bundle config path vendor/bundle
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-    - name: Trigger afternoon edition email
-      run: bundle exec rake send_afternoon_edition
+      - name: Install gems
+        run: |
+          mkdir tmp
+          bundle config path vendor/bundle
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+      - name: Trigger afternoon edition email
+        run: bundle exec rake send_afternoon_edition
 
   archive:
-    if: contains(github.event.schedule, '00 10 * * 1-5')
+    if: contains(github.event.schedule, '00 09 * * 1-5')
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12'
-    - run: | 
-        npm install -g mjml
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 2.7.x
-    - uses: actions/cache@v2
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
-    - name: Install gems
-      run: |
-        mkdir tmp
-        bundle config path vendor/bundle
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-    - name: Build archive
-      run: bundle exec rake build_archive
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+      - run: |
+          npm install -g mjml
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.x
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Install gems
+        run: |
+          mkdir tmp
+          bundle config path vendor/bundle
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+      - name: Build archive
+        run: bundle exec rake build_archive
