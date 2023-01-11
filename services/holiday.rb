@@ -7,32 +7,15 @@ require 'active_support/all'
 module Services
   class Holiday
     DATES = %w[
-      Jan-01-2020
-      Jan-20-2020
-      Feb-17-2020
-      Apr-10-2020
-      May-25-2020
-      Jul-03-2020
-      Sep-07-2020
-      Nov-26-2020
-      Dec-25-2020
-      Jan-01-2021
-      Jan-18-2021
-      Feb-15-2021
-      Apr-02-2021
-      May-31-2021
-      Jul-05-2021
-      Sep-06-2021
-      Nov-25-2021
-      Dec-24-2021
-      Jan-17-2022
-      Feb-21-2022
-      Apr-15-2022
-      May-30-2022
-      Jul-04-2022
-      Sep-05-2022
-      Nov-24-2022
-      Dec-26-2022
+      Jan-16-2023
+      Feb-20-2023
+      Apr-07-2023
+      May-29-2023
+      Jun-19-2023
+      Jul-04-2023
+      Sep-04-2023
+      Nov-23-2023
+      Dec-25-2023
     ].freeze
 
     def self.today?(date = current_date)
