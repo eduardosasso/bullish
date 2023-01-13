@@ -8,11 +8,12 @@ require 'date'
 
 module Templates
   class Template
-    attr_accessor :preheader, :premium
+    attr_accessor :preheader, :html_title, :premium
 
     def initialize(elements = [Element.title])
       @elements = elements
       @preheader = nil
+      @html_title = nil
       @premium = false
     end
 
@@ -32,6 +33,7 @@ module Templates
     def compile
       data = Element::Html.new(
         preheader: @preheader,
+        html_title: @html_title,
         body: body
       )
 
@@ -59,6 +61,7 @@ module Templates
 
       new(all_elements).tap do |t|
         t.preheader = edition.preheader
+        t.html_title = edition.subject
         t.premium = edition.premium?
       end
     end

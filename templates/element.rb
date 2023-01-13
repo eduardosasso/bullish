@@ -14,6 +14,7 @@ module Templates
 
     Html = Struct.new(
       :preheader,
+      :html_title,
       :body,
       keyword_init: true
     )

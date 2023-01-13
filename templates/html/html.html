@@ -1,24 +1,23 @@
 <mjml>
   <mj-head>
+    <mj-title>{{html_title}}</mj-title>
     <mj-attributes>
-      <mj-all font-family="Helvetica, Arial"/>
+      <mj-all font-family="Helvetica, Arial" />
     </mj-attributes>
     <mj-raw>
-      <meta name="color-scheme" content="light">
-      <meta name="supported-color-schemes" content="light">
+      <meta name="color-scheme" content="light" />
+      <meta name="supported-color-schemes" content="light" />
       <style type="text/css">
         :root {
-          Color-scheme: light;
-          supported-color-schemes:light;
+          color-scheme: light;
+          supported-color-schemes: light;
         }
         @media (prefers-color-scheme: light) {
-          background-color: '#1b262c'
+          background-color: "#1b262c";
         }
       </style>
     </mj-raw>
     <mj-preview>{{preheader}}</mj-preview>
   </mj-head>
-  <mj-body background-color='#1b262c' width="100%">
-    {{&body}}
-  </mj-body>
+  <mj-body background-color="#1b262c" width="100%"> {{&body}} </mj-body>
 </mjml>
