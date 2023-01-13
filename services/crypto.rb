@@ -6,8 +6,7 @@ module Services
   class Crypto
     COINS = {
       'Bitcoin': 'BTC-USD',
-      'Ethereum': 'ETH-USD',
-      'Dogecoin': 'DOGE-USD'
+      'Ethereum': 'ETH-USD'
     }.freeze
 
     def self.data
