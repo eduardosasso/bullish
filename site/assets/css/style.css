@@ -2176,7 +2176,8 @@ ul#countdown li {
   font-weight: 600 !important;
   /* margin: 0 !important; */
   color: #21bf73;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 #checkout_tease {
