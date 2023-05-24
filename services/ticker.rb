@@ -105,6 +105,7 @@ module Services
     end
 
     def name
+      p details
       @name ||= ALIAS[@key] || details.dig('displayName') || details.dig('shortName')
     end
 
@@ -197,6 +198,7 @@ module Services
             Config::DETAILS_API + @symbol,
             false
           )
+          p result
 
           JSON.parse(result)
               .dig('quoteResponse', 'result')

@@ -24,9 +24,9 @@ module Editions
     end
 
     def preheader
-      field = %i[symbol name].sample
+      # field = %i[symbol name].sample
 
-      stocks = Services::Trending.new.stocks.sample(2).map(&field).join(' and ')
+      stocks = Services::Trending.new.stocks.sample(2).join(' and ')
 
       this_morning = ['this morning', 'this ' + day_of_the_week.to_s, 'today'].sample
 
@@ -54,17 +54,16 @@ module Editions
         index_summary,
         Templates::Element.spacer('20px'),
         Templates::Element.divider,
-        trending(5)
+        bitcoin_performance
       ]
     end
 
     def tuesday_elements
       [
         index_performance,
-        gold_performance,
         Templates::Element.spacer('20px'),
         Templates::Element.divider,
-        trending(3)
+        sector_summary
       ]
     end
 
@@ -74,23 +73,22 @@ module Editions
         treasury_performance,
         Templates::Element.spacer('20px'),
         Templates::Element.divider,
-        trending(3)
+        sector_summary
       ]
     end
 
     def thursday_elements
       [
         index_performance,
-        russell2000_performance,
         Templates::Element.spacer('20px'),
         Templates::Element.divider,
-        trending(3)
+        sector_summary
       ]
     end
 
     def friday_elements
       [
-        trending(5),
+        index_performance,
         Templates::Element.divider,
         crypto
       ]

@@ -13,7 +13,8 @@ module Services
       trending = request.dig(*key).first.dig('quotes')
 
       trending.take(limit).map do |s|
-        Ticker.new(s['symbol'])
+        # Ticker.new(s['symbol'])
+        s['symbol']
       end
     end
 
