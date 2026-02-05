@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-02-04T16:27:54.621316",
+  "qqq_30d_return": -2.1737409756023998,
+  "total_stocks": 162,
+  "watchlist": [
+    {
+      "ticker": "TTD",
+      "name": "The Trade Desk, Inc.",
+      "price": 27.27,
+      "ath": 122.54000091552734,
+      "market_cap": 13333472256,
+      "sector": "Communication Services",
+      "pct_from_ath": -77.74604227496415,
+      "change_1d": 0.33112470130134636,
+      "streak": 1,
+      "rsi": 17.94537590648683,
+      "roc_30d": -26.870476453528518,
+      "rs_vs_qqq": -24.69673547792612,
+      "vol_surge": 1.4142156585955512,
+      "pct_vs_50dma": -25.734485569508013,
+      "is_52w_high": 

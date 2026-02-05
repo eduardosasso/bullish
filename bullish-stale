@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Load and display the most recent scan results
+cd "$(dirname "$0")" && uv run python -c "
+import sys
+from pathlib import Path
+from scan import load_results, get_latest_scan, render, console
+
+json_path = get_latest_scan(Path('data'))
+if not json_path:
+    console.print('[red]No scan files found in data/[/red]')
+    sys.exit(1)
+
+console.print(f'[dim]Loading from: {json_path}[/dim]\n')
+result = load_results(json_path)
+render(result)
+"

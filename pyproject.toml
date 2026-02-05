@@ -1,0 +1,16 @@
+[project]
+name = "bullish"
+version = "0.1.0"
+description = "Momentum & mean reversion scanner for tech stocks"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "html5lib>=1.1",
+    "lxml>=6.0.2",
+    "numpy>=2.0.2",
+    "pandas>=2.3.3",
+    "requests>=2.32.5",
+    "rich>=14.0.0",
+    "yfinance>=1.1.0",
+]
+

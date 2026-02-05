@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Bullish - Momentum Scanner for Tech Stocks
+cd "$(dirname "$0")" && uv run python scan.py "$@"
