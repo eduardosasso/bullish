@@ -1,0 +1,37 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+import "../styles/global.css";
+import { Dashboard } from "@/components/dashboard";
+
+const dataDir = path.resolve(import.meta.dirname, "../../../data");
+const scanFiles = fs
+	.readdirSync(dataDir)
+	.filter((f: string) => f.startsWith("scan_") && f.endsWith(".json"))
+	.sort()
+	.reverse();
+
+const scans = scanFiles.flatMap((f: string) => {
+	try {
+		const raw = fs.readFileSync(path.join(dataDir, f), "utf-8");
+
+		return [JSON.parse(raw)];
+	} catch {
+		return [];
+	}
+});
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Bullish Dashboard</title>
+	</head>
+	<body>
+		<Dashboard client:load scans={scans} />
+	</body>
+</html>
